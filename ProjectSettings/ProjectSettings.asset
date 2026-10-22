@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: RDA
   productName: HQuest_proto
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -926,7 +926,7 @@ PlayerSettings:
   qnxGraphicConfPath: 
   apiCompatibilityLevel: 6
   captureStartupLogs: {}
-  activeInputHandler: 1
+  activeInputHandler: 2
   windowsGamepadBackendHint: 0
   cloudProjectId: 6d9b18bf-40ea-4721-81b6-15f81a8080b5
   framebufferDepthMemorylessMode: 0
