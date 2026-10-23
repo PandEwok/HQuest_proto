@@ -22,5 +22,6 @@ public class Room : MonoBehaviour
     {
         // Add the tile to the room's list of tiles
         tiles.Add(tile);
+        tile.transform.parent = transform;
     }
 }

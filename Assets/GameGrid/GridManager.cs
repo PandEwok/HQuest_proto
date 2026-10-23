@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -18,8 +19,8 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Room _roomPrefab;
 
     bool isMarking = false;
-    Vector3 markPositionStart;
-    Vector3 markPositionEnd;
+    Vector2 markPositionStart;
+    Vector2 markPositionEnd;
 
 
     void Start()
@@ -65,8 +66,46 @@ public class GridManager : MonoBehaviour
         return null;
     }
 
+
+    private void MakeRoomFromSelection(Tile tile)
+    {
+        var inverseTiles = _tiles.ToDictionary(x => x.Value, x => x.Key);
+        inverseTiles.TryGetValue(tile, out markPositionEnd);
+        //markPositionEnd = tile.transform.position;
+
+        Debug.Log($"Released on tile: {tile.name}");
+        // Create a room based on the marked area
+        Tile startTile;
+        _tiles.TryGetValue(markPositionStart, out startTile);
+        Vector3 poseStart = startTile.transform.position;
+        _tiles.TryGetValue(markPositionStart, out startTile);
+        Vector3 poseEnd = tile.transform.position;
+        Vector3 roomPosition = (poseStart + poseEnd) / 2;
+
+        //Vector3 roomScale = new Vector3(Mathf.Abs(markPositionEnd.x - markPositionStart.x) + 1, 1, Mathf.Abs(markPositionEnd.z - markPositionStart.z) + 1);
+        var room = Instantiate(_roomPrefab, roomPosition, Quaternion.identity);
+        //room.transform.localScale = roomScale;
+
+        // READ : add tiles from starting point to end point as follows ; go down/up the line number (2nd number) until it's end point line, then repeat for each column until it's end point column
+        int xDif = markPositionStart.x <= markPositionEnd.x ? 1 : -1;
+        int yDif = markPositionStart.y <= markPositionEnd.y ? 1 : -1;
+        for (int x = (int)(markPositionStart.x); x != (int)(markPositionEnd.x) + xDif; x += xDif)
+        {
+            for (int y = (int)(markPositionStart.y); y != (int)(markPositionEnd.y) + yDif; y += yDif)
+            {
+                Tile currentTile;
+                if (_tiles.TryGetValue(new Vector2(x, y), out currentTile))
+                {
+                    room.addTile(currentTile);
+                }
+            }
+        }
+    }
+
+
     private void Update()
     {
+        // LEFT CLICK BEGIN
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -76,11 +115,26 @@ public class GridManager : MonoBehaviour
                 if (tile != null)
                 {
                     isMarking = true;
-                    markPositionStart = tile.transform.position;
+                    //markPositionStart = tile.transform.position;
+
+                    var inverseTiles = _tiles.ToDictionary(x => x.Value, x => x.Key);
+                    inverseTiles.TryGetValue(tile, out markPositionStart);
+
                     //Debug.Log($"Clicked on tile: {tile.name}");
                 }
             }
         }
+
+        // LEFT CLICK HOLD
+        if (Input.GetMouseButton(0))
+        {
+            if (isMarking)
+            {
+
+            }
+        }
+
+        // LEFT CLICK END
         if (Input.GetMouseButtonUp(0))
         {
             if (isMarking)
@@ -92,15 +146,41 @@ public class GridManager : MonoBehaviour
                     Tile tile = hit.collider.GetComponentInParent<Tile>();
                     if (tile != null)
                     {
-                        markPositionEnd = tile.transform.position;
+                        MakeRoomFromSelection(tile);
+
+
+
+                        /*var inverseTiles = _tiles.ToDictionary(x => x.Value, x => x.Key);
+                        inverseTiles.TryGetValue(tile, out markPositionEnd);
+                        //markPositionEnd = tile.transform.position;
+
                         Debug.Log($"Released on tile: {tile.name}");
                         // Create a room based on the marked area
-                        Vector3 roomPosition = (markPositionStart + markPositionEnd) / 2;
+                        Tile startTile;
+                        _tiles.TryGetValue(markPositionStart, out startTile);
+                        Vector3 poseStart = startTile.transform.position;
+                        _tiles.TryGetValue(markPositionStart, out startTile);
+                        Vector3 poseEnd = tile.transform.position;
+                        Vector3 roomPosition = (poseStart + poseEnd) / 2;
+
                         //Vector3 roomScale = new Vector3(Mathf.Abs(markPositionEnd.x - markPositionStart.x) + 1, 1, Mathf.Abs(markPositionEnd.z - markPositionStart.z) + 1);
                         var room = Instantiate(_roomPrefab, roomPosition, Quaternion.identity);
                         //room.transform.localScale = roomScale;
-                        room.addTile(tile);
+
                         // READ : add tiles from starting point to end point as follows ; go down/up the line number (2nd number) until it's end point line, then repeat for each column until it's end point column
+                        int xDif = markPositionStart.x <= markPositionEnd.x ? 1 : -1;
+                        int yDif = markPositionStart.y <= markPositionEnd.y ? 1 : -1;
+                        for (int x = (int)(markPositionStart.x); x != (int)(markPositionEnd.x)+xDif; x += xDif)
+                        {
+                            for (int y = (int)(markPositionStart.y); y != (int)(markPositionEnd.y) + yDif; y += yDif)
+                            {
+                                Tile currentTile;
+                                if (_tiles.TryGetValue(new Vector2 (x, y), out currentTile))
+                                {
+                                    room.addTile(currentTile);
+                                }
+                            }
+                        }*/
                     }
                 }
             }
