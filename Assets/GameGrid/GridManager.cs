@@ -14,7 +14,7 @@ public class GridManager : MonoBehaviour
 
     [SerializeField] private Transform _cam;
 
-    private Dictionary<Vector2, Tile> _tiles;
+    [HideInInspector] public Dictionary<Vector2, Tile> _tiles;
 
     [SerializeField] private Room _roomPrefab;
 
@@ -22,6 +22,7 @@ public class GridManager : MonoBehaviour
     Vector2 markPositionStart;
     Vector2 markPositionEnd;
 
+    int roomNumber = 0;
 
     void Start()
     {
@@ -66,6 +67,26 @@ public class GridManager : MonoBehaviour
         return null;
     }
 
+    List<Tile> GetTilesFromSelection(Vector2 startTile, Vector2 endTile)
+    {
+        List<Tile> resultList = new List<Tile>();
+        int xDif = startTile.x <= endTile.x ? 1 : -1;
+        int yDif = startTile.y <= endTile.y ? 1 : -1;
+
+        for (int x = (int)(startTile.x); x != (int)(endTile.x) + xDif; x += xDif)
+        {
+            for (int y = (int)(startTile.y); y != (int)(endTile.y) + yDif; y += yDif)
+            {
+                Tile currentTile;
+                if (_tiles.TryGetValue(new Vector2(x, y), out currentTile))
+                {
+                    resultList.Add(currentTile);
+                }
+            }
+        }
+        return resultList;
+    }
+
 
     private void MakeRoomFromSelection(Tile tile)
     {
@@ -83,23 +104,33 @@ public class GridManager : MonoBehaviour
         Vector3 roomPosition = (poseStart + poseEnd) / 2;
 
         //Vector3 roomScale = new Vector3(Mathf.Abs(markPositionEnd.x - markPositionStart.x) + 1, 1, Mathf.Abs(markPositionEnd.z - markPositionStart.z) + 1);
-        var room = Instantiate(_roomPrefab, roomPosition, Quaternion.identity);
+        var room = Instantiate(_roomPrefab, roomPosition, Quaternion.identity, transform);
+        room.GiveId(roomNumber); roomNumber++;
         //room.transform.localScale = roomScale;
 
         // READ : add tiles from starting point to end point as follows ; go down/up the line number (2nd number) until it's end point line, then repeat for each column until it's end point column
-        int xDif = markPositionStart.x <= markPositionEnd.x ? 1 : -1;
-        int yDif = markPositionStart.y <= markPositionEnd.y ? 1 : -1;
-        for (int x = (int)(markPositionStart.x); x != (int)(markPositionEnd.x) + xDif; x += xDif)
+        /*int xDif = markPositionStart.x <= markPositionEnd.x ? 1 : -1;
+        int yDif = markPositionStart.y <= markPositionEnd.y ? 1 : -1;*/
+
+        List<Tile> tilesInSelection = GetTilesFromSelection(markPositionStart, markPositionEnd);
+        foreach (Tile curTile in tilesInSelection)
+        {
+            room.AddTile(curTile);
+        }
+        room.Start();
+        room.UpdateShape();
+
+        /*for (int x = (int)(markPositionStart.x); x != (int)(markPositionEnd.x) + xDif; x += xDif)
         {
             for (int y = (int)(markPositionStart.y); y != (int)(markPositionEnd.y) + yDif; y += yDif)
             {
                 Tile currentTile;
                 if (_tiles.TryGetValue(new Vector2(x, y), out currentTile))
                 {
-                    room.addTile(currentTile);
+                    room.AddTile(currentTile);
                 }
             }
-        }
+        }*/
     }
 
 
@@ -130,7 +161,23 @@ public class GridManager : MonoBehaviour
         {
             if (isMarking)
             {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out RaycastHit hit))
+                {
+                    Tile tile = hit.collider.GetComponentInParent<Tile>();
+                    if (tile != null)
+                    {
+                        var inverseTiles = _tiles.ToDictionary(x => x.Value, x => x.Key);
+                        Vector2 tilePos;
+                        inverseTiles.TryGetValue(tile, out tilePos);
+                        List<Tile> tilesInSelection = GetTilesFromSelection(markPositionStart, tilePos);
 
+                        foreach (Tile curTile in tilesInSelection)
+                        {
+                            curTile._highlight.SetActive(true);
+                        }
+                    }
+                }
             }
         }
 
@@ -146,45 +193,70 @@ public class GridManager : MonoBehaviour
                     Tile tile = hit.collider.GetComponentInParent<Tile>();
                     if (tile != null)
                     {
-                        MakeRoomFromSelection(tile);
-
-
-
-                        /*var inverseTiles = _tiles.ToDictionary(x => x.Value, x => x.Key);
-                        inverseTiles.TryGetValue(tile, out markPositionEnd);
-                        //markPositionEnd = tile.transform.position;
-
-                        Debug.Log($"Released on tile: {tile.name}");
-                        // Create a room based on the marked area
                         Tile startTile;
                         _tiles.TryGetValue(markPositionStart, out startTile);
-                        Vector3 poseStart = startTile.transform.position;
-                        _tiles.TryGetValue(markPositionStart, out startTile);
-                        Vector3 poseEnd = tile.transform.position;
-                        Vector3 roomPosition = (poseStart + poseEnd) / 2;
+                        var inverseTiles = _tiles.ToDictionary(x => x.Value, x => x.Key);
 
-                        //Vector3 roomScale = new Vector3(Mathf.Abs(markPositionEnd.x - markPositionStart.x) + 1, 1, Mathf.Abs(markPositionEnd.z - markPositionStart.z) + 1);
-                        var room = Instantiate(_roomPrefab, roomPosition, Quaternion.identity);
-                        //room.transform.localScale = roomScale;
-
-                        // READ : add tiles from starting point to end point as follows ; go down/up the line number (2nd number) until it's end point line, then repeat for each column until it's end point column
-                        int xDif = markPositionStart.x <= markPositionEnd.x ? 1 : -1;
-                        int yDif = markPositionStart.y <= markPositionEnd.y ? 1 : -1;
-                        for (int x = (int)(markPositionStart.x); x != (int)(markPositionEnd.x)+xDif; x += xDif)
+                        bool isStartInRoom = false;
+                        Room containRoom = null;
+                        foreach (Room room in this.GetComponentsInChildren<Room>())
                         {
-                            for (int y = (int)(markPositionStart.y); y != (int)(markPositionEnd.y) + yDif; y += yDif)
+                            if (room.IsTileInRoom(startTile))
                             {
-                                Tile currentTile;
-                                if (_tiles.TryGetValue(new Vector2 (x, y), out currentTile))
+                                isStartInRoom = true;
+                                containRoom = room;
+                                break;
+                            }
+                        }
+
+                        if (isStartInRoom) // start tile is in an existing room ; expending the room
+                        {
+                            Vector2 tilePos;
+                            inverseTiles.TryGetValue(tile, out tilePos);
+                            List<Tile> tilesInSelection = GetTilesFromSelection(markPositionStart, tilePos);
+
+                            foreach (Tile curTile in tilesInSelection)
+                            {
+                                if (containRoom != null && !containRoom.IsTileInRoom(curTile))
                                 {
-                                    room.addTile(currentTile);
+                                    containRoom.AddTile(curTile);
                                 }
                             }
-                        }*/
+
+                            foreach (Tile curTile in tilesInSelection)
+                            {
+                                if (curTile != tile)
+                                { curTile._highlight.SetActive(false); }
+                            }
+                            containRoom.UpdateShape();
+                        }
+                        else // creating new room
+                        {
+                            MakeRoomFromSelection(tile);
+
+                            Vector2 tilePos;
+                            inverseTiles.TryGetValue(tile, out tilePos);
+                            List<Tile> tilesInSelection = GetTilesFromSelection(markPositionStart, tilePos);
+
+                            foreach (Tile curTile in tilesInSelection)
+                            {
+                                if (curTile != tile)
+                                { curTile._highlight.SetActive(false); }
+                            }
+                        }
                     }
                 }
             }
             
+        }
+        // verify if rooms still exist
+        foreach (Room room in this.GetComponentsInChildren<Room>())
+        {
+            room.UpdateList();
+            if (room.tiles.Count == 0)
+            {
+                Destroy(room.transform);
+            }
         }
     }
 }

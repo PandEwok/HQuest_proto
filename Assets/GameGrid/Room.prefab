@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd4bb87300863b541b092ab37e82243e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  tiles: []
+  wallPF: {fileID: 9097511158028936513, guid: 47dfe955eca745f4b84533b3be4c608f, type: 3}

@@ -14,8 +14,14 @@ public class Tile : MonoBehaviour
     {
         //_renderer = GetComponentInChildren<MeshRenderer>();
         Color newColor = isOffset ? _offsetColor : _baseColor;
-        
-        foreach (var _renderer in _renderers) {
+
+        ChangeColor(newColor);
+    }
+
+    public void ChangeColor(Color newColor)
+    {
+        foreach (var _renderer in _renderers)
+        {
             Material newMat = new Material(_renderer.material /*Shader.Find("Universal Render Pipeline/Lit")*/);
             newMat.SetColor("_BaseColor", newColor);
             _renderer.material = newMat;
