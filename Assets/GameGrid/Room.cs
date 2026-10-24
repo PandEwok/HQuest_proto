@@ -118,10 +118,10 @@ public class Room : MonoBehaviour
                     {
                         if (nTile != null)
                         {
-                            Vector3 tileWorldPos = tile.transform.position;
-                            tileWorldPos += (nTile.transform.position - tileWorldPos) / 2f;
-                            var spawnedWall = Instantiate(wallPF, tileWorldPos, Quaternion.identity, nTile.transform);
-                            spawnedWall.transform.LookAt(tile.transform);
+                            Vector3 tileWorldPos = tile.surface.transform.position;
+                            tileWorldPos += (nTile.surface.transform.position - tileWorldPos) / 2f;
+                            var spawnedWall = Instantiate(wallPF, tileWorldPos, Quaternion.identity, tile.transform);
+                            spawnedWall.transform.LookAt(tile.surface.transform);
                             walls.Add(spawnedWall);
                         }
                     }

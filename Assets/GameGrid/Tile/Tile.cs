@@ -10,6 +10,8 @@ public class Tile : MonoBehaviour
 
     [SerializeField] public GameObject baseMesh;
 
+    public GameObject surface;
+
     public void Init(bool isOffset)
     {
         //_renderer = GetComponentInChildren<MeshRenderer>();

@@ -17,6 +17,7 @@ public class GridManager : MonoBehaviour
     [HideInInspector] public Dictionary<Vector2, Tile> _tiles;
 
     [SerializeField] private Room _roomPrefab;
+    [SerializeField] private Door _doorPrefab;
 
     bool isMarking = false;
     Vector2 markPositionStart;
@@ -247,8 +248,21 @@ public class GridManager : MonoBehaviour
                     }
                 }
             }
-            
         }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                GameObject wall = hit.collider.gameObject;
+                if (wall.CompareTag("Wall"))
+                {
+                    ReplaceByDoor(wall);
+                }
+            }
+        }
+
         // verify if rooms still exist
         foreach (Room room in this.GetComponentsInChildren<Room>())
         {
@@ -258,5 +272,10 @@ public class GridManager : MonoBehaviour
                 Destroy(room.transform);
             }
         }
+    }
+    void ReplaceByDoor(GameObject target)
+    {
+        var door = Instantiate(_doorPrefab, target.transform.position, target.transform.rotation, target.transform.parent);
+        Destroy(target);
     }
 }

@@ -56,6 +56,7 @@ MonoBehaviour:
   - {fileID: 941734448833632389}
   _highlight: {fileID: 5011047333956588251}
   baseMesh: {fileID: 6820965568896645331}
+  surface: {fileID: 6214790417254981225}
 --- !u!65 &3584871494009016070
 BoxCollider:
   m_ObjectHideFlags: 0
