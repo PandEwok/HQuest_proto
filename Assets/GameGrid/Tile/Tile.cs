@@ -10,6 +10,8 @@ public class Tile : MonoBehaviour
 
     [SerializeField] public GameObject baseMesh;
 
+    [HideInInspector] public List<GameObject> walls;
+
     public GameObject surface;
 
     public void Init(bool isOffset)

@@ -19,6 +19,8 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Room _roomPrefab;
     [SerializeField] private Door _doorPrefab;
 
+    public GameObject CorridorTiles;
+
     bool isMarking = false;
     Vector2 markPositionStart;
     Vector2 markPositionEnd;
@@ -40,7 +42,7 @@ public class GridManager : MonoBehaviour
             {
                 MeshRenderer tileRenderer = _tilePrefab.baseMesh.GetComponent<MeshRenderer>();
                 Vector3 positionOffset = new Vector3(x * tileRenderer.bounds.size.x, 0, y * tileRenderer.bounds.size.z);
-                var spawnedTile = Instantiate(_tilePrefab, positionOffset, Quaternion.identity, transform);
+                var spawnedTile = Instantiate(_tilePrefab, positionOffset, Quaternion.identity,CorridorTiles.transform);
                 spawnedTile.name = $"Tile {x} {y}";
 
                 var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
@@ -249,7 +251,7 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
-
+        // right click : add door
         if (Input.GetMouseButtonDown(1))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -276,6 +278,40 @@ public class GridManager : MonoBehaviour
     void ReplaceByDoor(GameObject target)
     {
         var door = Instantiate(_doorPrefab, target.transform.position, target.transform.rotation, target.transform.parent);
+        Wall wall = target.GetComponent<Wall>();
+        List<Tile> parentTiles = new List<Tile>();
+        if (wall != null)
+        {
+            parentTiles = wall.parentTiles;
+            foreach (Tile tile in parentTiles)
+            {
+                tile.walls.Remove(target);
+                foreach (Room room in this.GetComponentsInChildren<Room>())
+                {
+                    if (room.tiles.Contains(tile))
+                    {
+                        room.doors.Add(door.gameObject);
+                        break;
+                    }
+                }
+            }
+        }
+        else { Debug.Log("wall NULL)"); }
+
         Destroy(target);
+
+        if (parentTiles.Count > 0)
+        {
+            foreach (Tile tile in parentTiles)
+            {
+                foreach (Room room in this.GetComponentsInChildren<Room>())
+                {
+                    if (room.tiles.Contains(tile))
+                    {
+                        room.UpdateShape();
+                    }
+                }
+            }
+        }
     }
 }
