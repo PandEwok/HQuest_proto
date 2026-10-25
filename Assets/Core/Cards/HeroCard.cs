@@ -3,7 +3,16 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Cards/Hero")]
 public class HeroCard : CardData
 {
-    public int attackDice, defenseDice, hp, mind;
+    public HeroClass heroClass;
+
+    [Header("Caractéristiques de départ")]
+    public int attackDice;
+    public int defenseDice;
+    public int startHP;
+    public int startMind;
     public int moveDice = 2;
-    public EquipmentCard startWeapon, startArmor;
+
+    [Header("Équipement de départ")]
+    public EquipmentCard startWeapon;
+    public EquipmentCard startArmor;
 }
