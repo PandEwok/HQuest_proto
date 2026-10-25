@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba38dbfbfdb0b149a2e809565c199a7, type: 3}
   m_Name: Short Sword
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentCard
-  id: equipment_short_sword
+  id: base_equipment_short_sword
   title: Short sword
   description: 'Weapon: The short sword grants you an attack capacity of 2 combat
     dice. Cannot be used by the enchanter.'

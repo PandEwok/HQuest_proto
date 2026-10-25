@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f6643259483a248a2aeb04ea194390, type: 3}
   m_Name: Elve
   m_EditorClassIdentifier: Assembly-CSharp::HeroCard
-  id: hero_elve_0
+  id: base_hero_elve_0
   title: Elve
   description: 
   illustration: {fileID: 0}
@@ -22,5 +22,5 @@ MonoBehaviour:
   startHP: 6
   startMind: 4
   moveDice: 2
-  startWeapon: {fileID: 0}
+  startWeapon: {fileID: 11400000, guid: 5767aca069a806b46b64667d020e10ef, type: 2}
   startArmor: {fileID: 0}
