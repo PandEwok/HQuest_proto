@@ -14,11 +14,25 @@ public class Room : MonoBehaviour
     private GridManager manager;
 
     [SerializeField] private GameObject wallPF;
+    [SerializeField] private GameObject wallTorchPF;
+    [SerializeField] private GameObject wallPropPF1;
+    [SerializeField] private GameObject wallPropPF2;
+    [SerializeField] private GameObject wallPropPF3;
+    [SerializeField] private GameObject wallPropPF4;
+    [SerializeField] private GameObject wallPropPF5;
     [SerializeField] private GameObject rockFillPF;
 
     [HideInInspector] public List<GameObject> rocks = new List<GameObject>();
 
 
+
+    private GameObject wallPFType;
+
+    private int wallType;
+    private int PropType;
+    private bool needTorch;
+    private int wallCount;
+    private int torchStart;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Start()
@@ -107,6 +121,9 @@ public class Room : MonoBehaviour
         // walls
         if (manager != null)
         {
+            torchStart = Random.Range(0, 5);
+            needTorch = true;
+            wallCount = 0;
             foreach (Tile tile in tiles)
             {
                 var inverseTiles = manager._tiles.ToDictionary(x => x.Value, x => x.Key);
@@ -156,6 +173,58 @@ public class Room : MonoBehaviour
                             }
                             if (!wallAlreadyPresent)
                             {
+                                if (!needTorch)
+                                {
+                                    if (wallCount == 3)
+                                    {
+                                        wallType = Random.Range(0, 5);
+                                        if (wallType == 1)
+                                        {
+                                            wallPFType = wallTorchPF;
+                                        }
+                                        wallCount = 0;
+                                    }
+                                    else
+                                    {
+                                        PropType = Random.Range(0, 10);
+                                        switch (PropType)
+                                        {
+                                            case 1:
+                                                wallPFType = wallPropPF1;
+                                                break;
+                                            case 2:
+                                                wallPFType = wallPropPF2;
+                                                break;
+                                            case 3:
+                                                wallPFType = wallPropPF3;
+                                                break;
+                                            case 4:
+                                                wallPFType = wallPropPF4;
+                                                break;
+                                            case 5:
+                                                wallPFType = wallPropPF5;
+                                                break;
+                                            default:
+                                                wallPFType = wallPF;
+                                                break;
+                                        }
+                                        wallCount++;
+                                    }
+                                }
+                                else
+                                {
+                                    if (torchStart == wallCount)
+                                    {
+                                        wallPFType = wallTorchPF;
+                                        needTorch = false;
+                                    }
+                                    else
+                                    {
+                                        wallPFType = wallPF;
+                                        wallCount++;
+                                    }
+                                }
+
                                 var spawnedWall = Instantiate(wallPF, tileWorldPos, Quaternion.identity, tile.transform);
                                 spawnedWall.transform.LookAt(tile.surface.transform);
                                 // adding to relationship lists

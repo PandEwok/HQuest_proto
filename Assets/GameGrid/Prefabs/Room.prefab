@@ -49,3 +49,9 @@ MonoBehaviour:
   doors: []
   wallPF: {fileID: 9097511158028936513, guid: 47dfe955eca745f4b84533b3be4c608f, type: 3}
   rockFillPF: {fileID: 8004093930818766245, guid: c8ed108c0113dd249b5fc664408ebf15, type: 3}
+  wallTorchPF: {fileID: 6549948044941239730, guid: f6877bad4a6be164abcac867a362f900, type: 3}
+  wallPropPF1: {fileID: 4926465402468616143, guid: 8417fb39fb944cc428297c5ea33c61a9, type: 3}
+  wallPropPF2: {fileID: 536367424105585190, guid: ceea0ee3ff7a79346b44aca892d460b2, type: 3}
+  wallPropPF3: {fileID: 857020162148223289, guid: cd9c3d9b9d23fe94d8ecff1b0267d3c3, type: 3}
+  wallPropPF4: {fileID: 4292221738101053494, guid: 0bd3f15f46dcb2a42ac05b3ff20941c5, type: 3}
+  wallPropPF5: {fileID: 248162855412297202, guid: 4c6518f0f03ebf04a8c266f2dd3accd1, type: 3}
