@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2caa2fbf35b8f634aa279801a2aabec8, type: 3}
+  m_Name: Borins Armor
+  m_EditorClassIdentifier: Assembly-CSharp::ArtifactCard
+  id: base_artifact_borinsarmor
+  title: Borin's Armor
+  description: Armor - This plate armor grants you 2 additional defense dice. Unlike
+    ordinary plate armor, this armor, made of a mysterious ultra-light metal, does
+    not slow the hero. Can be combined with the helmet and/or shield. Cannot be used
+    by the wizard.
+  illustration: {fileID: 0}
+  slot: 1
+  attackDice: 0
+  defenseDice: 2
+  diagonalAttack: 0
+  bonusHP: 0
+  bonusMind: 0
+  onlyFor: []
+  forbiddenFor:
+  - {fileID: 11400000, guid: f089291cf59fd1b40a437b47a00dd30e, type: 2}
+  abilities: []
