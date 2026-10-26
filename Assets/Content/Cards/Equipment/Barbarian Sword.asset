@@ -15,7 +15,7 @@ MonoBehaviour:
   id: base_equipment_barbarian_sword
   title: Barbarian sword
   description: Weapon - This broadsword grants you an attack capacity of 3 combat
-    dice. Cannot be used by the enchanter.
+    dice. Cannot be used by the wizard.
   illustration: {fileID: 0}
   slot: 0
   price: 250

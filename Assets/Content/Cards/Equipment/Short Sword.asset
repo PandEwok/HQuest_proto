@@ -15,7 +15,7 @@ MonoBehaviour:
   id: base_equipment_short_sword
   title: Short sword
   description: 'Weapon: The short sword grants you an attack capacity of 2 combat
-    dice. Cannot be used by the enchanter.'
+    dice. Cannot be used by the wizard.'
   illustration: {fileID: 0}
   slot: 0
   price: 150

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ba38dbfbfdb0b149a2e809565c199a7, type: 3}
+  m_Name: Hatchet
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentCard
+  id: base_equipment_hatchet
+  title: Hatchet
+  description: Weapon - This small axe grants you an attack capacity of 2 combat
+    dice. It can also be thrown at any monster within your line of sight, but it
+    cannot be rethrieved once thrown. Cannot be used by the wizard.
+  illustration: {fileID: 0}
+  slot: 0
+  price: 200
+  attackDice: 2
+  defenseDice: 0
+  diagonalAttack: 0
+  blocksShield: 0
+  maxMoveDice: 0
+  onlyFor: []
+  forbiddenFor:
+  - {fileID: 11400000, guid: f089291cf59fd1b40a437b47a00dd30e, type: 2}
+  abilities:
+  - type: 1
+    value: 0
+    requiredTargetTag: {fileID: 0}
