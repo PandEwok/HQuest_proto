@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 842d255f69d6c2d4abaab3647dcb8ead, type: 3}
   m_Name: GoblinTag
   m_EditorClassIdentifier: Assembly-CSharp::MonsterTag
-  id: base_mt_zombie
+  id: base_mt_goblin
