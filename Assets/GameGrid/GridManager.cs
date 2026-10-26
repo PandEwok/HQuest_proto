@@ -27,6 +27,15 @@ public class GridManager : MonoBehaviour
 
     int roomNumber = 0;
 
+
+    [HideInInspector] public enum Mode
+    {
+        ADD,
+        SELECT
+    }
+    [HideInInspector] public Mode currentMode = Mode.ADD;
+
+
     void Start()
     {
         GenerateGrid();
@@ -138,6 +147,48 @@ public class GridManager : MonoBehaviour
 
 
     private void Update()
+    {
+        if (currentMode == Mode.ADD)
+        {
+            UpdateAddMode();
+        }
+        else if (currentMode == Mode.SELECT)
+        {
+            UpdateSelectMode();
+        }
+        
+
+        // verify if rooms still exist
+        foreach (Room room in this.GetComponentsInChildren<Room>())
+        {
+            room.UpdateList();
+            if (room.tiles.Count == 0)
+            {
+                Destroy(room.transform);
+            }
+        }
+    }
+
+    private void UpdateSelectMode()
+    {
+        // LEFT CLICK BEGIN
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                Tile tile = hit.collider.GetComponentInParent<Tile>();
+                if (tile != null)
+                {
+                    isMarking = true;
+                    var inverseTiles = _tiles.ToDictionary(x => x.Value, x => x.Key);
+                    inverseTiles.TryGetValue(tile, out markPositionStart);
+                }
+            }
+        }
+    }
+
+    private void UpdateAddMode()
     {
         // LEFT CLICK BEGIN
         if (Input.GetMouseButtonDown(0))
@@ -264,17 +315,9 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
-
-        // verify if rooms still exist
-        foreach (Room room in this.GetComponentsInChildren<Room>())
-        {
-            room.UpdateList();
-            if (room.tiles.Count == 0)
-            {
-                Destroy(room.transform);
-            }
-        }
     }
+
+
     void ReplaceByDoor(GameObject target)
     {
         var door = Instantiate(_doorPrefab, target.transform.position, target.transform.rotation, target.transform.parent);
