@@ -17,12 +17,24 @@ public class GridManager : MonoBehaviour
     [HideInInspector] public Dictionary<Vector2, Tile> _tiles;
 
     [SerializeField] private Room _roomPrefab;
+    [SerializeField] private Door _doorPrefab;
+
+    public GameObject CorridorTiles;
 
     bool isMarking = false;
     Vector2 markPositionStart;
     Vector2 markPositionEnd;
 
     int roomNumber = 0;
+
+
+    [HideInInspector] public enum Mode
+    {
+        ADD,
+        SELECT
+    }
+    [HideInInspector] public Mode currentMode = Mode.ADD;
+
 
     void Start()
     {
@@ -39,7 +51,7 @@ public class GridManager : MonoBehaviour
             {
                 MeshRenderer tileRenderer = _tilePrefab.baseMesh.GetComponent<MeshRenderer>();
                 Vector3 positionOffset = new Vector3(x * tileRenderer.bounds.size.x, 0, y * tileRenderer.bounds.size.z);
-                var spawnedTile = Instantiate(_tilePrefab, positionOffset, Quaternion.identity, transform);
+                var spawnedTile = Instantiate(_tilePrefab, positionOffset, Quaternion.identity,CorridorTiles.transform);
                 spawnedTile.name = $"Tile {x} {y}";
 
                 var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
@@ -135,6 +147,48 @@ public class GridManager : MonoBehaviour
 
 
     private void Update()
+    {
+        if (currentMode == Mode.ADD)
+        {
+            UpdateAddMode();
+        }
+        else if (currentMode == Mode.SELECT)
+        {
+            UpdateSelectMode();
+        }
+        
+
+        // verify if rooms still exist
+        foreach (Room room in this.GetComponentsInChildren<Room>())
+        {
+            room.UpdateList();
+            if (room.tiles.Count == 0)
+            {
+                Destroy(room.transform);
+            }
+        }
+    }
+
+    private void UpdateSelectMode()
+    {
+        // LEFT CLICK BEGIN
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                Tile tile = hit.collider.GetComponentInParent<Tile>();
+                if (tile != null)
+                {
+                    isMarking = true;
+                    var inverseTiles = _tiles.ToDictionary(x => x.Value, x => x.Key);
+                    inverseTiles.TryGetValue(tile, out markPositionStart);
+                }
+            }
+        }
+    }
+
+    private void UpdateAddMode()
     {
         // LEFT CLICK BEGIN
         if (Input.GetMouseButtonDown(0))
@@ -247,15 +301,59 @@ public class GridManager : MonoBehaviour
                     }
                 }
             }
-            
         }
-        // verify if rooms still exist
-        foreach (Room room in this.GetComponentsInChildren<Room>())
+        // right click : add door
+        if (Input.GetMouseButtonDown(1))
         {
-            room.UpdateList();
-            if (room.tiles.Count == 0)
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                Destroy(room.transform);
+                GameObject wall = hit.collider.gameObject;
+                if (wall.CompareTag("Wall"))
+                {
+                    ReplaceByDoor(wall);
+                }
+            }
+        }
+    }
+
+
+    void ReplaceByDoor(GameObject target)
+    {
+        var door = Instantiate(_doorPrefab, target.transform.position, target.transform.rotation, target.transform.parent);
+        Wall wall = target.GetComponent<Wall>();
+        List<Tile> parentTiles = new List<Tile>();
+        if (wall != null)
+        {
+            parentTiles = wall.parentTiles;
+            foreach (Tile tile in parentTiles)
+            {
+                tile.walls.Remove(target);
+                foreach (Room room in this.GetComponentsInChildren<Room>())
+                {
+                    if (room.tiles.Contains(tile))
+                    {
+                        room.doors.Add(door.gameObject);
+                        break;
+                    }
+                }
+            }
+        }
+        else { Debug.Log("wall NULL)"); }
+
+        Destroy(target);
+
+        if (parentTiles.Count > 0)
+        {
+            foreach (Tile tile in parentTiles)
+            {
+                foreach (Room room in this.GetComponentsInChildren<Room>())
+                {
+                    if (room.tiles.Contains(tile))
+                    {
+                        room.UpdateShape();
+                    }
+                }
             }
         }
     }

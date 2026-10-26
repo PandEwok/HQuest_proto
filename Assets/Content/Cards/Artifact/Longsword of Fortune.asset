@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2caa2fbf35b8f634aa279801a2aabec8, type: 3}
+  m_Name: Longsword of Fortune
+  m_EditorClassIdentifier: Assembly-CSharp::ArtifactCard
+  id: base_artifact_long_sword_fortune
+  title: Longsword of Fortune
+  description: Weapon - This longsword grants you 3 attack dice and allows you to
+    attack diagonally. Once per quest, the hero can use its power to reroll 1 attack
+    die. Cannot be used by the wizard.
+  illustration: {fileID: 0}
+  slot: 0
+  attackDice: 3
+  defenseDice: 0
+  diagonalAttack: 1
+  bonusHP: 0
+  bonusMind: 0
+  onlyFor: []
+  forbiddenFor:
+  - {fileID: 11400000, guid: f089291cf59fd1b40a437b47a00dd30e, type: 2}
+  abilities:
+  - type: 4
+    value: 0
+    usage: 1
+    requiredTargetTag: {fileID: 0}

@@ -1,2 +1,13 @@
 fileFormatVersion: 2
 guid: fd4bb87300863b541b092ab37e82243e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - wallPF: {fileID: 9097511158028936513, guid: 47dfe955eca745f4b84533b3be4c608f, type: 3}
+  - rockFillPF: {fileID: 8004093930818766245, guid: c8ed108c0113dd249b5fc664408ebf15, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

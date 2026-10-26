@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f6643259483a248a2aeb04ea194390, type: 3}
+  m_Name: Barbarian
+  m_EditorClassIdentifier: Assembly-CSharp::HeroCard
+  id: base_hero_barbarian_0
+  title: Barbarian
+  description: 
+  illustration: {fileID: 0}
+  heroClass: {fileID: 11400000, guid: 7ad201a483a964b4d9eb29c26c11d883, type: 2}
+  attackDice: 3
+  defenseDice: 2
+  startHP: 8
+  startMind: 2
+  moveDice: 2
+  startWeapon: {fileID: 11400000, guid: cd9a08af13bc8294fa4d858f39b24069, type: 2}
+  startArmor: {fileID: 0}

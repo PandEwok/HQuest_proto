@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fb781696ae42594199bbaef130cb8b3, type: 3}
+  m_Name: Goblin
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterCard
+  id: base_monster_goblin
+  title: Goblin
+  description: 
+  illustration: {fileID: 0}
+  moveSquares: 10
+  attackDice: 2
+  defenseDice: 1
+  hp: 1
+  mind: 1
+  icon: {fileID: 0}
+  tags:
+  - {fileID: 11400000, guid: ef7a82165d9c2f74bbd0876813733951, type: 2}
