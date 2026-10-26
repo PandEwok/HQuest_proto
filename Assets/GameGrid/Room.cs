@@ -225,7 +225,7 @@ public class Room : MonoBehaviour
                                     }
                                 }
 
-                                var spawnedWall = Instantiate(wallPF, tileWorldPos, Quaternion.identity, tile.transform);
+                                var spawnedWall = Instantiate(wallPFType, tileWorldPos, Quaternion.identity, tile.transform);
                                 spawnedWall.transform.LookAt(tile.surface.transform);
                                 // adding to relationship lists
                                 walls.Add(spawnedWall);
