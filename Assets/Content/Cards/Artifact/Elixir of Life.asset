@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2caa2fbf35b8f634aa279801a2aabec8, type: 3}
+  m_Name: Elixir of Life
+  m_EditorClassIdentifier: Assembly-CSharp::ArtifactCard
+  id: base_artifact_elixiroflife
+  title: Elixir of Life
+  description: The pearly liquid in this small vial can resurrect a fallen hero,
+    restoring all their health and spirit. It can only be used once.
+  illustration: {fileID: 0}
+  slot: 0
+  attackDice: 0
+  defenseDice: 0
+  diagonalAttack: 0
+  bonusHP: 0
+  bonusMind: 0
+  onlyFor: []
+  forbiddenFor: []
+  abilities:
+  - type: 0
+    value: 0
+    usage: 2
+    requiredTargetTag: {fileID: 0}

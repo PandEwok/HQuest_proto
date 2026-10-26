@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2caa2fbf35b8f634aa279801a2aabec8, type: 3}
+  m_Name: Mystic Sword
+  m_EditorClassIdentifier: Assembly-CSharp::ArtifactCard
+  id: base_artifact_mystic_sword
+  title: Mystic sword
+  description: 'Weapon - This barbaric magic sword has a strange carved bone hilt.
+    It provides 3 attack dice, or 4 attack dice against living dead monsters (skeletons,
+    zombies, or mummies). Cannot be used by the wizard. '
+  illustration: {fileID: 0}
+  slot: 0
+  attackDice: 3
+  defenseDice: 0
+  diagonalAttack: 0
+  bonusHP: 0
+  bonusMind: 0
+  onlyFor: []
+  forbiddenFor:
+  - {fileID: 11400000, guid: f089291cf59fd1b40a437b47a00dd30e, type: 2}
+  abilities:
+  - type: 8
+    value: 4
+    usage: 0
+    requiredTargetTag: {fileID: 11400000, guid: 3b10e8186d531bb41a580965a1588fe2, type: 2}
+  - type: 8
+    value: 4
+    usage: 0
+    requiredTargetTag: {fileID: 11400000, guid: aefec458635848a479be037e43d80121, type: 2}
+  - type: 8
+    value: 4
+    usage: 0
+    requiredTargetTag: {fileID: 11400000, guid: 8149db2161516d444ac6f60280cad9d6, type: 2}
