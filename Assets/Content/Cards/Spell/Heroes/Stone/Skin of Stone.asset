@@ -19,7 +19,7 @@ MonoBehaviour:
     health point.
   illustration: {fileID: 0}
   group: {fileID: 11400000, guid: 612685006fdb826419b10e29c188f6c6, type: 2}
-  playerChoosesOne: 1
+  playerChoosesOne: 0
   effects:
   - type: 3
     value: 1

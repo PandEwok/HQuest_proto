@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b17dd24ddff4ebb4f8a98af8d46a827a, type: 3}
+  m_Name: Veil of Mist
+  m_EditorClassIdentifier: Assembly-CSharp::SpellCard
+  id: base_spell_veilofmist
+  title: Veil of Mist
+  description: This spell can target any hero, including the caster. During their
+    next move, this hero can move through spaces occupied by monsters.
+  illustration: {fileID: 0}
+  group: {fileID: 11400000, guid: 3fc90d4b261e25847a97acaf9d5b1a16, type: 2}
+  playerChoosesOne: 0
+  effects:
+  - type: 6
+    value: 0
+    target: 1
+    area: 0
+    endsWhen: 2
+    resistance:
+      rule: 0
+      dice: 0
+      successOn: 0
+    immuneTags: []
+    summonTable: []

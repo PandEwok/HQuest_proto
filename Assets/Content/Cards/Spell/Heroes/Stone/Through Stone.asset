@@ -20,13 +20,13 @@ MonoBehaviour:
     If the hero ends their movement there, they will be imprisoned forever!
   illustration: {fileID: 0}
   group: {fileID: 11400000, guid: 612685006fdb826419b10e29c188f6c6, type: 2}
-  playerChoosesOne: 1
+  playerChoosesOne: 0
   effects:
   - type: 5
     value: 0
     target: 1
     area: 0
-    endsWhen: 0
+    endsWhen: 2
     resistance:
       rule: 0
       dice: 0

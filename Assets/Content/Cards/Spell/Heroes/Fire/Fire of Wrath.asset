@@ -18,7 +18,7 @@ MonoBehaviour:
     dealing 1 hit point of damage unless it rolls a 5 or 6 with 1 red die.
   illustration: {fileID: 0}
   group: {fileID: 11400000, guid: 28d03b6e4257818429782b8b170b421d, type: 2}
-  playerChoosesOne: 1
+  playerChoosesOne: 0
   effects:
   - type: 0
     value: 1

@@ -19,7 +19,7 @@ MonoBehaviour:
     are no more monsters in the hero's line of sight.
   illustration: {fileID: 0}
   group: {fileID: 11400000, guid: 28d03b6e4257818429782b8b170b421d, type: 2}
-  playerChoosesOne: 1
+  playerChoosesOne: 0
   effects:
   - type: 9
     value: 2
