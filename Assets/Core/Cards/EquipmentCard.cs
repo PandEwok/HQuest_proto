@@ -20,7 +20,10 @@ public class EquipmentAbility
 public class EquipmentCard : CardData
 {
     public EquipmentSlot slot;
-    public int price;                      // pièces d'or
+    public int price;
+    // pièces d'or
+    [Header("Identification")]
+    public EquipmentTag[] tags;
 
     [Header("Dés")]
     public int attackDice;

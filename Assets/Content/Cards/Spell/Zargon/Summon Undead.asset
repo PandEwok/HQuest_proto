@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 285dc87e20568c94386e608979b9fde3, type: 3}
+  m_Name: Summon Undead
+  m_EditorClassIdentifier: Assembly-CSharp::DreadSpellCard
+  id: base_dread_summon_undead
+  title: Summon undead
+  description: 'This spell summons a group of undead around the caster to protect
+    them. Their number and type are determined by rolling 1 red die.
+
+
+    1 or 2
+    = 4 skeletons.
+
+    3 or 4 = 3 skeletons, 2 zombies.
+
+    5 or 6 = 2 zombies,
+    2 mummies.'
+  illustration: {fileID: 0}
+  effects:
+  - type: 11
+    value: 0
+    target: 0
+    area: 0
+    endsWhen: 0
+    resistance:
+      rule: 0
+      dice: 0
+      successOn: 0
+      canBreakImmediately: 0
+      onlyOnNextTurn: 0
+    immuneTags: []
+    summonTable:
+    - rollFrom: 1
+      rollTo: 2
+      monsters:
+      - monster: {fileID: 11400000, guid: 6db8b96a764b93e44a676b122eb23f8d, type: 2}
+        count: 4
+    - rollFrom: 3
+      rollTo: 4
+      monsters:
+      - monster: {fileID: 11400000, guid: 6db8b96a764b93e44a676b122eb23f8d, type: 2}
+        count: 3
+      - monster: {fileID: 11400000, guid: 38c80c46dc2cfad4a8ecdd48c54b7356, type: 2}
+        count: 2
+    - rollFrom: 5
+      rollTo: 6
+      monsters:
+      - monster: {fileID: 11400000, guid: 38c80c46dc2cfad4a8ecdd48c54b7356, type: 2}
+        count: 2
+      - monster: {fileID: 11400000, guid: b4e1853d8505942459b8e31cb8601292, type: 2}
+        count: 2
+    excludesCaster: 0
+    affectedEquipment: []
