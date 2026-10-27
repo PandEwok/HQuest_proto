@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27048d72ae88bf442825a86af17e0729, type: 3}
+  m_Name: Potion of Strength
+  m_EditorClassIdentifier: Assembly-CSharp::TreasureCard
+  id: base_treasure_potion_strength
+  title: Potion of strength
+  description: You find a small purple vial filled with a strange-smelling liquid.
+    You can drink it at any time. It will allow you to roll 2 extra combat dice the
+    next time you attack. Single use only. Do not return this card to the deck.
+  illustration: {fileID: 0}
+  timing: 1
+  returnToDeck: 0
+  singleUse: 1
+  effects:
+  - type: 5
+    value: 2
