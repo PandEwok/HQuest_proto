@@ -171140,6 +171140,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EditorUImanager
   gridManager: {fileID: 310863035}
+  placeableList:
+  - {fileID: -688521499118035925, guid: bed16b8b9bf23f243a672ffec646d946, type: 3}
 --- !u!114 &914781814
 MonoBehaviour:
   m_ObjectHideFlags: 0

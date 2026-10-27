@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -8,6 +9,8 @@ public class EditorUImanager : MonoBehaviour
 
     private Button addButton;
     private Button selectButton;
+
+    public List<Placeable> placeableList = new List<Placeable>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
