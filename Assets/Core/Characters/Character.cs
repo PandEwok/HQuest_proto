@@ -149,7 +149,8 @@ public class Character : MonoBehaviour
 
         foreach (Tile tile in reachable)
         {
-            tile._highlight.SetActive(true);
+            tile.ChangeIndicator(new Color(0.5f, 0.5f, 1, 0.8f));
+            tile.actionIndicator.SetActive(true);
 
             highlightedTiles.Add(tile);
         }
@@ -159,7 +160,7 @@ public class Character : MonoBehaviour
         foreach (Tile tile in highlightedTiles)
         {
             if (tile != null)
-                tile._highlight.SetActive(false);
+                tile.actionIndicator.SetActive(false);
         }
 
         highlightedTiles.Clear();
