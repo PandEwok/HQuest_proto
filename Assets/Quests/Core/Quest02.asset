@@ -1,0 +1,158 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317ba2b0aa0f67a4da435115b77a4ccd, type: 3}
+  m_Name: Quest02
+  m_EditorClassIdentifier: Assembly-CSharp::QuestData
+  id: base.quest.02
+  number: 2
+  title: The Rescue of Sir Ragnar
+  previousQuest: {fileID: 11400000, guid: 0109469c0bfc2dd4e94ebd283790aa4e, type: 2}
+  parchmentText: Sir Ragnar, one of the King's most powerful knights, has been captured.
+    There is reason to believe that he is being held prisoner by Ulag, the orc warlord.
+    You are to find Sir Ragnar and bring him back to the stairway. Prince Magnus
+    offers a reward of 240 gold coins, to be divided among the heroes, if they rescue
+    Sir Ragnar. No reward is earned if Sir Ragnar is killed during the escape.
+  zargonNote: 
+  objectives:
+  - type: 3
+    targetId: sir_ragnar
+    card: {fileID: 0}
+    description: Find Sir Ragnar and bring him back to the stairway alive
+  reward:
+    mode: 1
+    gold: 240
+    requiresNpcAliveId: sir_ragnar
+    bounties: []
+    items: []
+    title: 
+  wanderingMonster: {fileID: 11400000, guid: abe0de45127c3234da9fcb5d6b2f7431, type: 2}
+  wanderingMonsterText: Orc
+  startMarker: 
+  mustReturnToStairs: 1
+  requiredItems: []
+  specialRules: []
+  entities:
+  - id: sir_ragnar
+    displayName: Sir Ragnar
+    baseMonster: {fileID: 0}
+    overrideStats: 1
+    moveSquares: 0
+    attackDice: 0
+    defenseDice: 2
+    hp: 2
+    mind: 0
+    isNpc: 1
+    startsDormant: 0
+    dreadSpells: []
+    carriedItems: []
+    rules:
+    - type: 5
+      value: 0
+      item: {fileID: 0}
+      group: {fileID: 0}
+    - type: 6
+      value: 1
+      item: {fileID: 0}
+      group: {fileID: 0}
+    description: 
+  notes:
+  - key: A
+    trigger: 1
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: The treasure chest has a trap with a poison needle in it. If a hero
+      searches for treasure before the trap is disarmed, they lose 1 Body Point.
+      The chest is empty.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 1
+    effects:
+    - type: 1
+      value: 0
+      card: {fileID: 0}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    onTrapSprung:
+    - type: 5
+      value: 1
+      card: {fileID: 0}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    onTrapDisarmed: []
+  - key: B
+    trigger: 1
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: The first hero who searches the room for treasure finds 60 gold
+      coins inside this chest. They also find a potion of healing, which restores
+      up to 4 lost Body Points when consumed.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects:
+    - type: 2
+      value: 60
+      card: {fileID: 0}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: Finding Sir Ragnar
+    trigger: 7
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: When Sir Ragnar is found, an alarm sounds. Use the plastic Dread
+      sorcerer figure to represent Sir Ragnar on the board. Place all remaining monsters,
+      doors, and furniture on the board. All doors are now open. Sir Ragnar should
+      be moved by the hero who opened the door to his cell. (Heroes cannot search
+      for treasure in the cell.) That hero takes their regular turn first, then rolls
+      1 red die to move the wounded knight. Sir Ragnar must be moved back to the
+      stairs alive in order for the heroes to collect the reward (see parchment text
+      above). Sir Ragnar may not attack but may roll 2 Defend dice. He has 2 Body
+      Points left.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects:
+    - type: 12
+      value: 0
+      card: {fileID: 0}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    - type: 7
+      value: 0
+      card: {fileID: 0}
+      targetId: sir_ragnar
+      cell: {x: 0, y: 0}
+      text: 
+    - type: 8
+      value: 0
+      card: {fileID: 0}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    - type: 9
+      value: 0
+      card: {fileID: 0}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    onTrapSprung: []
+    onTrapDisarmed: []
+  gridSize: {x: 26, y: 19}
+  solidRock: []
+  rooms: []
+  placements: []

@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317ba2b0aa0f67a4da435115b77a4ccd, type: 3}
+  m_Name: Quest06
+  m_EditorClassIdentifier: Assembly-CSharp::QuestData
+  id: base.quest.06
+  number: 6
+  title: Legacy of the Orc Warlord
+  previousQuest: {fileID: 11400000, guid: 8c07889020d26ad43bd3b1d4d6ddcabc, type: 2}
+  parchmentText: Ulag's foul offspring, Grak, has sworn revenge on those who killed
+    his father. Although it has taken him several months, he has finally tracked
+    you down and captured you in an ambush. Now you are all held prisoner in his
+    dungeons while he decides when and how you will meet your fate. While the guard
+    sleeps outside your cell, you manage to pick the lock with an old rat bone. You
+    must find your equipment and escape to the stairway.
+  zargonNote: Heroes begin their quest in the room marked "Cell." Heroes cannot search
+    for treasure in the cell. All of the heroes' equipment has been taken. They may
+    not use any equipment (weapons, armor, potions, etc.) or cast any spells until
+    they locate their equipment. A hero with no weapons or armor rolls 1 Attack die
+    and 2 Defend dice.
+  objectives:
+  - type: 5
+    targetId: 
+    card: {fileID: 0}
+    description: Find your equipment and escape to the stairway
+  reward:
+    mode: 0
+    gold: 0
+    requiresNpcAliveId: 
+    bounties: []
+    items: []
+    title: 
+  wanderingMonster: {fileID: 11400000, guid: ad54f5627f02b6f4586747aae7233cb9, type: 2}
+  wanderingMonsterText: Abomination
+  startMarker: Cell
+  mustReturnToStairs: 1
+  requiredItems: []
+  specialRules:
+  - type: 1
+    value: 0
+    extraValues: 
+    description: Heroes have no equipment or spells until they search the cupboard
+      (1 attack die, 2 defend dice).
+  entities:
+  - id: grak
+    displayName: Grak
+    baseMonster: {fileID: 11400000, guid: abe0de45127c3234da9fcb5d6b2f7431, type: 2}
+    overrideStats: 1
+    moveSquares: 8
+    attackDice: 4
+    defenseDice: 4
+    hp: 3
+    mind: 3
+    isNpc: 0
+    startsDormant: 0
+    dreadSpells:
+    - {fileID: 11400000, guid: 4615a30ed55aa2a488c7b90971318926, type: 2}
+    carriedItems:
+    - {fileID: 11400000, guid: 1a83f64a7fd5c114182235d83883e0c2, type: 2}
+    rules: []
+    description: 
+  notes:
+  - key: A
+    trigger: 1
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: The heroes' equipment is stored in the cupboard in this room. When
+      the room is searched for treasure, the equipment is found. Each remaining hero
+      must then enter the room to collect their belongings. The heroes may again
+      cast spells once they enter the room and reclaim their magical powers.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects:
+    - type: 4
+      value: 0
+      card: {fileID: 0}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: B
+    trigger: 0
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: These stairs lead out of the dungeon to freedom. Any hero who manages
+      to move onto the stairway tile has escaped.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects: []
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: Grak
+    trigger: 0
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: 'Use an orc figure for Grak. He is an extra tough-looking orc who
+      holds a staff exactly like the one described in the armory. Grak also wears
+      a Wizard''s Cloak. Its use is explained on the matching artifact card. If Grak
+      is killed, the cloak is of special interest to the wizard. Give them the matching
+      artifact card.
+
+      Grak knows 3 Dread spells that he may cast (one per turn)
+      instead of attacking. The spells are: fear, sleep, and tempest. (Refer to the
+      Dread spell cards for details.)'
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects: []
+    onTrapSprung: []
+    onTrapDisarmed: []
+  gridSize: {x: 26, y: 19}
+  solidRock: []
+  rooms: []
+  placements: []

@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317ba2b0aa0f67a4da435115b77a4ccd, type: 3}
+  m_Name: Quest14
+  m_EditorClassIdentifier: Assembly-CSharp::QuestData
+  id: base.quest.14
+  number: 14
+  title: Return to Barak Tor
+  previousQuest: {fileID: 11400000, guid: 9bdd61ed58f82784ca7463ec68033f99, type: 2}
+  parchmentText: Now that you have found the Spirit Blade, you must return to Barak
+    Tor and defeat the Witch Lord. The King has ridden forth to meet the eastern
+    orcs at Darkfire Pass. If you fail, the Witch Lord will lead his army of undead
+    and attack His Majesty's forces from the rear. Then nothing remains to prevent
+    the forces of Dread from overrunning the land!
+  zargonNote: 
+  objectives:
+  - type: 0
+    targetId: witch_lord
+    card: {fileID: 0}
+    description: Defeat the Witch Lord with the Spirit Blade
+  reward:
+    mode: 0
+    gold: 0
+    requiresNpcAliveId: 
+    bounties: []
+    items: []
+    title: Champion
+  wanderingMonster: {fileID: 11400000, guid: b4e1853d8505942459b8e31cb8601292, type: 2}
+  wanderingMonsterText: Mummy
+  startMarker: 
+  mustReturnToStairs: 1
+  requiredItems: []
+  specialRules: []
+  entities:
+  - id: witch_lord
+    displayName: The Witch Lord
+    baseMonster: {fileID: 0}
+    overrideStats: 1
+    moveSquares: 10
+    attackDice: 5
+    defenseDice: 6
+    hp: 4
+    mind: 6
+    isNpc: 0
+    startsDormant: 0
+    dreadSpells:
+    - {fileID: 11400000, guid: e7ba459637769934081da325b2610cd3, type: 2}
+    carriedItems:
+    - {fileID: 11400000, guid: 95670fe6d0e48a54fb3d927735412bdf, type: 2}
+    rules: []
+    description: 
+  notes:
+  - key: A
+    trigger: 0
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: The Witch Lord's tomb is now empty.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects: []
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: The Witch Lord
+    trigger: 0
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: 'Use the Dread sorcerer figure for the Witch Lord. The Witch Lord
+      is not affected by any weapon or spell other than the Spirit Blade. The Witch
+      Lord has grown stronger! (See stats.) Also, he knows the following spells:
+      summon undead, fear (which he can cast twice), ball of flame, command, and
+      tempest. Refer to the Dread spell cards for details.'
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects: []
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: If the Witch Lord is defeated
+    trigger: 0
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: "If the Witch Lord is defeated, he vanishes in a puff of foul, black
+      smoke. When the smoke clears, the heroes hear the tinkle of metal skittering
+      across the floor. On the floor, they find an artifact\u2014the magical Spell
+      Ring\u2014that the Witch Lord was wearing. Its use is explained on the matching
+      artifact card.\nAfter this quest is successfully completed, all surviving heroes
+      are awarded the title of \"Champion\" by the King."
+    requiresDeadGroup: witch_lord
+    firstHeroOnly: 1
+    trapped: 0
+    effects:
+    - type: 3
+      value: 0
+      card: {fileID: 11400000, guid: 95670fe6d0e48a54fb3d927735412bdf, type: 2}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    onTrapSprung: []
+    onTrapDisarmed: []
+  gridSize: {x: 26, y: 19}
+  solidRock: []
+  rooms: []
+  placements: []

@@ -386,6 +386,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3004431493725436751, guid: 2f77f40d13dedea4096f01742bbc6bbb, type: 3}
+      propertyPath: nextScene
+      value: GameScene
+      objectReference: {fileID: 0}
     - target: {fileID: 7330676733597684264, guid: 2f77f40d13dedea4096f01742bbc6bbb, type: 3}
       propertyPath: m_Name
       value: SelectCharacterUI

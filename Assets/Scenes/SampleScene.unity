@@ -58646,8 +58646,11 @@ MonoBehaviour:
   _cam: {fileID: 330585546}
   _roomPrefab: {fileID: -5077946675272694743, guid: b82dd172a1acabd46b4ad9af32c6af63, type: 3}
   _doorPrefab: {fileID: -837681063964779121, guid: 8a7457cbd967b7142b1be9f56c9e831f, type: 3}
+  RockPF: {fileID: 8004093930818766245, guid: c8ed108c0113dd249b5fc664408ebf15, type: 3}
+  TrapPF: {fileID: 5345008905422333103, guid: da9aaace707a3ec4c998ed6b52730fb5, type: 3}
   CorridorTiles: {fileID: 1811731107}
   currentMode: 0
+  currentSelection: 1
 --- !u!4 &310863036
 Transform:
   m_ObjectHideFlags: 0
@@ -171140,8 +171143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EditorUImanager
   gridManager: {fileID: 310863035}
-  placeableList:
-  - {fileID: -688521499118035925, guid: bed16b8b9bf23f243a672ffec646d946, type: 3}
+  placeableList: []
 --- !u!114 &914781814
 MonoBehaviour:
   m_ObjectHideFlags: 0

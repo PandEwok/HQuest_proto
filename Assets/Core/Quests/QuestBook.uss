@@ -1,0 +1,26 @@
+.qb-root { flex-grow: 1; background-color: rgb(46, 34, 22); padding: 24px; }
+.qb-title { font-size: 48px; -unity-font-style: bold; color: rgb(240, 210, 120); -unity-text-align: middle-center; margin-bottom: 16px; }
+.qb-body { flex-direction: row; flex-grow: 1; }
+
+.qb-list { width: 34%; min-width: 320px; margin-right: 16px; padding: 12px; background-color: rgb(70, 52, 34); border-radius: 10px; }
+.qb-book-header { color: rgb(240, 210, 120); -unity-font-style: bold; font-size: 26px; margin: 8px 0; white-space: normal; }
+.qb-quest-btn { -unity-text-align: middle-left; white-space: normal; font-size: 24px; margin: 4px 0; padding: 12px; color: rgb(250, 240, 215); background-color: rgb(96, 72, 46); border-width: 0; border-radius: 8px; }
+.qb-quest-btn:hover { background-color: rgb(120, 90, 58); }
+.qb-quest-btn.selected { background-color: rgb(160, 110, 40); }
+.qb-quest-btn.completed { border-left-width: 8px; border-color: rgb(110, 180, 90); }
+.qb-quest-btn.locked { opacity: 0.45; }
+
+.qb-detail { flex-grow: 1; padding: 24px; background-color: rgb(222, 200, 158); border-radius: 10px; }
+.qb-number { color: rgb(120, 40, 30); font-size: 24px; -unity-font-style: bold; }
+.qb-quest-title { color: rgb(60, 30, 20); font-size: 44px; -unity-font-style: bold; margin-bottom: 12px; white-space: normal; }
+#zargon-toggle > Label { font-size: 24px; color: rgb(60, 30, 20); }
+.qb-detail-scroll { flex-grow: 1; margin: 12px 0; }
+.qb-section-title { color: rgb(120, 40, 30); -unity-font-style: bold; font-size: 28px; margin-top: 18px; }
+.qb-section-body { color: rgb(50, 36, 24); font-size: 24px; white-space: normal; }
+.qb-note { margin-top: 12px; padding: 12px; background-color: rgb(204, 178, 132); border-radius: 8px; }
+.qb-note-title { color: rgb(60, 30, 20); -unity-font-style: bold; font-size: 26px; }
+
+.qb-start { height: 72px; font-size: 30px; -unity-font-style: bold; color: white; background-color: rgb(150, 40, 30); border-width: 0; border-radius: 10px; }
+.qb-start:disabled { opacity: 0.4; }
+
+.qb-note.used { opacity: 0.5; }

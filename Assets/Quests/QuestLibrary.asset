@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c1e4d4bd283dd84cae9d0974e9aaacc, type: 3}
-  m_Name: HC_Elve
-  m_EditorClassIdentifier: Assembly-CSharp::HeroClass
-  id: base_hc_elve
+  m_Script: {fileID: 11500000, guid: 3436524fee61a964d853494614f7a0a8, type: 3}
+  m_Name: QuestLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::QuestLibrary
+  coreBook: {fileID: 11400000, guid: c440f295203101b45a27e75b1805a060, type: 2}
+  extensions: []

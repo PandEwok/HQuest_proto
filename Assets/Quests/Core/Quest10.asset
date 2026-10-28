@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317ba2b0aa0f67a4da435115b77a4ccd, type: 3}
+  m_Name: Quest10
+  m_EditorClassIdentifier: Assembly-CSharp::QuestData
+  id: base.quest.10
+  number: 10
+  title: Castle of Mystery
+  previousQuest: {fileID: 11400000, guid: d34df073a67ea8f4ca69dc3a62278e1b, type: 2}
+  parchmentText: Long ago, a wizard named Ollar discovered the entrance to a gold
+    mine. Using his great powers, he built a magic castle above the mine to protect
+    it. The lower chamber of the castle has many magical doors and is guarded by
+    a host of monsters who were trapped in time. Can you find the entrance to the
+    gold mine? Others have tried, but the castle thwarted them every time.
+  zargonNote: 'As soon as a hero moves through any door, they must stop immediately
+    and roll 2 red dice. They are then teleported to the square with the same number
+    as the dice total. If that square is already occupied, they land on the hero
+    or monster in the square. The hero or monster that is landed on loses 1 Body
+    point, and, if still alive, must roll 2 red dice to see where they are teleported.
+    If the same square number is rolled, roll again. The first teleported hero remains
+    on the square. Heroes may only pass through one door per turn!
+
+
+    The quest
+    is over when all of the monsters are killed or when all of the heroes have left
+    the quest by returning to the stairs on a roll of 2 or 12. When the game is over,
+    tell the players that all the gold found at the mine entrance is fool''s gold
+    and is worthless. Any other treasure that is found is real.'
+  objectives:
+  - type: 6
+    targetId: 
+    card: {fileID: 0}
+    description: Kill all the monsters, or leave by the stairs on a roll of 2 or
+      12
+  reward:
+    mode: 0
+    gold: 0
+    requiresNpcAliveId: 
+    bounties: []
+    items: []
+    title: 
+  wanderingMonster: {fileID: 0}
+  wanderingMonsterText: Ollar's ghost appears, chuckles wildly, and disappears
+  startMarker: 
+  mustReturnToStairs: 1
+  requiredItems: []
+  specialRules:
+  - type: 3
+    value: 1
+    extraValues: 
+    description: 'After passing a door: roll 2 red dice and teleport to the square
+      with that number. Lose 1 Body Point if it is occupied. One door per turn.'
+  - type: 4
+    value: 0
+    extraValues: 020000000c000000
+    description: Exit to the stairs on a roll of 2 or 12.
+  - type: 5
+    value: 5000
+    extraValues: 
+    description: The mine gold is fool's gold (worthless); the carrier cannot attack
+      or defend.
+  entities: []
+  notes:
+  - key: A
+    trigger: 1
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: If both of these Dread warriors are defeated, the first hero to
+      search for treasure finds that one of the warriors was wearing the magical
+      artifact called the Ring of Return. Its use is explained on the matching artifact
+      card.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects:
+    - type: 3
+      value: 0
+      card: {fileID: 11400000, guid: 3770f48aba94d29448db9c99dbc96d0d, type: 2}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: B
+    trigger: 5
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: This square is the entrance to the mine. Any player who enters this
+      room may take 5,000 gold coins. However, as long as they are carrying the gold,
+      they may not attack or defend themselves. If the hero puts the gold down, it
+      disappears back into the mine.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects: []
+    onTrapSprung: []
+    onTrapDisarmed: []
+  gridSize: {x: 26, y: 19}
+  solidRock: []
+  rooms: []
+  placements: []

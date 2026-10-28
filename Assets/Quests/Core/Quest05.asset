@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317ba2b0aa0f67a4da435115b77a4ccd, type: 3}
+  m_Name: Quest05
+  m_EditorClassIdentifier: Assembly-CSharp::QuestData
+  id: base.quest.05
+  number: 5
+  title: Melar's Maze
+  previousQuest: {fileID: 11400000, guid: 5c1d3bd4af3d36e4989adb96d4fdc2df, type: 2}
+  parchmentText: Long ago, a powerful wizard by the name of Melar created a Talisman
+    of Lore that enhances the wearer's understanding of magic. It is rumored that
+    Melar hid the talisman in an underground laboratory at the heart of his maze,
+    fearing it might be stolen by the evil minions of Zargon. As you search for the
+    talisman, beware of many traps and deadly monsters.
+  zargonNote: 
+  objectives:
+  - type: 2
+    targetId: 
+    card: {fileID: 0}
+    description: Find the Talisman of Lore
+  reward:
+    mode: 0
+    gold: 0
+    requiresNpcAliveId: 
+    bounties: []
+    items: []
+    title: 
+  wanderingMonster: {fileID: 11400000, guid: 38c80c46dc2cfad4a8ecdd48c54b7356, type: 2}
+  wanderingMonsterText: Zombie
+  startMarker: 
+  mustReturnToStairs: 1
+  requiredItems: []
+  specialRules: []
+  entities: []
+  notes:
+  - key: A
+    trigger: 1
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: The first hero to search for treasure finds a half-filled flask
+      sitting on the alchemist's bench. It is a potion of healing that restores up
+      to 2 lost Body Points when consumed.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects: []
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: B
+    trigger: 4
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: This chamber contains a gargoyle that appears to be a stone statue.
+      The gargoyle does not move at first and only comes to life after one of the
+      heroes opens the door that leads into the next room. The gargoyle cannot be
+      harmed (takes no damage) until it has either moved or attacked a hero.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects: []
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: C
+    trigger: 1
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: "The chest is filled with poisonous gas\u2014it is a trap! If a
+      hero searches for treasure before the trap is disarmed, they lose 2 Body Points.
+      The chest also contains 144 gold coins. There is no other treasure in this
+      room."
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 1
+    effects:
+    - type: 2
+      value: 144
+      card: {fileID: 0}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    onTrapSprung:
+    - type: 5
+      value: 2
+      card: {fileID: 0}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    onTrapDisarmed: []
+  - key: D
+    trigger: 1
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: The first hero who searches for treasure finds the Talisman of Lore.
+      The talisman is a magical artifact. Its use is explained on the matching artifact
+      card.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects: []
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: E
+    trigger: 3
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: If a hero searches for secret doors, they find nothing on either
+      side of the wall. However, if a hero searches for treasure they find Melar's
+      key. Upon touching it, the key disappears and the throne slides sideways, revealing
+      a secret door!
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects: []
+    onTrapSprung: []
+    onTrapDisarmed: []
+  gridSize: {x: 26, y: 19}
+  solidRock: []
+  rooms: []
+  placements: []

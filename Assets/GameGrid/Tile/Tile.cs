@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Tile : MonoBehaviour
 {
     [SerializeField] private Color _baseColor, _offsetColor;
     [SerializeField] private MeshRenderer[] _renderers;
     [SerializeField] public GameObject _highlight;
+    [SerializeField] public GameObject actionIndicator;
 
     [SerializeField] public GameObject baseMesh;
 
@@ -26,10 +28,17 @@ public class Tile : MonoBehaviour
     {
         foreach (var _renderer in _renderers)
         {
-            Material newMat = new Material(_renderer.material /*Shader.Find("Universal Render Pipeline/Lit")*/);
+            Material newMat = new Material(_renderer.material);
             newMat.SetColor("_BaseColor", newColor);
             _renderer.material = newMat;
         }
+    }
+
+    public void ChangeIndicator(Color newColor)
+    {
+        Material newMat = new Material(actionIndicator.GetComponent<MeshRenderer>().material);
+        newMat.SetColor("_BaseColor", newColor);
+        actionIndicator.GetComponent<MeshRenderer>().material = newMat;
     }
 
     void OnMouseEnter() {

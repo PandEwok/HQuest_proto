@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317ba2b0aa0f67a4da435115b77a4ccd, type: 3}
+  m_Name: Quest04
+  m_EditorClassIdentifier: Assembly-CSharp::QuestData
+  id: base.quest.04
+  number: 4
+  title: Prince Magnus' Gold
+  previousQuest: {fileID: 11400000, guid: e64d2617a568c2d4f9b459bb11ca7f93, type: 2}
+  parchmentText: Three treasure chests have been stolen while being taken to the
+    King. A reward of 240 gold coins has been offered to any group of heroes who
+    return the chests and all of the gold. The thieves are a well-known band of orcs
+    whose lair is in the Dark Mountains. They are led by Gulthor, a Dread warrior.
+  zargonNote: 
+  objectives:
+  - type: 4
+    targetId: chests
+    card: {fileID: 0}
+    description: Bring the three treasure chests back to the stairway
+  reward:
+    mode: 1
+    gold: 240
+    requiresNpcAliveId: 
+    bounties: []
+    items: []
+    title: 
+  wanderingMonster: {fileID: 11400000, guid: ad54f5627f02b6f4586747aae7233cb9, type: 2}
+  wanderingMonsterText: Abomination
+  startMarker: 
+  mustReturnToStairs: 1
+  requiredItems: []
+  specialRules:
+  - type: 2
+    value: 1
+    extraValues: 01000000
+    description: A hero can carry only one chest at a time and rolls only 1 red die
+      for movement.
+  entities:
+  - id: gulthor
+    displayName: Gulthor
+    baseMonster: {fileID: 11400000, guid: 376f171166a5b244ba38f037d1871d56, type: 2}
+    overrideStats: 0
+    moveSquares: 0
+    attackDice: 0
+    defenseDice: 0
+    hp: 0
+    mind: 0
+    isNpc: 0
+    startsDormant: 0
+    dreadSpells: []
+    carriedItems: []
+    rules: []
+    description: 
+  notes:
+  - key: A
+    trigger: 0
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: These are the three chests. They are marked with the prince's royal
+      seal. Each chest is locked and contains 250 gold coins and other items of value
+      to Prince Magnus and the King. A hero can carry only one chest at a time. When
+      carrying a treasure chest, a hero can only roll 1 red die for movement. The
+      heroes cannot keep the gold inside the treasure chests.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects: []
+    onTrapSprung: []
+    onTrapDisarmed: []
+  gridSize: {x: 26, y: 19}
+  solidRock: []
+  rooms: []
+  placements: []

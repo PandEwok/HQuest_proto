@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317ba2b0aa0f67a4da435115b77a4ccd, type: 3}
+  m_Name: Quest08
+  m_EditorClassIdentifier: Assembly-CSharp::QuestData
+  id: base.quest.08
+  number: 8
+  title: The Fire Mage
+  previousQuest: {fileID: 11400000, guid: 81ee2e87d9107e740a7eeb5f4018c0bd, type: 2}
+  parchmentText: The orcs of the Dark Mountains have been using Elemental fire magic
+    in their raids. Balur, the fire mage, is thought to be responsible for helping
+    them. No fire magic can harm Balur and the King's wizards are unable to counter
+    his spells. You have therefore been chosen to enter his lair, deep beneath Darkfire
+    Crag. His Majesty offers each hero a reward of 100 gold coins for Balur's destruction.
+  zargonNote: 
+  objectives:
+  - type: 0
+    targetId: balur
+    card: {fileID: 0}
+    description: Destroy Balur, the fire mage
+  reward:
+    mode: 2
+    gold: 100
+    requiresNpcAliveId: 
+    bounties: []
+    items: []
+    title: 
+  wanderingMonster: {fileID: 11400000, guid: ad54f5627f02b6f4586747aae7233cb9, type: 2}
+  wanderingMonsterText: Abomination
+  startMarker: 
+  mustReturnToStairs: 1
+  requiredItems: []
+  specialRules: []
+  entities:
+  - id: balur
+    displayName: Balur
+    baseMonster: {fileID: 0}
+    overrideStats: 1
+    moveSquares: 8
+    attackDice: 2
+    defenseDice: 5
+    hp: 3
+    mind: 7
+    isNpc: 0
+    startsDormant: 0
+    dreadSpells:
+    - {fileID: 11400000, guid: 63095e5a9e6a80249afe6d00581671c4, type: 2}
+    - {fileID: 11400000, guid: e4d67c81631118c43841faf4c99301cf, type: 2}
+    carriedItems: []
+    rules:
+    - type: 2
+      value: 0
+      item: {fileID: 0}
+      group: {fileID: 11400000, guid: 28d03b6e4257818429782b8b170b421d, type: 2}
+    description: 
+  notes:
+  - key: Balur
+    trigger: 0
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: 'Use the Dread sorcerer figure for Balur. Fire spells do not affect
+      him.
+
+      Balur has the following spells, which he may use once during the
+      quest: ball of flame, firestorm, tempest, summon orcs, fear, and escape. (Refer
+      to the Dread spell cards for details.) The escape spell teleports him to the
+      square marked "XX" in the middle room. If Balur uses the escape spell, do not
+      put him onto that square until the heroes open the door.'
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects: []
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: A
+    trigger: 1
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: The treasure chest contains 150 gold coins and the artifact called
+      the Wand of Magic. Its use is explained on the matching artifact card.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects:
+    - type: 2
+      value: 150
+      card: {fileID: 0}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    onTrapSprung: []
+    onTrapDisarmed: []
+  gridSize: {x: 26, y: 19}
+  solidRock: []
+  rooms: []
+  placements: []
