@@ -1,0 +1,21 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="HeroSelection.uss" />
+    <ui:VisualElement name="root" class="screen">
+
+        <ui:VisualElement class="header">
+            <ui:Label text="Choose your heroes" class="title" />
+            <ui:Label text="Form your party of 1 to 4 adventurers" class="subtitle" />
+        </ui:VisualElement>
+
+        <ui:ScrollView name="hero-list" mode="Horizontal"
+                       horizontal-scroller-visibility="Auto"
+                       vertical-scroller-visibility="Hidden"
+                       class="hero-list" />
+
+        <ui:VisualElement class="footer">
+            <ui:Label name="counter" text="Selected: 0 / 4" class="counter" />
+            <ui:Button name="validate-button" text="CONFIRM" class="validate-button" />
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+</ui:UXML>

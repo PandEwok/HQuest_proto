@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 285dc87e20568c94386e608979b9fde3, type: 3}
+  m_Name: Summon Orcs
+  m_EditorClassIdentifier: Assembly-CSharp::DreadSpellCard
+  id: base_dread_summon_orcs
+  title: Summon Orcs
+  description: 'This spell summons a group of orcs around the caster to protect them. 
+    The number of orcs is determined by rolling 1 red die.
+
+
+    1, 2 or 3 = 4 orcs.
+
+    4
+    or 5 = 5 orcs.
+
+    6 = 6 orcs.'
+  illustration: {fileID: 0}
+  effects:
+  - type: 11
+    value: 0
+    target: 0
+    area: 0
+    endsWhen: 0
+    resistance:
+      rule: 0
+      dice: 0
+      successOn: 0
+      canBreakImmediately: 0
+      onlyOnNextTurn: 0
+    immuneTags: []
+    summonTable:
+    - rollFrom: 1
+      rollTo: 3
+      monsters:
+      - monster: {fileID: 11400000, guid: abe0de45127c3234da9fcb5d6b2f7431, type: 2}
+        count: 4
+    - rollFrom: 4
+      rollTo: 5
+      monsters:
+      - monster: {fileID: 11400000, guid: abe0de45127c3234da9fcb5d6b2f7431, type: 2}
+        count: 5
+    - rollFrom: 6
+      rollTo: 6
+      monsters:
+      - monster: {fileID: 11400000, guid: abe0de45127c3234da9fcb5d6b2f7431, type: 2}
+        count: 6
+    excludesCaster: 0
+    affectedEquipment: []

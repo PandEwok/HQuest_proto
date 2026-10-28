@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8832159343252540590}
   - component: {fileID: 1820034698317254172}
+  - component: {fileID: -1254493273273919989}
   m_Layer: 0
   m_Name: WallBarrel_PF
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,6 +48,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Wall
   parentTiles: []
+--- !u!65 &-1254493273273919989
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536367424105585190}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.45, y: 3, z: 0.5}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!1 &4891620630331445578
 GameObject:
   m_ObjectHideFlags: 0

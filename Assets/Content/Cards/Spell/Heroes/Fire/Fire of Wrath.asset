@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b17dd24ddff4ebb4f8a98af8d46a827a, type: 3}
+  m_Name: Fire of Wrath
+  m_EditorClassIdentifier: Assembly-CSharp::SpellCard
+  id: base_spell_fireofwrath
+  title: Fire of Wrath
+  description: This spell can target any monster and envelop it in a breath of fire,
+    dealing 1 hit point of damage unless it rolls a 5 or 6 with 1 red die.
+  illustration: {fileID: 0}
+  group: {fileID: 11400000, guid: 28d03b6e4257818429782b8b170b421d, type: 2}
+  playerChoosesOne: 0
+  effects:
+  - type: 0
+    value: 1
+    target: 2
+    area: 0
+    endsWhen: 0
+    resistance:
+      rule: 2
+      dice: 1
+      successOn: 5
+    immuneTags: []
+    summonTable: []

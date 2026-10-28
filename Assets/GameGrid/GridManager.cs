@@ -164,7 +164,7 @@ public class GridManager : MonoBehaviour
             room.UpdateList();
             if (room.tiles.Count == 0)
             {
-                Destroy(room.transform);
+                Destroy(room.gameObject);
             }
         }
     }

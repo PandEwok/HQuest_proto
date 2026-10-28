@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="hero-card" class="hero-card">
+        <ui:Label name="selected-badge" text="SELECTED" class="hero-card__badge" />
+        <ui:VisualElement class="hero-card__header">
+            <ui:Label name="hero-name" class="hero-card__name" />
+        </ui:VisualElement>
+        <ui:VisualElement name="hero-image" class="hero-card__image" />
+        <ui:VisualElement name="stats" class="hero-card__stats" />
+    </ui:VisualElement>
+</ui:UXML>

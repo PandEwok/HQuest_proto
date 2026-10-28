@@ -14,19 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ArtifactCard
   id: base_artifact_ring_fortitude
   title: Ring of Fortitude
-  description: 'The hero wearing this magic ring adds 1 point to their total hit
+  description: 'The hero wearing this magic ring adds 1 point to their total health
     points. '
   illustration: {fileID: 0}
   slot: 2
   attackDice: 0
   defenseDice: 0
   diagonalAttack: 0
-  bonusHP: 0
+  bonusHP: 1
   bonusMind: 0
   onlyFor: []
   forbiddenFor: []
-  abilities:
-  - type: 0
-    value: 0
-    usage: 0
-    requiredTargetTag: {fileID: 0}
+  abilities: []

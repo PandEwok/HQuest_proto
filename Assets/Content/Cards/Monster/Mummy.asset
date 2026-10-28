@@ -24,3 +24,4 @@ MonoBehaviour:
   icon: {fileID: 0}
   tags:
   - {fileID: 11400000, guid: aefec458635848a479be037e43d80121, type: 2}
+  - {fileID: 11400000, guid: bf9c2ef8428f1814086ce285ba887c11, type: 2}

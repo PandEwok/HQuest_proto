@@ -19,6 +19,8 @@ MonoBehaviour:
   illustration: {fileID: 0}
   slot: 2
   price: 125
+  tags:
+  - {fileID: 11400000, guid: 4f239a3b652fb7548ab25dba793e3ef7, type: 2}
   attackDice: 0
   defenseDice: 1
   diagonalAttack: 0

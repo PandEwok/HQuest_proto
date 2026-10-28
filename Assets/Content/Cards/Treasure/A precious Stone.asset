@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27048d72ae88bf442825a86af17e0729, type: 3}
+  m_Name: A precious Stone
+  m_EditorClassIdentifier: Assembly-CSharp::TreasureCard
+  id: base_treasure_precious_stone
+  title: A precious stone
+  description: You find a small precious stone hidden at the bottom of a boot. It's
+    worth 35 gold pieces. Don't put this card back in the pile.
+  illustration: {fileID: 0}
+  timing: 0
+  returnToDeck: 0
+  singleUse: 1
+  effects:
+  - type: 0
+    value: 35
