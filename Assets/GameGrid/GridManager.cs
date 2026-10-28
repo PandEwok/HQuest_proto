@@ -30,10 +30,19 @@ public class GridManager : MonoBehaviour
 
     [HideInInspector] public enum Mode
     {
+        GAME,
         ADD,
         SELECT
     }
     [HideInInspector] public Mode currentMode = Mode.ADD;
+
+    [HideInInspector] public enum Selection
+    {
+        NONE,
+        ROOM,
+        DOOR
+    }
+    [HideInInspector] public Selection currentSelection = Selection.ROOM;
 
 
     void Start()
@@ -190,30 +199,11 @@ public class GridManager : MonoBehaviour
 
     private void UpdateAddMode()
     {
-        // LEFT CLICK BEGIN
-        if (Input.GetMouseButtonDown(0))
+        // ROOM
+        if (currentSelection == Selection.ROOM)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit))
-            {
-                Tile tile = hit.collider.GetComponentInParent<Tile>();
-                if (tile != null)
-                {
-                    isMarking = true;
-                    //markPositionStart = tile.transform.position;
-
-                    var inverseTiles = _tiles.ToDictionary(x => x.Value, x => x.Key);
-                    inverseTiles.TryGetValue(tile, out markPositionStart);
-
-                    //Debug.Log($"Clicked on tile: {tile.name}");
-                }
-            }
-        }
-
-        // LEFT CLICK HOLD
-        if (Input.GetMouseButton(0))
-        {
-            if (isMarking)
+            // LEFT CLICK BEGIN
+            if (Input.GetMouseButtonDown(0))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hit))
@@ -221,97 +211,125 @@ public class GridManager : MonoBehaviour
                     Tile tile = hit.collider.GetComponentInParent<Tile>();
                     if (tile != null)
                     {
-                        var inverseTiles = _tiles.ToDictionary(x => x.Value, x => x.Key);
-                        Vector2 tilePos;
-                        inverseTiles.TryGetValue(tile, out tilePos);
-                        List<Tile> tilesInSelection = GetTilesFromSelection(markPositionStart, tilePos);
+                        isMarking = true;
+                        //markPositionStart = tile.transform.position;
 
-                        foreach (Tile curTile in tilesInSelection)
-                        {
-                            curTile._highlight.SetActive(true);
-                        }
+                        var inverseTiles = _tiles.ToDictionary(x => x.Value, x => x.Key);
+                        inverseTiles.TryGetValue(tile, out markPositionStart);
+
+                        //Debug.Log($"Clicked on tile: {tile.name}");
                     }
                 }
             }
-        }
 
-        // LEFT CLICK END
-        if (Input.GetMouseButtonUp(0))
-        {
-            if (isMarking)
+            // LEFT CLICK HOLD
+            if (Input.GetMouseButton(0))
             {
-                isMarking = false;
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out RaycastHit hit))
+                if (isMarking)
                 {
-                    Tile tile = hit.collider.GetComponentInParent<Tile>();
-                    if (tile != null)
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    if (Physics.Raycast(ray, out RaycastHit hit))
                     {
-                        Tile startTile;
-                        _tiles.TryGetValue(markPositionStart, out startTile);
-                        var inverseTiles = _tiles.ToDictionary(x => x.Value, x => x.Key);
-
-                        bool isStartInRoom = false;
-                        Room containRoom = null;
-                        foreach (Room room in this.GetComponentsInChildren<Room>())
+                        Tile tile = hit.collider.GetComponentInParent<Tile>();
+                        if (tile != null)
                         {
-                            if (room.IsTileInRoom(startTile))
-                            {
-                                isStartInRoom = true;
-                                containRoom = room;
-                                break;
-                            }
-                        }
-
-                        if (isStartInRoom) // start tile is in an existing room ; expending the room
-                        {
+                            var inverseTiles = _tiles.ToDictionary(x => x.Value, x => x.Key);
                             Vector2 tilePos;
                             inverseTiles.TryGetValue(tile, out tilePos);
                             List<Tile> tilesInSelection = GetTilesFromSelection(markPositionStart, tilePos);
 
                             foreach (Tile curTile in tilesInSelection)
                             {
-                                if (containRoom != null && !containRoom.IsTileInRoom(curTile))
+                                curTile._highlight.SetActive(true);
+                            }
+                        }
+                    }
+                }
+            }
+
+            // LEFT CLICK END
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (isMarking)
+                {
+                    isMarking = false;
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    if (Physics.Raycast(ray, out RaycastHit hit))
+                    {
+                        Tile tile = hit.collider.GetComponentInParent<Tile>();
+                        if (tile != null)
+                        {
+                            Tile startTile;
+                            _tiles.TryGetValue(markPositionStart, out startTile);
+                            var inverseTiles = _tiles.ToDictionary(x => x.Value, x => x.Key);
+
+                            bool isStartInRoom = false;
+                            Room containRoom = null;
+                            foreach (Room room in this.GetComponentsInChildren<Room>())
+                            {
+                                if (room.IsTileInRoom(startTile))
                                 {
-                                    containRoom.AddTile(curTile);
+                                    isStartInRoom = true;
+                                    containRoom = room;
+                                    break;
                                 }
                             }
 
-                            foreach (Tile curTile in tilesInSelection)
+                            if (isStartInRoom) // start tile is in an existing room ; expending the room
                             {
-                                if (curTile != tile)
-                                { curTile._highlight.SetActive(false); }
+                                Vector2 tilePos;
+                                inverseTiles.TryGetValue(tile, out tilePos);
+                                List<Tile> tilesInSelection = GetTilesFromSelection(markPositionStart, tilePos);
+
+                                foreach (Tile curTile in tilesInSelection)
+                                {
+                                    if (containRoom != null && !containRoom.IsTileInRoom(curTile))
+                                    {
+                                        containRoom.AddTile(curTile);
+                                    }
+                                }
+
+                                foreach (Tile curTile in tilesInSelection)
+                                {
+                                    if (curTile != tile)
+                                    { curTile._highlight.SetActive(false); }
+                                }
+                                containRoom.UpdateShape();
                             }
-                            containRoom.UpdateShape();
-                        }
-                        else // creating new room
-                        {
-                            MakeRoomFromSelection(tile);
-
-                            Vector2 tilePos;
-                            inverseTiles.TryGetValue(tile, out tilePos);
-                            List<Tile> tilesInSelection = GetTilesFromSelection(markPositionStart, tilePos);
-
-                            foreach (Tile curTile in tilesInSelection)
+                            else // creating new room
                             {
-                                if (curTile != tile)
-                                { curTile._highlight.SetActive(false); }
+                                MakeRoomFromSelection(tile);
+
+                                Vector2 tilePos;
+                                inverseTiles.TryGetValue(tile, out tilePos);
+                                List<Tile> tilesInSelection = GetTilesFromSelection(markPositionStart, tilePos);
+
+                                foreach (Tile curTile in tilesInSelection)
+                                {
+                                    if (curTile != tile)
+                                    { curTile._highlight.SetActive(false); }
+                                }
                             }
                         }
                     }
                 }
             }
         }
-        // right click : add door
-        if (Input.GetMouseButtonDown(1))
+
+        // DOOR
+        if (currentSelection == Selection.DOOR)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            // add door (left click)
+            if (Input.GetMouseButtonDown(0))
             {
-                GameObject wall = hit.collider.gameObject;
-                if (wall.CompareTag("Wall"))
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out RaycastHit hit))
                 {
-                    ReplaceByDoor(wall);
+                    GameObject wall = hit.collider.gameObject;
+                    if (wall.CompareTag("Wall"))
+                    {
+                        ReplaceByDoor(wall);
+                    }
                 }
             }
         }
