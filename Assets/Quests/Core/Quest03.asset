@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317ba2b0aa0f67a4da435115b77a4ccd, type: 3}
+  m_Name: Quest03
+  m_EditorClassIdentifier: Assembly-CSharp::QuestData
+  id: base.quest.03
+  number: 3
+  title: Lair of the Orc Warlord
+  previousQuest: {fileID: 11400000, guid: ca8348e31d984f84f8a5b7b0561d89c2, type: 2}
+  parchmentText: Prince Magnus has ordered that the orc warlord, Ulag, who was responsible
+    for the imprisonment of Sir Ragnar, be sought out and destroyed. When Ulag is
+    destroyed, the heroes are to be rewarded 180 gold coins to be divided among them.
+    Any treasure found in Ulag's stronghold may be kept by the finder alone.
+  zargonNote: 
+  objectives:
+  - type: 0
+    targetId: ulag
+    card: {fileID: 0}
+    description: Destroy Ulag, the orc warlord
+  reward:
+    mode: 1
+    gold: 180
+    requiresNpcAliveId: 
+    bounties: []
+    items: []
+    title: 
+  wanderingMonster: {fileID: 11400000, guid: abe0de45127c3234da9fcb5d6b2f7431, type: 2}
+  wanderingMonsterText: Orc
+  startMarker: 
+  mustReturnToStairs: 1
+  requiredItems: []
+  specialRules:
+  - type: 8
+    value: 0
+    extraValues: 
+    description: Any treasure found in Ulag's stronghold may be kept by the finder
+      alone.
+  entities:
+  - id: ulag
+    displayName: Ulag
+    baseMonster: {fileID: 11400000, guid: abe0de45127c3234da9fcb5d6b2f7431, type: 2}
+    overrideStats: 1
+    moveSquares: 10
+    attackDice: 4
+    defenseDice: 5
+    hp: 2
+    mind: 3
+    isNpc: 0
+    startsDormant: 0
+    dreadSpells: []
+    carriedItems: []
+    rules: []
+    description: 
+  notes:
+  - key: A
+    trigger: 1
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: This is the orc's armory. The first hero who searches for treasure
+      finds a staff weapon that they may add to their character sheet or may give
+      to another hero. This staff is exactly like the one described in the armory.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects:
+    - type: 3
+      value: 0
+      card: {fileID: 11400000, guid: 6adb619b817595f4492a39f300e0d971, type: 2}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: B
+    trigger: 1
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: The first hero who searches for treasure finds 24 gold coins and
+      a potion of healing in the cupboard. The potion restores up to 4 lost Body
+      Points when consumed.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects:
+    - type: 2
+      value: 24
+      card: {fileID: 0}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    onTrapSprung: []
+    onTrapDisarmed: []
+  gridSize: {x: 26, y: 19}
+  solidRock: []
+  rooms: []
+  placements: []

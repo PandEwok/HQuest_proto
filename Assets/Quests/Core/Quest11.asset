@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317ba2b0aa0f67a4da435115b77a4ccd, type: 3}
+  m_Name: Quest11
+  m_EditorClassIdentifier: Assembly-CSharp::QuestData
+  id: base.quest.11
+  number: 11
+  title: Bastion of Dread
+  previousQuest: {fileID: 11400000, guid: 29cabe1e694e8db4bb4068fea5d6efff, type: 2}
+  parchmentText: Lands to the east have been plagued by marauding orcs and goblins
+    who have allied themselves with Zargon. The King has ordered that a band of worthy
+    heroes should be sent forth to destroy them. The orcs are well-protected in a
+    strong underground fortress known as the Bastion of Dread. They are led by a
+    small group of Dread warriors. You must fight your way in and kill all of the
+    monsters you find. A hero earns a bounty of 10 gold coins for each goblin killed;
+    20 gold coins for each orc killed; 30 gold coins for each abomination killed;
+    and 50 gold coins for each Dread warrior killed.
+  zargonNote: 
+  objectives:
+  - type: 1
+    targetId: 
+    card: {fileID: 0}
+    description: Fight your way in and kill all of the monsters you find
+  reward:
+    mode: 3
+    gold: 0
+    requiresNpcAliveId: 
+    bounties:
+    - monster: {fileID: 11400000, guid: dc0763247aa6c214b893590253e56c4c, type: 2}
+      gold: 10
+    - monster: {fileID: 11400000, guid: abe0de45127c3234da9fcb5d6b2f7431, type: 2}
+      gold: 20
+    - monster: {fileID: 11400000, guid: ad54f5627f02b6f4586747aae7233cb9, type: 2}
+      gold: 30
+    - monster: {fileID: 11400000, guid: 376f171166a5b244ba38f037d1871d56, type: 2}
+      gold: 50
+    items: []
+    title: 
+  wanderingMonster: {fileID: 11400000, guid: ad54f5627f02b6f4586747aae7233cb9, type: 2}
+  wanderingMonsterText: Abomination
+  startMarker: 
+  mustReturnToStairs: 1
+  requiredItems: []
+  specialRules: []
+  entities: []
+  notes:
+  - key: A
+    trigger: 1
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: This is the armory. The first hero to search for treasure finds
+      a shield exactly like the one described in the armory. All the other weapons
+      here are unusable.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects:
+    - type: 3
+      value: 0
+      card: {fileID: 11400000, guid: d0a93c42297a83443beb219399cc3637, type: 2}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: B
+    trigger: 1
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: The gargoyle appears to be a stone statue that does not move. The
+      treasure chest is a trap. If a hero searches for treasure before the trap is
+      disarmed, the gargoyle springs to life and immediately attacks. If a hero disarms
+      the trap first, they discover (are told by you) what would have happened if
+      they had searched for treasure. The gargoyle cannot be harmed until it has
+      either moved or attacked a hero.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects: []
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: C
+    trigger: 0
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: This Dread warrior has a magic sword. Whoever kills the Dread warrior
+      may take the sword as a prize. The sword is the artifact known as Orc's Bane.
+      Its use is explained on the matching artifact card.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects: []
+    onTrapSprung: []
+    onTrapDisarmed: []
+  gridSize: {x: 26, y: 19}
+  solidRock: []
+  rooms: []
+  placements: []

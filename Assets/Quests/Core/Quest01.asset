@@ -1,0 +1,153 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317ba2b0aa0f67a4da435115b77a4ccd, type: 3}
+  m_Name: Quest01
+  m_EditorClassIdentifier: Assembly-CSharp::QuestData
+  id: base.quest.01
+  number: 1
+  title: The Trial
+  previousQuest: {fileID: 0}
+  parchmentText: You have learned well, my friends. Now has come the time of your
+    first trial. You must first enter the catacombs that contain Fellmarg's tomb.
+    You must seek out and destroy Verag, a foul gargoyle that hides in the catacombs.
+    This quest is not easy, and you must work together in order to survive. This
+    is your first step on the road to becoming true heroes. Tread carefully, my friends.
+  zargonNote: Zargon, you may tell everyone that there are no traps or secret doors
+    in this first quest. However, you should also warn them that this is a tough
+    adventure. It is meant to show the players that their chances of survival depends
+    on how well they work together.
+  objectives:
+  - type: 0
+    targetId: verag
+    card: {fileID: 0}
+    description: Seek out and destroy Verag
+  reward:
+    mode: 0
+    gold: 0
+    requiresNpcAliveId: 
+    bounties: []
+    items: []
+    title: 
+  wanderingMonster: {fileID: 11400000, guid: abe0de45127c3234da9fcb5d6b2f7431, type: 2}
+  wanderingMonsterText: Orc
+  startMarker: 
+  mustReturnToStairs: 1
+  requiredItems: []
+  specialRules:
+  - type: 0
+    value: 0
+    extraValues: 
+    description: No traps or secret doors in this quest.
+  entities:
+  - id: verag
+    displayName: Verag
+    baseMonster: {fileID: 11400000, guid: 1db86f0db39215d459036ce2f555545b, type: 2}
+    overrideStats: 0
+    moveSquares: 0
+    attackDice: 0
+    defenseDice: 0
+    hp: 0
+    mind: 0
+    isNpc: 0
+    startsDormant: 0
+    dreadSpells: []
+    carriedItems: []
+    rules: []
+    description: 
+  notes:
+  - key: A
+    trigger: 1
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: The weapons on this weapons rack are chipped, rusted, and broken.
+      There is nothing here that the heroes would want.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects:
+    - type: 1
+      value: 0
+      card: {fileID: 0}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: B
+    trigger: 1
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: This treasure chest is empty.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects:
+    - type: 1
+      value: 0
+      card: {fileID: 0}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: C
+    trigger: 0
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: This mummy is the guardian of Fellmarg's tomb and was once a mighty
+      warrior. It rolls 4 Attack dice instead of 3.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects: []
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: D
+    trigger: 1
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: The first hero who searches for treasure finds 84 gold coins in
+      this treasure chest.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects:
+    - type: 2
+      value: 84
+      card: {fileID: 0}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: E
+    trigger: 1
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: The first hero who searches for treasure finds 120 gold coins in
+      this treasure chest.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects:
+    - type: 2
+      value: 120
+      card: {fileID: 0}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    onTrapSprung: []
+    onTrapDisarmed: []
+  gridSize: {x: 26, y: 19}
+  solidRock: []
+  rooms: []
+  placements: []
