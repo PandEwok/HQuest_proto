@@ -1,16 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    // The two tiles on either side of the door (filled in by GridManager.ReplaceByDoor).
+    // Used to save / reload the door.
+    [HideInInspector] public List<Tile> parentTiles = new List<Tile>();
 }
