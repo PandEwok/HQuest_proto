@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Elve
   m_EditorClassIdentifier: Assembly-CSharp::HeroCard
   id: base_hero_elve_0
-  title: Elve
+  title: Elf
   description: 
   illustration: {fileID: 0}
   heroClass: {fileID: 11400000, guid: 5f42478ffe4d69f4481a618f22919d47, type: 2}
