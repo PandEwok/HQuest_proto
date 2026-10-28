@@ -13,7 +13,9 @@ public class EditorUImanager : MonoBehaviour
 
     private Button roomButton;
     private Button doorButton;
-    private Button trapButton;
+    private Button spikeTrapButton;
+    private Button pitTrapButton;
+    private Button fallingBlockTrapButton;
     private Button rockButton;
     private Button WRVButton;
     private Button WRHButton;
@@ -67,9 +69,17 @@ public class EditorUImanager : MonoBehaviour
 
         rockButton.clicked += RockSelection;
 
-        trapButton = root.Q<Button>("PlaceTrap");
+        spikeTrapButton = root.Q<Button>("PlaceSpikeTrap");
 
-        trapButton.clicked += TrapSelection;
+        spikeTrapButton.clicked += SpikeTrapSelection;
+
+        pitTrapButton = root.Q<Button>("PlacePitTrap");
+
+        pitTrapButton.clicked += PitTrapSelection;
+
+        fallingBlockTrapButton = root.Q<Button>("PlaceFallingBlockTrap");
+
+        fallingBlockTrapButton.clicked += FallingBlockTrapSelection;
 
         WRVButton = root.Q<Button>("PlaceWeaponRackVertical");
 
@@ -128,9 +138,17 @@ public class EditorUImanager : MonoBehaviour
     {
         gridManager.currentSelection = GridManager.Selection.ROCK;
     }
-    private void TrapSelection()
+    private void SpikeTrapSelection()
     {
-        gridManager.currentSelection = GridManager.Selection.TRAP;
+        gridManager.currentSelection = GridManager.Selection.SPKTRAP;
+    }
+    private void PitTrapSelection()
+    {
+        gridManager.currentSelection = GridManager.Selection.PITTRAP;
+    }
+    private void FallingBlockTrapSelection()
+    {
+        gridManager.currentSelection = GridManager.Selection.FLLTRAP;
     }
     private void WRVSelection()
     {
