@@ -28,16 +28,18 @@ public class CharacterSheetPanel : MonoBehaviour
     [Header("Gold")]
     [SerializeField] private TMP_Text goldText;
 
-    [Header("Equipment lists (containers with a Vertical Layout Group)")]
+    [Header("Lists (containers with a Vertical Layout Group)")]
     [SerializeField] private Transform weaponsContainer;
     [SerializeField] private Transform armorContainer;
-    [SerializeField] private Transform itemsContainer;
+    [SerializeField] private Transform itemsContainer;      // tools + potions
+    [SerializeField] private Transform artifactsContainer;  // NEW: artifacts
     [SerializeField] private EquipmentButton equipmentButtonPrefab; // it knows which detail popup to open
 
     [Header("Button text (placeholders: {name} {type} {attack} {defense} {price}; empty = just the name)")]
     [SerializeField, TextArea(1, 3)] private string weaponLabelFormat = "{name}  (ATK {attack})";
     [SerializeField, TextArea(1, 3)] private string armorLabelFormat = "{name}  (DEF +{defense})";
     [SerializeField, TextArea(1, 3)] private string itemLabelFormat = "{name}";
+    [SerializeField, TextArea(1, 3)] private string artifactLabelFormat = "{name}";
 
     [Header("Quests (one marker per quest, in order 1 to 14)")]
     [SerializeField] private Image[] questMarkers;
@@ -63,7 +65,7 @@ public class CharacterSheetPanel : MonoBehaviour
         Refresh();
     }
 
-    /// <summary>Optional: call this (e.g. from your close animation or button) to close the item popup.</summary>
+    /// <summary>Optional: call this (e.g. from your close animation or button) to close the item popups.</summary>
     public void HideDetails() => EquipmentDetailPanel.CloseCurrent();
 
     private void Refresh()
@@ -77,6 +79,7 @@ public class CharacterSheetPanel : MonoBehaviour
         SetText(attackDiceText, hero.CurrentAttackDice.ToString());
         SetText(defendDiceText, hero.CurrentDefenseDice.ToString());
 
+        // Start values are the card's; "current" values go up or down with artifacts and damage.
         SetText(startBodyText, hero.startHP.ToString());
         SetText(startMindText, hero.startMind.ToString());
         SetText(bodyPointsText, hero.CurrentBody.ToString());
@@ -92,7 +95,15 @@ public class CharacterSheetPanel : MonoBehaviour
 
         Populate(weaponsContainer, hero.GetOwned(EquipmentSlot.Weapon), weaponLabelFormat);
         Populate(armorContainer, hero.GetOwned(EquipmentSlot.BodyArmor, EquipmentSlot.Helmet, EquipmentSlot.Shield), armorLabelFormat);
-        Populate(itemsContainer, hero.GetOwned(EquipmentSlot.Tool, EquipmentSlot.Consumable), itemLabelFormat);
+
+        // Items: tools and consumable equipment, plus the kept treasure cards (potions).
+        var items = new List<CardData>();
+        items.AddRange(hero.GetOwned(EquipmentSlot.Tool, EquipmentSlot.Consumable));
+        foreach (var potion in hero.Potions)
+            if (!(potion is EquipmentCard)) items.Add(potion);
+        Populate(itemsContainer, items, itemLabelFormat);
+
+        Populate(artifactsContainer, hero.Artifacts, artifactLabelFormat);
     }
 
     private static void SetText(TMP_Text field, string value)
@@ -100,7 +111,14 @@ public class CharacterSheetPanel : MonoBehaviour
         if (field != null) field.text = value;
     }
 
-    private void Populate(Transform container, List<EquipmentCard> cards, string labelFormat)
+    private bool IsEquipped(CardData card)
+    {
+        if (card is ArtifactCard artifact) return hero.IsArtifactEquipped(artifact);
+        if (card is EquipmentCard equipment) return hero.IsEquipped(equipment);
+        return false;
+    }
+
+    private void Populate(Transform container, IEnumerable<CardData> cards, string labelFormat)
     {
         if (container == null || equipmentButtonPrefab == null) return;
 
@@ -110,7 +128,7 @@ public class CharacterSheetPanel : MonoBehaviour
         foreach (var card in cards)
         {
             var entry = Instantiate(equipmentButtonPrefab, container);
-            entry.Setup(card, hero.IsEquipped(card), labelFormat);
+            entry.Setup(card, IsEquipped(card), labelFormat, hero);
         }
     }
 }
