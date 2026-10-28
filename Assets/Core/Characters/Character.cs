@@ -18,6 +18,6 @@ public class Character : MonoBehaviour
 
     public void Move(Vector2 newPos)
     {
-        Vector3 worldPos = gridManager
+        //Vector3 worldPos = gridManager
     }
 }

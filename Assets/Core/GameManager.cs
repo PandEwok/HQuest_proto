@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         heroTurns = GameSession.SelectedHeroes.Count;
         Debug.Log(heroTurns + " Heroes will play.");
 
-        Vector2 gridSpawnPos = Vector2.zero;
+        Vector2 gridSpawnPos = new Vector2(10,0);
         foreach (HeroCard heroCard in GameSession.SelectedHeroes)
         {
 
