@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -7,7 +8,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GridManager gridManager;
+    [SerializeField] public GridManager gridManager;
 
     int heroTurns = 0;
     int currentTurn = 0;
@@ -24,6 +25,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Character elf;
     [SerializeField] Character wizard;
 
+    List<Character> heroCharacters = new List<Character>();
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,7 +37,7 @@ public class GameManager : MonoBehaviour
         foreach (HeroCard heroCard in GameSession.SelectedHeroes)
         {
 
-            Character spawnedCharacter;
+            Character spawnedCharacter = null;
             if (heroCard.title == "Dwarf")
             {
                 spawnedCharacter = SpawnCharacter(dwarf, gridSpawnPos);
@@ -51,7 +54,11 @@ public class GameManager : MonoBehaviour
             {
                 spawnedCharacter = SpawnCharacter(barbarian, gridSpawnPos);
             }
-
+            if (spawnedCharacter != null)
+            {
+                spawnedCharacter.positionInGrid = gridSpawnPos;
+                heroCharacters.Add(spawnedCharacter);
+            }
 
             gridSpawnPos.x += 1;
         }
@@ -86,7 +93,11 @@ public class GameManager : MonoBehaviour
         // playing turn
         else
         {
-
+            if (currentTurn < heroTurns)
+            {
+                if (heroCharacters.Count > currentTurn)
+                { heroCharacters[currentTurn].ShowMovementRange(3); }
+            }
         }
     }
 

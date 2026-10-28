@@ -110662,10 +110662,10 @@ MonoBehaviour:
   playerNameTxt: {fileID: 1684354303}
   moved: 0
   actionPerformed: 0
-  barbarian: {fileID: 5212799886496552343, guid: 5093da1ca547250459504756439aee2f, type: 3}
-  dwarf: {fileID: 8871948202631611936, guid: f1f2918c44e373a46bb2338b5b030249, type: 3}
-  elf: {fileID: 4784327894040232038, guid: 122c2e951c28029449e71e958335ae02, type: 3}
-  wizard: {fileID: 8012143297866807245, guid: bda4be38abcbe3f428f4883a526a59ca, type: 3}
+  barbarian: {fileID: 1174002345843722522, guid: 5093da1ca547250459504756439aee2f, type: 3}
+  dwarf: {fileID: 2522592946367929005, guid: f1f2918c44e373a46bb2338b5b030249, type: 3}
+  elf: {fileID: 1907320441826811115, guid: 122c2e951c28029449e71e958335ae02, type: 3}
+  wizard: {fileID: 3976019760630459200, guid: bda4be38abcbe3f428f4883a526a59ca, type: 3}
 --- !u!4 &582105903
 Transform:
   m_ObjectHideFlags: 0

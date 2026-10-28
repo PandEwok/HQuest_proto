@@ -540,4 +540,64 @@ public class GridManager : MonoBehaviour
             }
         }
     }
+
+    public Vector2 GetTileCoords(Tile tile)
+    {
+        foreach (var kvp in _tiles)
+        {
+            if (kvp.Value == tile)
+                return kvp.Key;
+        }
+
+        return Vector2.zero;
+    }
+
+    public List<Tile> GetNeighbours(Tile tile)
+    {
+        List<Tile> result = new();
+
+        Vector2 pos = GetTileCoords(tile);
+
+        Vector2[] dirs =
+        {
+        Vector2.up,
+        Vector2.down,
+        Vector2.left,
+        Vector2.right
+        };
+
+        foreach (Vector2 dir in dirs)
+        {
+            if (_tiles.TryGetValue(pos + dir, out Tile neighbour))
+            {
+                if (CanMoveBetween(tile, neighbour))
+                {
+                    result.Add(neighbour);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public bool CanMoveBetween(Tile from, Tile to)
+    {
+        foreach (GameObject wallObj in from.walls)
+        {
+            if (wallObj == null)
+                continue;
+
+            Wall wall = wallObj.GetComponent<Wall>();
+
+            if (wall == null)
+                continue;
+
+            if (wall.parentTiles.Contains(to))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
