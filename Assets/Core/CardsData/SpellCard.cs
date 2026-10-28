@@ -8,7 +8,8 @@ public enum SpellEffectType
     MoveDiceMultiplier, PassThroughWalls, PassThroughMonsters,
     Paralyze, SkipNextTurn,
     AttackWithDice, OpenDoor,
-    SummonByTable, TeleportToSafeSpot
+    SummonByTable, TeleportToSafeSpot, LimitAttackDice,
+    ControlHero, DestroyEquipment
 }
 
 public enum SpellTarget { Self, AnyHero, AnyMonster, Door, AllHeroesInArea, AllHeroesAndMonstersInArea }
@@ -24,6 +25,8 @@ public class SpellResistance
     public ResistRule rule;
     public int dice;            // dés rouges lancés (0 = 1 dé par point d'esprit de la cible)
     public int successOn = 5;   // 5 = succès sur 5 ou 6 / 6 = succès sur 6 seulement
+    public bool canBreakImmediately;
+    public bool onlyOnNextTurn;
 }
 
 [Serializable]
@@ -52,6 +55,8 @@ public class SpellEffect
     public SpellResistance resistance;
     public MonsterTag[] immuneTags;       // monstres insensibles à l'effet
     public SummonGroup[] summonTable;     // seulement pour SummonByTable
+    public bool excludesCaster;
+    public EquipmentTag[] affectedEquipment;
 }
 
 [CreateAssetMenu(menuName = "Cards/Spell")]

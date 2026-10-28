@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27048d72ae88bf442825a86af17e0729, type: 3}
+  m_Name: A trap! (tile)
+  m_EditorClassIdentifier: Assembly-CSharp::TreasureCard
+  id: base_treasure_trap_tile
+  title: A trap!
+  description: Suddently, the tile you're standing on gives way and you fall into
+    a shadow hole. You lose 1 health point and your turn ends. You can get out and
+    move normally on your next turn. Place this card back on the bottom of the pile.
+  illustration: {fileID: 0}
+  timing: 0
+  returnToDeck: 1
+  singleUse: 1
+  effects:
+  - type: 1
+    value: 1
+  - type: 2
+    value: 0

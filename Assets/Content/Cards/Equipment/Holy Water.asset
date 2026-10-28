@@ -29,10 +29,4 @@ MonoBehaviour:
   abilities:
   - type: 2
     value: 0
-    requiredTargetTag: {fileID: 11400000, guid: 3b10e8186d531bb41a580965a1588fe2, type: 2}
-  - type: 2
-    value: 0
-    requiredTargetTag: {fileID: 11400000, guid: aefec458635848a479be037e43d80121, type: 2}
-  - type: 2
-    value: 0
-    requiredTargetTag: {fileID: 11400000, guid: 8149db2161516d444ac6f60280cad9d6, type: 2}
+    requiredTargetTag: {fileID: 11400000, guid: bf9c2ef8428f1814086ce285ba887c11, type: 2}
