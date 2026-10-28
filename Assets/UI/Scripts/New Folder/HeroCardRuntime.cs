@@ -60,6 +60,7 @@ public partial class HeroCard
         owned.Clear();
         worn.Clear();
         Array.Clear(questsCompleted, 0, questsCompleted.Length);
+        InitInventory();   // artifacts + potions (HeroCardInventory.cs)
 
         if (startWeapon != null && !Equip(startWeapon))
             Debug.LogWarning($"{title}: start weapon '{startWeapon.title}' cannot be used by this hero class.");
@@ -85,7 +86,7 @@ public partial class HeroCard
         get
         {
             int dice = EquippedWeapon != null ? Mathf.Max(1, EquippedWeapon.attackDice) : attackDice;
-            return Mathf.Max(1, dice + attackModifier);
+            return Mathf.Max(1, dice + attackModifier + ArtifactAttackDice);
         }
     }
 
@@ -94,7 +95,7 @@ public partial class HeroCard
     {
         get
         {
-            int dice = defenseDice + defenseModifier;
+            int dice = defenseDice + defenseModifier + ArtifactDefenseDice;
             foreach (var piece in worn.Values)
             {
                 bool shieldBlocked = piece.slot == EquipmentSlot.Shield
@@ -136,7 +137,7 @@ public partial class HeroCard
     public void SetBodyPoints(int value)
     {
         if (!CanModify()) return;
-        CurrentBody = Mathf.Clamp(value, 0, startHP);
+        CurrentBody = Mathf.Clamp(value, 0, MaxBody);
         NotifyChanged();
     }
 
@@ -145,7 +146,7 @@ public partial class HeroCard
     public void SetMindPoints(int value)
     {
         if (!CanModify()) return;
-        CurrentMind = Mathf.Clamp(value, 0, startMind);
+        CurrentMind = Mathf.Clamp(value, 0, MaxMind);
         NotifyChanged();
     }
 
@@ -153,8 +154,9 @@ public partial class HeroCard
     public void RestoreBodyAndMind()
     {
         if (!CanModify()) return;
-        CurrentBody = startHP;
-        CurrentMind = startMind;
+        CurrentBody = MaxBody;
+        CurrentMind = MaxMind;
+        ClearQuestState();
         NotifyChanged();
     }
 
@@ -185,7 +187,7 @@ public partial class HeroCard
     // ----------------------------------------------------------- equipment
 
     public List<EquipmentCard> GetOwned(params EquipmentSlot[] slots) =>
-        owned.Where(c => Array.IndexOf(slots, c.slot) >= 0).ToList();
+        owned.Concat(potions.OfType<EquipmentCard>()).Where(c => Array.IndexOf(slots, c.slot) >= 0).ToList();
 
     public bool IsEquipped(EquipmentCard card) =>
         card != null && (card == EquippedWeapon || worn.ContainsValue(card));
@@ -221,7 +223,13 @@ public partial class HeroCard
     /// <summary>Removes an item (e.g. a potion that was drunk).</summary>
     public void RemoveEquipment(EquipmentCard card)
     {
-        if (!CanModify() || card == null || !owned.Remove(card)) return;
+        if (!CanModify() || card == null) return;
+        if (card.slot == EquipmentSlot.Consumable)
+        {
+            if (potions.Remove(card)) NotifyChanged();   // removes ONE copy
+            return;
+        }
+        if (!owned.Remove(card)) return;
         if (EquippedWeapon == card) EquippedWeapon = null;
         if (worn.TryGetValue(card.slot, out var current) && current == card) worn.Remove(card.slot);
         NotifyChanged();
@@ -230,6 +238,11 @@ public partial class HeroCard
     private bool TryOwn(EquipmentCard card)
     {
         if (card == null || !card.CanBeUsedBy(heroClass)) return false;
+        if (card.slot == EquipmentSlot.Consumable)
+        {
+            potions.Add(card);   // potions can be owned several times
+            return true;
+        }
         if (!owned.Contains(card)) owned.Add(card);
         return true;
     }
@@ -253,6 +266,7 @@ public partial class HeroCard
         if (questsCompleted[questNumber - 1]) return;
 
         questsCompleted[questNumber - 1] = true;
+        ClearQuestState();
         NotifyChanged();
     }
 }
