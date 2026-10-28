@@ -5,6 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 
 public class GridManager : MonoBehaviour
 {
@@ -19,6 +20,10 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Room _roomPrefab;
     [SerializeField] private Door _doorPrefab;
 
+    [SerializeField] private GameObject RockPF;
+    [SerializeField] private GameObject TrapPF;
+
+
     public GameObject CorridorTiles;
 
     bool isMarking = false;
@@ -32,7 +37,9 @@ public class GridManager : MonoBehaviour
     {
         GAME,
         ADD,
-        SELECT
+        SELECT,
+        REMOVE
+
     }
     [HideInInspector] public Mode currentMode = Mode.ADD;
 
@@ -40,7 +47,9 @@ public class GridManager : MonoBehaviour
     {
         NONE,
         ROOM,
-        DOOR
+        DOOR,
+        ROCK,
+        TRAP
     }
     [HideInInspector] public Selection currentSelection = Selection.ROOM;
 
@@ -165,7 +174,11 @@ public class GridManager : MonoBehaviour
         {
             UpdateSelectMode();
         }
-        
+        else if (currentMode == Mode.REMOVE)
+        {
+            UpdateRemoveMode();
+        }
+
 
         // verify if rooms still exist
         foreach (Room room in this.GetComponentsInChildren<Room>())
@@ -192,6 +205,23 @@ public class GridManager : MonoBehaviour
                     isMarking = true;
                     var inverseTiles = _tiles.ToDictionary(x => x.Value, x => x.Key);
                     inverseTiles.TryGetValue(tile, out markPositionStart);
+                }
+            }
+        }
+    }
+
+    private void UpdateRemoveMode()
+    {
+        // LEFT CLICK BEGIN
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                GameObject tile = hit.collider.gameObject;
+                if (!tile.CompareTag("Tile"))
+                {
+                    Destroy(tile);
                 }
             }
         }
@@ -329,6 +359,42 @@ public class GridManager : MonoBehaviour
                     if (wall.CompareTag("Wall"))
                     {
                         ReplaceByDoor(wall);
+                    }
+                }
+            }
+        }
+
+        // ROCK
+        if (currentSelection == Selection.ROCK)
+        {
+            // add rock (left click)
+            if (Input.GetMouseButtonDown(0))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out RaycastHit hit))
+                {
+                    GameObject tile = hit.collider.gameObject;
+                    if (tile.CompareTag("Tile"))
+                    {
+                        Instantiate(RockPF, tile.transform);
+                    }
+                }
+            }
+        }
+
+        // TRAP
+        if (currentSelection == Selection.TRAP)
+        {
+            // add trap (left click)
+            if (Input.GetMouseButtonDown(0))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out RaycastHit hit))
+                {
+                    GameObject tile = hit.collider.gameObject;
+                    if (tile.CompareTag("Tile"))
+                    {
+                        Instantiate(TrapPF, tile.transform);
                     }
                 }
             }

@@ -9,9 +9,12 @@ public class EditorUImanager : MonoBehaviour
 
     private Button addButton;
     private Button selectButton;
+    private Button RemoveButton;
 
     private Button roomButton;
     private Button doorButton;
+    private Button trapButton;
+    private Button rockButton;
 
     public List<Placeable> placeableList = new List<Placeable>();
 
@@ -40,6 +43,10 @@ public class EditorUImanager : MonoBehaviour
 
         selectButton.clicked += SelectMode;
 
+        RemoveButton = root.Q<Button>("RemoveButton");
+
+        RemoveButton.clicked += RemoveMode;
+
         // ADD SELECTIONS
         roomButton = root.Q<Button>("PlaceRoom");
 
@@ -48,6 +55,14 @@ public class EditorUImanager : MonoBehaviour
         doorButton = root.Q<Button>("PlaceDoor");
 
         doorButton.clicked += DoorSelection;
+
+        rockButton = root.Q<Button>("PlaceRock");
+
+        rockButton.clicked += RockSelection;
+
+        trapButton = root.Q<Button>("PlaceTrap");
+
+        trapButton.clicked += TrapSelection;
     }
 
     //MODES
@@ -59,6 +74,10 @@ public class EditorUImanager : MonoBehaviour
     {
         gridManager.currentMode = GridManager.Mode.SELECT;
     }
+    private void RemoveMode()
+    {
+        gridManager.currentMode = GridManager.Mode.REMOVE;
+    }
 
 
     //SELECTIONS
@@ -69,5 +88,13 @@ public class EditorUImanager : MonoBehaviour
     private void DoorSelection()
     {
         gridManager.currentSelection = GridManager.Selection.DOOR;
+    }
+    private void RockSelection()
+    {
+        gridManager.currentSelection = GridManager.Selection.ROCK;
+    }
+    private void TrapSelection()
+    {
+        gridManager.currentSelection = GridManager.Selection.TRAP;
     }
 }
