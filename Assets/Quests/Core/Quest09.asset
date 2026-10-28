@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317ba2b0aa0f67a4da435115b77a4ccd, type: 3}
+  m_Name: Quest09
+  m_EditorClassIdentifier: Assembly-CSharp::QuestData
+  id: base.quest.09
+  number: 9
+  title: Race Against Time
+  previousQuest: {fileID: 11400000, guid: 35e48ed09138c9842926e2c836bbe1f9, type: 2}
+  parchmentText: A guide has led you into an underground maze that is rumored to
+    hold a great secret. He has led you down many dark corridors and finally you
+    find yourself in a room with three doors. Suddenly the guide puts out his torch
+    and in darkness you hear him laugh. 'Farewell, my heroes,' he taunts as he makes
+    his escape. You realize to your horror that it is a trap! You must escape (make
+    it back to the stairway) or perish in this dark, forgotten hole.
+  zargonNote: 
+  objectives:
+  - type: 5
+    targetId: 
+    card: {fileID: 0}
+    description: 'Escape the trap: make it back to the stairway'
+  reward:
+    mode: 0
+    gold: 0
+    requiresNpcAliveId: 
+    bounties: []
+    items: []
+    title: 
+  wanderingMonster: {fileID: 11400000, guid: ad54f5627f02b6f4586747aae7233cb9, type: 2}
+  wanderingMonsterText: Abomination
+  startMarker: A
+  mustReturnToStairs: 1
+  requiredItems: []
+  specialRules: []
+  entities: []
+  notes:
+  - key: A
+    trigger: 0
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: This is the room where the heroes begin their quest.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects: []
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: B
+    trigger: 1
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: These treasure chests each contain 100 gold coins.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects:
+    - type: 2
+      value: 100
+      card: {fileID: 0}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: C
+    trigger: 1
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: This chest has a trap with poisonous gas. If a hero searches for
+      treasure before the trap is disarmed, they lose 3 Body Points. Inside the chest
+      is the artifact called the Elixir of Life. Its use is explained on the matching
+      artifact card.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 1
+    effects:
+    - type: 3
+      value: 0
+      card: {fileID: 11400000, guid: cad1fb1c12ca92d458fdd24adca015b2, type: 2}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    onTrapSprung:
+    - type: 5
+      value: 3
+      card: {fileID: 0}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    onTrapDisarmed: []
+  gridSize: {x: 26, y: 19}
+  solidRock: []
+  rooms: []
+  placements: []

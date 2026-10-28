@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317ba2b0aa0f67a4da435115b77a4ccd, type: 3}
+  m_Name: Quest07
+  m_EditorClassIdentifier: Assembly-CSharp::QuestData
+  id: base.quest.07
+  number: 7
+  title: The Lost Wizard
+  previousQuest: {fileID: 11400000, guid: 8141ff2238846d34abbd737a82d47572, type: 2}
+  parchmentText: Wardoz, the King's personal wizard, has disappeared. His Majesty
+    fears the wizard has been murdered or succumbed to the lures of Dread magic.
+    You must find out what happened to Wardoz. You are each to be paid 100 gold coins,
+    upon returning to the stairway.
+  zargonNote: 
+  objectives:
+  - type: 6
+    targetId: 
+    card: {fileID: 0}
+    description: Find out what happened to Wardoz and return to the stairway
+  reward:
+    mode: 2
+    gold: 100
+    requiresNpcAliveId: 
+    bounties: []
+    items: []
+    title: 
+  wanderingMonster: {fileID: 11400000, guid: b4e1853d8505942459b8e31cb8601292, type: 2}
+  wanderingMonsterText: Mummy
+  startMarker: 
+  mustReturnToStairs: 1
+  requiredItems: []
+  specialRules: []
+  entities:
+  - id: wardoz
+    displayName: Wardoz
+    baseMonster: {fileID: 11400000, guid: 38c80c46dc2cfad4a8ecdd48c54b7356, type: 2}
+    overrideStats: 0
+    moveSquares: 0
+    attackDice: 0
+    defenseDice: 0
+    hp: 0
+    mind: 0
+    isNpc: 0
+    startsDormant: 0
+    dreadSpells: []
+    carriedItems: []
+    rules: []
+    description: 
+  notes:
+  - key: A
+    trigger: 0
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: All the Dread warriors in this quest are made of stone and may roll
+      1 extra Defend dice.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects: []
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: B
+    trigger: 1
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: This is the weapons room. The first hero who searches for treasure
+      in this room finds the magical artifact Borin's Armor. Its use is explained
+      on the matching artifact card.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects:
+    - type: 3
+      value: 0
+      card: {fileID: 11400000, guid: 950bc2bed41288e4e81c1cfbe4ecd491, type: 2}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: C
+    trigger: 1
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: This chest has a trap with a poison needle in it. If a hero searches
+      for treasure before the trap is disarmed, they lose 2 Body Points. They then
+      find a flask filled with an unidentifiable purple liquid. Do not tell the hero
+      what the liquid is at this time. If they drink the liquid, it tastes terrible
+      and causes the hero to temporarily turn into a stone statue. They are unable
+      to move for five of their turns. However, during that time they cannot be harmed.
+      After five of their turns, they come back to life.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 1
+    effects: []
+    onTrapSprung:
+    - type: 5
+      value: 2
+      card: {fileID: 0}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    onTrapDisarmed: []
+  - key: D
+    trigger: 1
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: Wardoz's treasure chest contains 144 gold coins. The zombie in this
+      room is dressed in wizard's robes. It is Wardoz. After destroying Wardoz, the
+      first hero who searches for treasure finds the coins. They also find some papers
+      on Wardoz's bench. These papers prove that Wardoz was consumed by the Dread
+      magic he was experimenting with and was turned into a mindless zombie.
+    requiresDeadGroup: wardoz
+    firstHeroOnly: 1
+    trapped: 0
+    effects:
+    - type: 2
+      value: 144
+      card: {fileID: 0}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    onTrapSprung: []
+    onTrapDisarmed: []
+  gridSize: {x: 26, y: 19}
+  solidRock: []
+  rooms: []
+  placements: []

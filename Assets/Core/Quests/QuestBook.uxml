@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:Style src="QuestBook.uss" />
+    <ui:VisualElement name="root" class="qb-root">
+        <ui:Label text="Quest Book" class="qb-title" />
+        <ui:VisualElement class="qb-body">
+            <ui:ScrollView name="quest-list" class="qb-list" />
+            <ui:VisualElement class="qb-detail">
+                <ui:Label name="quest-number" class="qb-number" />
+                <ui:Label name="quest-title" class="qb-quest-title" />
+                <ui:Toggle name="zargon-toggle" label="Zargon view (secret)" />
+                <ui:ScrollView name="detail-scroll" class="qb-detail-scroll" />
+                <ui:Button name="close-button" text="CLOSE" class="qb-start" />
+                <ui:Button name="start-button" text="START QUEST" class="qb-start" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

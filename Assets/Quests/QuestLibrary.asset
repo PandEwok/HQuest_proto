@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3436524fee61a964d853494614f7a0a8, type: 3}
+  m_Name: QuestLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::QuestLibrary
+  coreBook: {fileID: 11400000, guid: c440f295203101b45a27e75b1805a060, type: 2}
+  extensions: []

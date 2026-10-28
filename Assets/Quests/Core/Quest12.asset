@@ -1,0 +1,144 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317ba2b0aa0f67a4da435115b77a4ccd, type: 3}
+  m_Name: Quest12
+  m_EditorClassIdentifier: Assembly-CSharp::QuestData
+  id: base.quest.12
+  number: 12
+  title: "Barak Tor\u2014Barrow of the Witch Lord"
+  previousQuest: {fileID: 11400000, guid: 5b91a7f8752563345b606c18bb1ff3a3, type: 2}
+  parchmentText: War with the eastern orcs is brewing and the King needs to unite
+    the lands for the conflict to come. To do this, you must find the ancient Star
+    of the West as worn by the Rulers of Legend in ages past. A reward of 200 gold
+    coins is offered (to be divided evenly among all heroes) when the Star of the
+    West is returned to safety. The Star of the West lies in Barak Tor, the resting
+    place of the evil Witch Lord. He was defeated by the magical Spirit Blade long
+    ago. This blade is the only weapon that could harm him.
+  zargonNote: 
+  objectives:
+  - type: 6
+    targetId: 
+    card: {fileID: 0}
+    description: Find the Star of the West and return it to the stairway
+  reward:
+    mode: 1
+    gold: 200
+    requiresNpcAliveId: 
+    bounties: []
+    items: []
+    title: 
+  wanderingMonster: {fileID: 11400000, guid: 6db8b96a764b93e44a676b122eb23f8d, type: 2}
+  wanderingMonsterText: Skeleton
+  startMarker: 
+  mustReturnToStairs: 1
+  requiredItems: []
+  specialRules:
+  - type: 7
+    value: 0
+    extraValues: 
+    description: Some doors are false and cannot be opened.
+  entities: []
+  notes:
+  - key: A
+    trigger: 4
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: These are false doors and cannot be opened at all.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects: []
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: B
+    trigger: 0
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: The Star of the West is in the zombie's hand.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects: []
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: C
+    trigger: 8
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: This is a special falling-block trap that collapses automatically
+      after the last hero passes by it. It is not sprung by the heroes as they move
+      onto the square. After it falls, it forever blocks that path back to the stairs.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects: []
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: D
+    trigger: 5
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: This is the tomb of the Witch Lord. The Witch Lord is released from
+      his imprisonment when the first hero enters the room. Use the Dread sorcerer
+      figure to represent the Witch Lord on the board. Read the text that follows
+      to the players.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects:
+    - type: 0
+      value: 0
+      card: {fileID: 0}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: You have broken the magic seal that kept the Witch Lord imprisoned. Now
+        he has awoken, and you must run. Only the Spirit Blade can harm him.
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: E
+    trigger: 1
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: The first hero to search for treasure finds a magical staff hidden
+      behind the bookcase. It is the artifact known as the Wizard's Staff. Its use
+      is described on the matching artifact card.
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects:
+    - type: 3
+      value: 0
+      card: {fileID: 11400000, guid: 84ba5e09fc721eb4c81032a87ea575ba, type: 2}
+      targetId: 
+      cell: {x: 0, y: 0}
+      text: 
+    onTrapSprung: []
+    onTrapDisarmed: []
+  - key: The Witch Lord
+    trigger: 0
+    roomId: 
+    cell: {x: 0, y: 0}
+    description: 'The Witch Lord is not affected by any weapon or spell. Only the
+      Spirit Blade can harm him. The heroes must try to recover the Spirit Blade
+      in the next quest. The Witch Lord moves 1 space per turn and rolls 2 Attack
+      dice. He also knows the following spells: summon undead, fear, command, and
+      ball of flame. (Refer to the Dread spell cards for details.)'
+    requiresDeadGroup: 
+    firstHeroOnly: 1
+    trapped: 0
+    effects: []
+    onTrapSprung: []
+    onTrapDisarmed: []
+  gridSize: {x: 26, y: 19}
+  solidRock: []
+  rooms: []
+  placements: []

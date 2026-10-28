@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e6712737b5d782419175ffcfdc7d249, type: 3}
+  m_Name: CoreBook
+  m_EditorClassIdentifier: Assembly-CSharp::QuestBook
+  id: base.book.core
+  title: "HeroQuest \u2014 Core Game"
+  introduction: 
+  conclusion: 
+  quests:
+  - {fileID: 11400000, guid: 0109469c0bfc2dd4e94ebd283790aa4e, type: 2}
+  - {fileID: 11400000, guid: ca8348e31d984f84f8a5b7b0561d89c2, type: 2}
+  - {fileID: 11400000, guid: e64d2617a568c2d4f9b459bb11ca7f93, type: 2}
+  - {fileID: 11400000, guid: 5c1d3bd4af3d36e4989adb96d4fdc2df, type: 2}
+  - {fileID: 11400000, guid: 8c07889020d26ad43bd3b1d4d6ddcabc, type: 2}
+  - {fileID: 11400000, guid: 8141ff2238846d34abbd737a82d47572, type: 2}
+  - {fileID: 11400000, guid: 81ee2e87d9107e740a7eeb5f4018c0bd, type: 2}
+  - {fileID: 11400000, guid: 35e48ed09138c9842926e2c836bbe1f9, type: 2}
+  - {fileID: 11400000, guid: d34df073a67ea8f4ca69dc3a62278e1b, type: 2}
+  - {fileID: 11400000, guid: 29cabe1e694e8db4bb4068fea5d6efff, type: 2}
+  - {fileID: 11400000, guid: 5b91a7f8752563345b606c18bb1ff3a3, type: 2}
+  - {fileID: 11400000, guid: 14c0b7a74aaab5a48a7fb5b80d1d29a2, type: 2}
+  - {fileID: 11400000, guid: 9bdd61ed58f82784ca7463ec68033f99, type: 2}
+  - {fileID: 11400000, guid: 691d236a0ff385745889765a9a8c2b87, type: 2}
