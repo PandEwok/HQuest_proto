@@ -5,6 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 
 public class GridManager : MonoBehaviour
 {
@@ -19,6 +20,24 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Room _roomPrefab;
     [SerializeField] private Door _doorPrefab;
 
+    [SerializeField] private GameObject RockPF;
+    [SerializeField] private GameObject TrapPF;
+    [SerializeField] private GameObject WeaponRack1PF_H;
+    [SerializeField] private GameObject WeaponRack1PF_V;
+    [SerializeField] private GameObject WeaponRack2PF_H;
+    [SerializeField] private GameObject WeaponRack2PF_V;
+    [SerializeField] private GameObject Cupboard1PF_H;
+    [SerializeField] private GameObject Cupboard1PF_V;
+    [SerializeField] private GameObject Cupboard2PF_H;
+    [SerializeField] private GameObject Cupboard2PF_V;
+    [SerializeField] private GameObject Table1PF_H;
+    [SerializeField] private GameObject Table1PF_V;
+    [SerializeField] private GameObject Table2PF_H;
+    [SerializeField] private GameObject Table2PF_V;
+    [SerializeField] private GameObject Chest1PF;
+    [SerializeField] private GameObject Chest2PF;
+
+
     public GameObject CorridorTiles;
 
     bool isMarking = false;
@@ -27,13 +46,16 @@ public class GridManager : MonoBehaviour
 
     int roomNumber = 0;
 
+    int PropType;
 
-    [HideInInspector]
-    public enum Mode
+
+    [HideInInspector] public enum Mode
     {
         GAME,
         ADD,
-        SELECT
+        SELECT,
+        REMOVE
+
     }
     [HideInInspector] public Mode currentMode = Mode.ADD;
 
@@ -42,7 +64,16 @@ public class GridManager : MonoBehaviour
     {
         NONE,
         ROOM,
-        DOOR
+        DOOR,
+        ROCK,
+        TRAP,
+        WRV, //WeaponRackVertical
+        WRH,  //WeaponRackHorizontal
+        CUPV,
+        CUPH,
+        TABLEV,
+        TABLEH,
+        CHEST
     }
     [HideInInspector] public Selection currentSelection = Selection.ROOM;
 
@@ -182,6 +213,10 @@ public class GridManager : MonoBehaviour
         {
             UpdateSelectMode();
         }
+        else if (currentMode == Mode.REMOVE)
+        {
+            UpdateRemoveMode();
+        }
 
 
         // verify if rooms still exist
@@ -209,6 +244,23 @@ public class GridManager : MonoBehaviour
                     isMarking = true;
                     var inverseTiles = _tiles.ToDictionary(x => x.Value, x => x.Key);
                     inverseTiles.TryGetValue(tile, out markPositionStart);
+                }
+            }
+        }
+    }
+
+    private void UpdateRemoveMode()
+    {
+        // LEFT CLICK BEGIN
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                GameObject tile = hit.collider.gameObject;
+                if (!tile.CompareTag("Tile"))
+                {
+                    Destroy(tile);
                 }
             }
         }
@@ -332,9 +384,7 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
-
-        // DOOR
-        if (currentSelection == Selection.DOOR)
+        else if (currentSelection == Selection.DOOR) // DOOR
         {
             // add door (left click)
             if (Input.GetMouseButtonDown(0))
@@ -346,6 +396,114 @@ public class GridManager : MonoBehaviour
                     if (wall.CompareTag("Wall"))
                     {
                         ReplaceByDoor(wall);
+                    }
+                }
+            }
+        }
+        else // PROPS
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out RaycastHit hit))
+                {
+                    GameObject tile = hit.collider.gameObject;
+                    if (tile.CompareTag("Tile"))
+                    {
+                        PropType = UnityEngine.Random.Range(0, 2);
+                        if (currentSelection == Selection.ROCK)
+                        {
+                            Instantiate(RockPF, tile.transform);
+                        }
+
+                        if (currentSelection == Selection.TRAP)
+                        {
+                            Instantiate(TrapPF, tile.transform);
+                        }
+
+                        if (currentSelection == Selection.WRV)
+                        {
+                            if (PropType == 1)
+                            {
+                                Instantiate(WeaponRack1PF_V, tile.transform);
+                            }
+                            else
+                            {
+                                Instantiate(WeaponRack2PF_V, tile.transform);
+                            }
+                        }
+
+                        if (currentSelection == Selection.WRH)
+                        {
+                            if (PropType == 1)
+                            {
+                                Instantiate(WeaponRack1PF_H, tile.transform);
+                            }
+                            else
+                            {
+                                Instantiate(WeaponRack2PF_H, tile.transform);
+                            }
+                        }
+
+                        if (currentSelection == Selection.CUPH)
+                        {
+                            if (PropType == 1)
+                            {
+                                Instantiate(Cupboard1PF_H, tile.transform);
+                            }
+                            else
+                            {
+                                Instantiate(Cupboard2PF_H, tile.transform);
+                            }
+                        }
+
+                        if (currentSelection == Selection.CUPV)
+                        {
+                            if (PropType == 1)
+                            {
+                                Instantiate(Cupboard1PF_V, tile.transform);
+                            }
+                            else
+                            {
+                                Instantiate(Cupboard2PF_V, tile.transform);
+                            }
+                        }
+
+                        if (currentSelection == Selection.TABLEH)
+                        {
+                            if (PropType == 1)
+                            {
+                                Instantiate(Table1PF_H, tile.transform);
+                            }
+                            else
+                            {
+                                Instantiate(Table2PF_H, tile.transform);
+                            }
+                        }
+
+                        if (currentSelection == Selection.TABLEV)
+                        {
+                            if (PropType == 1)
+                            {
+                                Instantiate(Table1PF_V, tile.transform);
+                            }
+                            else
+                            {
+                                Instantiate(Table2PF_V, tile.transform);
+                            }
+                        }
+
+                        if (currentSelection == Selection.CHEST)
+                        {
+                            if (PropType == 1)
+                            {
+                                Instantiate(Chest1PF, tile.transform);
+                            }
+                            else
+                            {
+                                Instantiate(Chest2PF, tile.transform);
+                            }
+                        }
                     }
                 }
             }
@@ -413,8 +571,7 @@ public class GridManager : MonoBehaviour
                 : $"{doorData.tileB}-{doorData.tileA}";
             if (doneDoors.Add(key)) data.doors.Add(doorData);
         }
-
-        return data;
+        
     }
 
     /// <summary>Replaces the current map with the one contained in <paramref name="data"/>.</summary>
