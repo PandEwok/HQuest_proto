@@ -28,4 +28,14 @@ public static class GameSession
         }
     }
 
+    // --- Added for the character sheet ---
+
+    /// <summary>The player's own runtime copy of their HeroCard (what the sheet displays).</summary>
+    public static HeroCard ActiveHero { get; private set; }
+
+    public static void StartWithCharacter(HeroCard hero)
+    {
+        ActiveHero = hero;
+        SetHeroes(new[] { hero });
+    }
 }
