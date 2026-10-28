@@ -571,6 +571,7 @@ public class GridManager : MonoBehaviour
                 : $"{doorData.tileB}-{doorData.tileA}";
             if (doneDoors.Add(key)) data.doors.Add(doorData);
         }
+        return data;
     }
 
     /// <summary>Replaces the current map with the one contained in <paramref name="data"/>.</summary>
