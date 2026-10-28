@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Cards/Hero")]
-public class HeroCard : CardData
+public partial class HeroCard : CardData
 {
     public HeroClass heroClass;
 
