@@ -1,6 +1,6 @@
-using UnityEngine;
-
-public class TrapType
+public enum TrapType
 {
-    
+    PitTrap,
+    SpearTrap,
+    FallingBlockTrap
 }
