@@ -15,6 +15,13 @@ public class EditorUImanager : MonoBehaviour
     private Button doorButton;
     private Button trapButton;
     private Button rockButton;
+    private Button WRVButton;
+    private Button WRHButton;
+    private Button CupboardVButton;
+    private Button CupboardHButton;
+    private Button TableVButton;
+    private Button TableHButton;
+    private Button ChestButton;
 
     public List<Placeable> placeableList = new List<Placeable>();
 
@@ -63,6 +70,34 @@ public class EditorUImanager : MonoBehaviour
         trapButton = root.Q<Button>("PlaceTrap");
 
         trapButton.clicked += TrapSelection;
+
+        WRVButton = root.Q<Button>("PlaceWeaponRackVertical");
+
+        WRVButton.clicked += WRVSelection;
+
+        WRHButton = root.Q<Button>("PlaceWeaponRackHorizontal");
+
+        WRHButton.clicked += WRHSelection;
+
+        CupboardVButton = root.Q<Button>("PlaceCupboardVertical");
+
+        CupboardVButton.clicked += CupboardVSelection;
+
+        CupboardHButton = root.Q<Button>("PlaceCupboardHorizontal");
+
+        CupboardHButton.clicked += CupboardHSelection;
+
+        TableVButton = root.Q<Button>("PlaceTableVertical");
+
+        TableVButton.clicked += TableVSelection;
+
+        TableHButton = root.Q<Button>("PlaceTableHorizontal");
+
+        TableHButton.clicked += TableHSelection;
+
+        ChestButton = root.Q<Button>("PlaceChest");
+
+        ChestButton.clicked += ChestSelection;
     }
 
     //MODES
@@ -96,5 +131,33 @@ public class EditorUImanager : MonoBehaviour
     private void TrapSelection()
     {
         gridManager.currentSelection = GridManager.Selection.TRAP;
+    }
+    private void WRVSelection()
+    {
+        gridManager.currentSelection = GridManager.Selection.WRV;
+    }
+    private void WRHSelection()
+    {
+        gridManager.currentSelection = GridManager.Selection.WRH;
+    }
+    private void CupboardVSelection()
+    {
+        gridManager.currentSelection = GridManager.Selection.CUPV;
+    }
+    private void CupboardHSelection()
+    {
+        gridManager.currentSelection = GridManager.Selection.CUPH;
+    }
+    private void TableVSelection()
+    {
+        gridManager.currentSelection = GridManager.Selection.TABLEV;
+    }
+    private void TableHSelection()
+    {
+        gridManager.currentSelection = GridManager.Selection.TABLEH;
+    }
+    private void ChestSelection()
+    {
+        gridManager.currentSelection = GridManager.Selection.CHEST;
     }
 }

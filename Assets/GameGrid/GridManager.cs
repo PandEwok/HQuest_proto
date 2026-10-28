@@ -22,6 +22,20 @@ public class GridManager : MonoBehaviour
 
     [SerializeField] private GameObject RockPF;
     [SerializeField] private GameObject TrapPF;
+    [SerializeField] private GameObject WeaponRack1PF_H;
+    [SerializeField] private GameObject WeaponRack1PF_V;
+    [SerializeField] private GameObject WeaponRack2PF_H;
+    [SerializeField] private GameObject WeaponRack2PF_V;
+    [SerializeField] private GameObject Cupboard1PF_H;
+    [SerializeField] private GameObject Cupboard1PF_V;
+    [SerializeField] private GameObject Cupboard2PF_H;
+    [SerializeField] private GameObject Cupboard2PF_V;
+    [SerializeField] private GameObject Table1PF_H;
+    [SerializeField] private GameObject Table1PF_V;
+    [SerializeField] private GameObject Table2PF_H;
+    [SerializeField] private GameObject Table2PF_V;
+    [SerializeField] private GameObject Chest1PF;
+    [SerializeField] private GameObject Chest2PF;
 
 
     public GameObject CorridorTiles;
@@ -31,6 +45,8 @@ public class GridManager : MonoBehaviour
     Vector2 markPositionEnd;
 
     int roomNumber = 0;
+
+    int PropType;
 
 
     [HideInInspector] public enum Mode
@@ -49,7 +65,14 @@ public class GridManager : MonoBehaviour
         ROOM,
         DOOR,
         ROCK,
-        TRAP
+        TRAP,
+        WRV, //WeaponRackVertical
+        WRH,  //WeaponRackHorizontal
+        CUPV,
+        CUPH,
+        TABLEV,
+        TABLEH,
+        CHEST
     }
     [HideInInspector] public Selection currentSelection = Selection.ROOM;
 
@@ -345,9 +368,7 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
-
-        // DOOR
-        if (currentSelection == Selection.DOOR)
+        else if (currentSelection == Selection.DOOR) // DOOR
         {
             // add door (left click)
             if (Input.GetMouseButtonDown(0))
@@ -363,11 +384,8 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
-
-        // ROCK
-        if (currentSelection == Selection.ROCK)
+        else // PROPS
         {
-            // add rock (left click)
             if (Input.GetMouseButtonDown(0))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -376,25 +394,100 @@ public class GridManager : MonoBehaviour
                     GameObject tile = hit.collider.gameObject;
                     if (tile.CompareTag("Tile"))
                     {
-                        Instantiate(RockPF, tile.transform);
-                    }
-                }
-            }
-        }
+                        PropType = UnityEngine.Random.Range(0, 2);
+                        if (currentSelection == Selection.ROCK)
+                        {
+                            Instantiate(RockPF, tile.transform);
+                        }
 
-        // TRAP
-        if (currentSelection == Selection.TRAP)
-        {
-            // add trap (left click)
-            if (Input.GetMouseButtonDown(0))
-            {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ray, out RaycastHit hit))
-                {
-                    GameObject tile = hit.collider.gameObject;
-                    if (tile.CompareTag("Tile"))
-                    {
-                        Instantiate(TrapPF, tile.transform);
+                        if (currentSelection == Selection.TRAP)
+                        {
+                            Instantiate(TrapPF, tile.transform);
+                        }
+
+                        if (currentSelection == Selection.WRV)
+                        {
+                            if (PropType == 1)
+                            {
+                                Instantiate(WeaponRack1PF_V, tile.transform);
+                            }
+                            else
+                            {
+                                Instantiate(WeaponRack2PF_V, tile.transform);
+                            }
+                        }
+
+                        if (currentSelection == Selection.WRH)
+                        {
+                            if (PropType == 1)
+                            {
+                                Instantiate(WeaponRack1PF_H, tile.transform);
+                            }
+                            else
+                            {
+                                Instantiate(WeaponRack2PF_H, tile.transform);
+                            }
+                        }
+
+                        if (currentSelection == Selection.CUPH)
+                        {
+                            if (PropType == 1)
+                            {
+                                Instantiate(Cupboard1PF_H, tile.transform);
+                            }
+                            else
+                            {
+                                Instantiate(Cupboard2PF_H, tile.transform);
+                            }
+                        }
+
+                        if (currentSelection == Selection.CUPV)
+                        {
+                            if (PropType == 1)
+                            {
+                                Instantiate(Cupboard1PF_V, tile.transform);
+                            }
+                            else
+                            {
+                                Instantiate(Cupboard2PF_V, tile.transform);
+                            }
+                        }
+
+                        if (currentSelection == Selection.TABLEH)
+                        {
+                            if (PropType == 1)
+                            {
+                                Instantiate(Table1PF_H, tile.transform);
+                            }
+                            else
+                            {
+                                Instantiate(Table2PF_H, tile.transform);
+                            }
+                        }
+
+                        if (currentSelection == Selection.TABLEV)
+                        {
+                            if (PropType == 1)
+                            {
+                                Instantiate(Table1PF_V, tile.transform);
+                            }
+                            else
+                            {
+                                Instantiate(Table2PF_V, tile.transform);
+                            }
+                        }
+
+                        if (currentSelection == Selection.CHEST)
+                        {
+                            if (PropType == 1)
+                            {
+                                Instantiate(Chest1PF, tile.transform);
+                            }
+                            else
+                            {
+                                Instantiate(Chest2PF, tile.transform);
+                            }
+                        }
                     }
                 }
             }
