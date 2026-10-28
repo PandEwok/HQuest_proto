@@ -1,0 +1,371 @@
+/* ==========================================================================
+   Save / Load menu
+   Same look as HeroSelection.uss (palette, gold borders, rounded corners).
+   Variables are defined on .sl-container so this file is self-contained.
+   ========================================================================== */
+
+.sl-container {
+    --bg: rgb(20, 17, 26);
+    --panel: rgb(38, 32, 46);
+    --panel-hover: rgb(54, 46, 66);
+    --gold: rgb(224, 184, 64);
+    --gold-dim: rgb(110, 92, 52);
+    --text: rgb(240, 232, 215);
+    --text-muted: rgb(160, 150, 140);
+    --danger: rgb(220, 80, 70);
+    --ok: rgb(48, 130, 60);
+    --ok-hover: rgb(64, 160, 76);
+
+    /* "Non-native" slots (> 14): blue tint to tell them apart from the gold ones */
+    --extra: rgb(96, 168, 230);
+    --extra-dim: rgb(44, 86, 124);
+    --extra-panel: rgb(34, 40, 58);
+    --extra-panel-hover: rgb(44, 54, 80);
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+/* ---------- Open button ---------- */
+.sl-toggle {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: auto;
+    min-width: 300px;
+    height: 58px;
+    margin: 0;
+    padding: 0 32px 0 32px;
+    font-size: 22px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    color: var(--gold);
+    background-color: var(--panel);
+    border-width: 3px;
+    border-color: var(--gold-dim);
+    border-radius: 12px;
+    transition-property: background-color, border-color, scale;
+    transition-duration: 0.15s;
+}
+
+.sl-toggle:hover { background-color: var(--panel-hover); border-color: var(--gold); scale: 1.03 1.03; }
+.sl-toggle:active { scale: 0.98 0.98; }
+
+/* ---------- Dimmed backdrop + window ---------- */
+.sl-overlay {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(8, 6, 12, 0.82);
+}
+
+.sl-overlay--open { display: flex; }
+
+.sl-window {
+    width: 1180px;
+    height: 92%;
+    padding: 28px 36px 28px 36px;
+    background-color: var(--bg);
+    border-width: 3px;
+    border-color: var(--gold);
+    border-radius: 14px;
+}
+
+/* ---------- Header ---------- */
+.sl-header { align-items: center; flex-shrink: 0; }
+
+.sl-title {
+    font-size: 52px;
+    color: var(--gold);
+    -unity-font-style: bold;
+    letter-spacing: 4px;
+    -unity-text-align: middle-center;
+    flex-shrink: 0;
+}
+
+.sl-subtitle {
+    font-size: 20px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
+/* ---------- Save / Load tabs ---------- */
+.sl-tabs {
+    flex-direction: row;
+    justify-content: center;
+    flex-shrink: 0;
+    margin: 16px 0 14px 0;
+}
+
+.sl-tab {
+    width: 300px;
+    height: 56px;
+    flex-shrink: 0;
+    margin: 0 8px;
+    padding: 0;
+    font-size: 22px;
+    -unity-font-style: bold;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+    background-color: var(--panel);
+    border-width: 3px;
+    border-color: var(--gold-dim);
+    border-radius: 12px;
+    transition-property: background-color, border-color, color;
+    transition-duration: 0.15s;
+}
+
+.sl-tab:hover { background-color: var(--panel-hover); border-color: var(--gold); color: var(--text); }
+
+.sl-tab.sl-tab--active {
+    background-color: var(--gold);
+    border-color: var(--gold);
+    color: rgb(30, 24, 10);
+}
+
+/* ---------- Name field (save mode) ---------- */
+.sl-name-row {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    min-height: 52px;
+    margin-bottom: 10px;
+}
+
+.sl-name-label {
+    width: 230px;
+    font-size: 22px;
+    color: var(--text-muted);
+}
+
+.sl-name-field {
+    flex-grow: 1;
+    flex-shrink: 0;
+    height: 52px;
+    margin: 0;
+}
+
+.sl-name-field .unity-base-text-field__input,
+.sl-name-field .unity-text-field__input {
+    padding: 8px 14px;
+    font-size: 24px;
+    color: var(--text);
+    background-color: rgb(24, 20, 30);
+    border-width: 2px;
+    border-color: var(--gold-dim);
+    border-radius: 8px;
+}
+
+.sl-name-field:focus .unity-base-text-field__input,
+.sl-name-field:focus .unity-text-field__input {
+    border-color: var(--gold);
+}
+
+.sl-hidden { display: none; }
+
+/* ---------- Slot list ---------- */
+.sl-slots {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-height: 120px;
+}
+
+.sl-slots .unity-scroll-view__content-container {
+    padding: 22px 8px 10px 8px;
+}
+
+.sl-slots .unity-base-slider__dragger {
+    background-color: var(--gold-dim);
+    border-radius: 6px;
+}
+
+.sl-slots .unity-base-slider__tracker {
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+}
+
+/* ---------- Slot (equivalent of .hero-card) ---------- */
+.sl-slot {
+    width: 48%;
+    height: 104px;
+    flex-shrink: 0;
+    margin: 0 1% 20px 1%;
+    padding: 10px 16px 10px 10px;
+    flex-direction: row;
+    align-items: center;
+    background-color: var(--panel);
+    border-width: 3px;
+    border-color: var(--gold-dim);
+    border-radius: 14px;
+    transition-property: translate, background-color, border-color, opacity;
+    transition-duration: 0.18s;
+    transition-timing-function: ease-out;
+}
+
+.sl-slot:hover {
+    background-color: var(--panel-hover);
+    border-color: var(--gold);
+    translate: 0 -3px;
+}
+
+.sl-slot.sl-slot--selected {
+    background-color: var(--panel-hover);
+    border-color: var(--gold);
+    translate: 0 -5px;
+}
+
+.sl-slot__index {
+    width: 76px;
+    margin-right: 14px;
+    padding-right: 10px;
+    font-size: 40px;
+    color: var(--gold);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    border-right-width: 2px;
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.sl-slot__info {
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow: hidden;
+}
+
+.sl-slot__name {
+    font-size: 26px;
+    color: var(--text);
+    -unity-font-style: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sl-slot__meta {
+    font-size: 16px;
+    color: var(--text-muted);
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sl-slot--empty .sl-slot__name {
+    color: var(--text-muted);
+    -unity-font-style: italic;
+}
+
+/* Badge (same idea as .hero-card__badge) */
+.sl-slot__badge {
+    display: none;
+    position: absolute;
+    top: -16px;
+    right: 14px;
+    padding: 3px 14px;
+    font-size: 15px;
+    -unity-font-style: bold;
+    letter-spacing: 2px;
+    color: rgb(10, 20, 32);
+    background-color: var(--extra);
+    border-radius: 12px;
+}
+
+/* ---------- Non-native slots (> 14): blue instead of gold ---------- */
+.sl-slot.sl-slot--extra {
+    background-color: var(--extra-panel);
+    border-color: var(--extra-dim);
+}
+
+.sl-slot.sl-slot--extra:hover,
+.sl-slot.sl-slot--extra.sl-slot--selected {
+    background-color: var(--extra-panel-hover);
+    border-color: var(--extra);
+}
+
+.sl-slot--extra .sl-slot__index { color: var(--extra); }
+.sl-slot--extra .sl-slot__badge { display: flex; }
+
+/* "+ add a slot" card */
+.sl-slot.sl-slot--add {
+    justify-content: center;
+    background-color: transparent;
+    border-color: var(--extra-dim);
+}
+
+.sl-slot--add .sl-slot__name {
+    color: var(--extra);
+    -unity-font-style: bold;
+    letter-spacing: 2px;
+    -unity-text-align: middle-center;
+}
+
+/* ---------- Status message ---------- */
+.sl-message {
+    flex-shrink: 0;
+    min-height: 30px;
+    margin-top: 6px;
+    font-size: 20px;
+    color: var(--text-muted);
+    -unity-text-align: middle-center;
+}
+
+.sl-message--ok { color: var(--ok-hover); }
+.sl-message--warning { color: var(--gold); }
+.sl-message--error { color: var(--danger); }
+
+/* ---------- Footer ---------- */
+.sl-footer {
+    flex-shrink: 0;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.sl-counter {
+    font-size: 24px;
+    color: var(--text);
+}
+
+.sl-buttons { flex-direction: row; }
+
+.sl-btn {
+    width: 240px;
+    height: 68px;
+    margin: 0 0 0 14px;
+    padding: 0;
+    font-size: 24px;
+    -unity-font-style: bold;
+    letter-spacing: 3px;
+    color: white;
+    background-color: var(--panel-hover);
+    border-width: 3px;
+    border-color: var(--gold);
+    border-radius: 12px;
+    transition-property: background-color, scale, opacity;
+    transition-duration: 0.15s;
+}
+
+.sl-btn:hover { scale: 1.03 1.03; }
+.sl-btn:active { scale: 0.98 0.98; }
+.sl-btn:disabled { opacity: 0.35; }
+
+.sl-btn--primary { width: 300px; background-color: var(--ok); }
+.sl-btn--primary:hover { background-color: var(--ok-hover); }
+
+.sl-btn--danger { background-color: rgb(120, 40, 36); border-color: var(--danger); }
+.sl-btn--danger:hover { background-color: rgb(150, 52, 46); }
+
+/* Primary button switches to confirmation mode (overwrite) */
+.sl-btn--primary.sl-btn--confirm { background-color: rgb(150, 52, 46); border-color: var(--danger); }
