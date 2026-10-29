@@ -1,2 +1,36 @@
 fileFormatVersion: 2
 guid: 48ae4a9ddcc1b4046a653175eaeb5038
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _tilePrefab: {instanceID: 0}
+  - _cam: {instanceID: 0}
+  - _roomPrefab: {instanceID: 0}
+  - _doorPrefab: {instanceID: 0}
+  - _SecretDoorPrefab: {instanceID: 0}
+  - RockPF: {instanceID: 0}
+  - SpikeTrapPF: {instanceID: 0}
+  - PitTrapPF: {fileID: 5345008905422333103, guid: bb54dfdb2f27a0643aa46ee62edfbccf, type: 3}
+  - FallingBlockTrapPF: {instanceID: 0}
+  - WeaponRack1PF: {instanceID: 0}
+  - WeaponRack2PF: {instanceID: 0}
+  - Cupboard1PF: {instanceID: 0}
+  - Cupboard2PF: {instanceID: 0}
+  - Table1PF: {instanceID: 0}
+  - Table2PF: {instanceID: 0}
+  - Chest1PF: {instanceID: 0}
+  - Chest2PF: {instanceID: 0}
+  - SorcererTable1PF: {instanceID: 0}
+  - SorcererTable2PF: {instanceID: 0}
+  - AlchemistBench1PF: {instanceID: 0}
+  - AlchemistBench2PF: {instanceID: 0}
+  - TombPF: {instanceID: 0}
+  - ThronePF: {instanceID: 0}
+  - StairsPF: {fileID: 4330594236850401230, guid: 4067afa8442103543a7e6d7619114c37, type: 3}
+  - CorridorTiles: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

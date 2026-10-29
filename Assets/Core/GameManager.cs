@@ -42,7 +42,10 @@ public class GameManager : MonoBehaviour
         if (QuestMaps.Count > 0)
         {
             MapSaveData mapData = JsonUtility.FromJson<MapSaveData>(QuestMaps[0].text);
-            gridManager.ApplyMap(mapData);
+            //gridManager.ApplyMap(mapData);
+            Debug.Log($"[Quest] v{mapData.version} walls:{mapData.walls.Count} props:{mapData.props.Count}");
+            bool ok = gridManager.ApplyMap(mapData);
+            Debug.Log($"[Quest] ApplyMap = {ok}");
         }
 
         heroTurns = GameSession.SelectedHeroes.Count;

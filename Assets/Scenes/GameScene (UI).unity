@@ -59117,7 +59117,7 @@ MonoBehaviour:
   _SecretDoorPrefab: {fileID: 0}
   RockPF: {fileID: 0}
   SpikeTrapPF: {fileID: 0}
-  PitTrapPF: {fileID: 0}
+  PitTrapPF: {fileID: 5345008905422333103, guid: bb54dfdb2f27a0643aa46ee62edfbccf, type: 3}
   FallingBlockTrapPF: {fileID: 0}
   WeaponRack1PF: {fileID: 0}
   WeaponRack2PF: {fileID: 0}
@@ -111336,6 +111336,7 @@ MonoBehaviour:
   gridManager: {fileID: 310863035}
   sheetController: {fileID: 792013645}
   QuestMaps:
+  - {fileID: 4900000, guid: e074c56ae2532a6438bd81a224c6ac32, type: 3}
   - {fileID: 4900000, guid: aaef640ccd50e1f42a1c57b8f324e62b, type: 3}
   - {fileID: 4900000, guid: 2167df9f64296a44294e37e715678205, type: 3}
   playerNameTxt: {fileID: 1684354303}
@@ -149518,7 +149519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3562954905636720811, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 428.40182
+      value: 428.40225
       objectReference: {fileID: 0}
     - target: {fileID: 3604311546152199060, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
       propertyPath: m_IsActive
