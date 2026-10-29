@@ -19,6 +19,7 @@ public class GridManager : MonoBehaviour
 
     [SerializeField] private Room _roomPrefab;
     [SerializeField] private Door _doorPrefab;
+    [SerializeField] private SecretDoor _SecretDoorPrefab;
 
     [SerializeField] private GameObject RockPF;
     [SerializeField] private GameObject SpikeTrapPF;
@@ -440,7 +441,7 @@ public class GridManager : MonoBehaviour
                     GameObject wall = hit.collider.gameObject;
                     if (wall.CompareTag("Wall"))
                     {
-                        ReplaceByDoor(wall);
+                        ReplaceBySecretDoor(wall);
                     }
                 }
             }
@@ -732,6 +733,47 @@ public class GridManager : MonoBehaviour
                     if (room.tiles.Contains(tile))
                     {
                         room.doors.Add(door.gameObject);
+                        break;
+                    }
+                }
+            }
+        }
+        else { Debug.Log("wall NULL)"); }
+
+        Destroy(target);
+
+        if (parentTiles.Count > 0)
+        {
+            foreach (Tile tile in parentTiles)
+            {
+                foreach (Room room in this.GetComponentsInChildren<Room>())
+                {
+                    if (room.tiles.Contains(tile))
+                    {
+                        room.UpdateShape();
+                    }
+                }
+            }
+        }
+    }
+
+    public void ReplaceBySecretDoor(GameObject target)
+    {
+        var secretDoor = Instantiate(_SecretDoorPrefab, target.transform.position, target.transform.rotation, target.transform.parent);
+        Wall wall = target.GetComponent<Wall>();
+        List<Tile> parentTiles = new List<Tile>();
+        if (wall != null)
+        {
+            parentTiles = wall.parentTiles;
+            secretDoor.parentTiles = new List<Tile>(wall.parentTiles); // needed for saving
+            foreach (Tile tile in parentTiles)
+            {
+                tile.walls.Remove(target);
+                foreach (Room room in this.GetComponentsInChildren<Room>())
+                {
+                    if (room.tiles.Contains(tile))
+                    {
+                        room.doors.Add(secretDoor.gameObject);
                         break;
                     }
                 }
