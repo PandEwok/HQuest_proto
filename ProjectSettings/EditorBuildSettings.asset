@@ -8,5 +8,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/SelectCharacter.unity
+    guid: d6b21ace2b948064d847d33a78f091a7
+  - enabled: 1
+    path: Assets/Scenes/UIScene.unity
+    guid: 28b9a927d1626d34b8ecf8b13d77d285
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 9144e89b2eba47c4395ed358b8b61356
+  - enabled: 1
+    path: Assets/Scenes/Questbook.unity
+    guid: 17df79c01bfdc9b45b04ee262db43add
+  - enabled: 1
+    path: Assets/Scenes/MapEditor.unity
+    guid: d55cc9a937f10c2478c165a1200e851c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_UseUCBPForAssetBundles: 0

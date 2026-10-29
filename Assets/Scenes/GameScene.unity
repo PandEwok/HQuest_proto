@@ -58704,6 +58704,24 @@ MonoBehaviour:
   _cam: {fileID: 330585546}
   _roomPrefab: {fileID: -5077946675272694743, guid: b82dd172a1acabd46b4ad9af32c6af63, type: 3}
   _doorPrefab: {fileID: -837681063964779121, guid: 8a7457cbd967b7142b1be9f56c9e831f, type: 3}
+  RockPF: {fileID: 0}
+  SpikeTrapPF: {fileID: 0}
+  PitTrapPF: {fileID: 0}
+  FallingBlockTrapPF: {fileID: 0}
+  WeaponRack1PF_H: {fileID: 0}
+  WeaponRack1PF_V: {fileID: 0}
+  WeaponRack2PF_H: {fileID: 0}
+  WeaponRack2PF_V: {fileID: 0}
+  Cupboard1PF_H: {fileID: 0}
+  Cupboard1PF_V: {fileID: 0}
+  Cupboard2PF_H: {fileID: 0}
+  Cupboard2PF_V: {fileID: 0}
+  Table1PF_H: {fileID: 0}
+  Table1PF_V: {fileID: 0}
+  Table2PF_H: {fileID: 0}
+  Table2PF_V: {fileID: 0}
+  Chest1PF: {fileID: 0}
+  Chest2PF: {fileID: 0}
   CorridorTiles: {fileID: 1811731107}
   currentMode: 0
   currentSelection: 1
