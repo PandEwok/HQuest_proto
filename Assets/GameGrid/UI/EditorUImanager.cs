@@ -10,6 +10,7 @@ public class EditorUImanager : MonoBehaviour
     private Button addButton;
     private Button selectButton;
     private Button RemoveButton;
+    private Button RotateButton;
 
     private Button roomButton;
     private Button doorButton;
@@ -17,14 +18,14 @@ public class EditorUImanager : MonoBehaviour
     private Button pitTrapButton;
     private Button fallingBlockTrapButton;
     private Button rockButton;
-    private Button WRVButton;
-    private Button WRHButton;
-    private Button CupboardVButton;
-    private Button CupboardHButton;
-    private Button TableVButton;
-    private Button TableHButton;
+    private Button WeaponRackButton;
+    private Button CupboardButton;
+    private Button TableButton;
     private Button ChestButton;
-
+    private Button AlchemistBenchButton;
+    private Button SorcererTableButton;
+    private Button ThroneButton;
+    private Button TombButton;
     public List<Placeable> placeableList = new List<Placeable>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -56,6 +57,10 @@ public class EditorUImanager : MonoBehaviour
 
         RemoveButton.clicked += RemoveMode;
 
+        RotateButton = root.Q<Button>("RotateButton");
+
+        RotateButton.clicked += RotateMode;
+
         // ADD SELECTIONS
         roomButton = root.Q<Button>("PlaceRoom");
 
@@ -81,33 +86,37 @@ public class EditorUImanager : MonoBehaviour
 
         fallingBlockTrapButton.clicked += FallingBlockTrapSelection;
 
-        WRVButton = root.Q<Button>("PlaceWeaponRackVertical");
+        WeaponRackButton = root.Q<Button>("PlaceWeaponRack");
 
-        WRVButton.clicked += WRVSelection;
+        WeaponRackButton.clicked += WeaponRackSelection;
 
-        WRHButton = root.Q<Button>("PlaceWeaponRackHorizontal");
+        CupboardButton = root.Q<Button>("PlaceCupboard");
 
-        WRHButton.clicked += WRHSelection;
+        CupboardButton.clicked += CupboardSelection;
 
-        CupboardVButton = root.Q<Button>("PlaceCupboardVertical");
+        TableButton = root.Q<Button>("PlaceTable");
 
-        CupboardVButton.clicked += CupboardVSelection;
-
-        CupboardHButton = root.Q<Button>("PlaceCupboardHorizontal");
-
-        CupboardHButton.clicked += CupboardHSelection;
-
-        TableVButton = root.Q<Button>("PlaceTableVertical");
-
-        TableVButton.clicked += TableVSelection;
-
-        TableHButton = root.Q<Button>("PlaceTableHorizontal");
-
-        TableHButton.clicked += TableHSelection;
+        TableButton.clicked += TableSelection;
 
         ChestButton = root.Q<Button>("PlaceChest");
 
         ChestButton.clicked += ChestSelection;
+
+        SorcererTableButton = root.Q<Button>("PlaceSorcererTable");
+
+        SorcererTableButton.clicked += SorcererTableSelection;
+
+        AlchemistBenchButton = root.Q<Button>("PlaceAlchemistBench");
+
+        AlchemistBenchButton.clicked += AlchemistBenchSelection;
+
+        TombButton = root.Q<Button>("PlaceTomb");
+
+        TombButton.clicked += TombSelection;
+
+        ThroneButton = root.Q<Button>("PlaceThrone");
+
+        ThroneButton.clicked += ThroneSelection;
     }
 
     //MODES
@@ -122,6 +131,10 @@ public class EditorUImanager : MonoBehaviour
     private void RemoveMode()
     {
         gridManager.currentMode = GridManager.Mode.REMOVE;
+    }
+    private void RotateMode()
+    {
+        gridManager.currentMode = GridManager.Mode.ROTATE;
     }
 
 
@@ -150,32 +163,36 @@ public class EditorUImanager : MonoBehaviour
     {
         gridManager.currentSelection = GridManager.Selection.FLLTRAP;
     }
-    private void WRVSelection()
+    private void WeaponRackSelection()
     {
-        gridManager.currentSelection = GridManager.Selection.WRV;
+        gridManager.currentSelection = GridManager.Selection.WR;
     }
-    private void WRHSelection()
+    private void CupboardSelection()
     {
-        gridManager.currentSelection = GridManager.Selection.WRH;
+        gridManager.currentSelection = GridManager.Selection.CUP;
     }
-    private void CupboardVSelection()
+    private void TableSelection()
     {
-        gridManager.currentSelection = GridManager.Selection.CUPV;
-    }
-    private void CupboardHSelection()
-    {
-        gridManager.currentSelection = GridManager.Selection.CUPH;
-    }
-    private void TableVSelection()
-    {
-        gridManager.currentSelection = GridManager.Selection.TABLEV;
-    }
-    private void TableHSelection()
-    {
-        gridManager.currentSelection = GridManager.Selection.TABLEH;
+        gridManager.currentSelection = GridManager.Selection.TABLE;
     }
     private void ChestSelection()
     {
         gridManager.currentSelection = GridManager.Selection.CHEST;
+    }
+    private void AlchemistBenchSelection()
+    {
+        gridManager.currentSelection = GridManager.Selection.ALCH;
+    }
+    private void SorcererTableSelection()
+    {
+        gridManager.currentSelection = GridManager.Selection.SORC;
+    }
+    private void TombSelection()
+    {
+        gridManager.currentSelection = GridManager.Selection.TOMB;
+    }
+    private void ThroneSelection()
+    {
+        gridManager.currentSelection = GridManager.Selection.THRONE;
     }
 }

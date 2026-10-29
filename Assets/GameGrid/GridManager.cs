@@ -24,20 +24,20 @@ public class GridManager : MonoBehaviour
     [SerializeField] private GameObject SpikeTrapPF;
     [SerializeField] private GameObject PitTrapPF;
     [SerializeField] private GameObject FallingBlockTrapPF;
-    [SerializeField] private GameObject WeaponRack1PF_H;
-    [SerializeField] private GameObject WeaponRack1PF_V;
-    [SerializeField] private GameObject WeaponRack2PF_H;
-    [SerializeField] private GameObject WeaponRack2PF_V;
-    [SerializeField] private GameObject Cupboard1PF_H;
-    [SerializeField] private GameObject Cupboard1PF_V;
-    [SerializeField] private GameObject Cupboard2PF_H;
-    [SerializeField] private GameObject Cupboard2PF_V;
-    [SerializeField] private GameObject Table1PF_H;
-    [SerializeField] private GameObject Table1PF_V;
-    [SerializeField] private GameObject Table2PF_H;
-    [SerializeField] private GameObject Table2PF_V;
+    [SerializeField] private GameObject WeaponRack1PF;
+    [SerializeField] private GameObject WeaponRack2PF;
+    [SerializeField] private GameObject Cupboard1PF;
+    [SerializeField] private GameObject Cupboard2PF;
+    [SerializeField] private GameObject Table1PF;
+    [SerializeField] private GameObject Table2PF;
     [SerializeField] private GameObject Chest1PF;
     [SerializeField] private GameObject Chest2PF;
+    [SerializeField] private GameObject SorcererTable1PF;
+    [SerializeField] private GameObject SorcererTable2PF;
+    [SerializeField] private GameObject AlchemistBench1PF;
+    [SerializeField] private GameObject AlchemistBench2PF;
+    [SerializeField] private GameObject TombPF;
+    [SerializeField] private GameObject ThronePF;
 
 
     public GameObject CorridorTiles;
@@ -56,7 +56,8 @@ public class GridManager : MonoBehaviour
         GAME,
         ADD,
         SELECT,
-        REMOVE
+        REMOVE,
+        ROTATE
 
     }
     [HideInInspector] public Mode currentMode = Mode.ADD;
@@ -71,13 +72,14 @@ public class GridManager : MonoBehaviour
         SPKTRAP,
         FLLTRAP,
         PITTRAP,
-        WRV, //WeaponRackVertical
-        WRH,  //WeaponRackHorizontal
-        CUPV,
-        CUPH,
-        TABLEV,
-        TABLEH,
-        CHEST
+        WR, //WeaponRack
+        CUP,
+        TABLE,
+        CHEST,
+        ALCH,
+        SORC,
+        TOMB,
+        THRONE
     }
     [HideInInspector] public Selection currentSelection = Selection.ROOM;
 
@@ -221,7 +223,10 @@ public class GridManager : MonoBehaviour
         {
             UpdateRemoveMode();
         }
-
+        else if (currentMode == Mode.ROTATE)
+        {
+            UpdateRotateMode();
+        }
 
         // verify if rooms still exist
         foreach (Room room in this.GetComponentsInChildren<Room>())
@@ -265,6 +270,23 @@ public class GridManager : MonoBehaviour
                 if (!tile.CompareTag("Tile"))
                 {
                     Destroy(tile);
+                }
+            }
+        }
+    }
+
+    private void UpdateRotateMode()
+    {
+        // LEFT CLICK BEGIN
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                GameObject tile = hit.collider.gameObject;
+                if (!tile.CompareTag("Tile"))
+                {
+                    tile.transform.Rotate(0,90,0) ;
                 }
             }
         }
@@ -435,75 +457,49 @@ public class GridManager : MonoBehaviour
                             Instantiate(FallingBlockTrapPF, tile.transform);
                         }
 
-                        if (currentSelection == Selection.WRV)
+                        if (currentSelection == Selection.TOMB)
+                        {
+                            Instantiate(TombPF, tile.transform);
+                        }
+
+                        if (currentSelection == Selection.THRONE)
+                        {
+                            Instantiate(ThronePF, tile.transform);
+                        }
+
+                        if (currentSelection == Selection.WR)
                         {
                             if (PropType == 1)
                             {
-                                Instantiate(WeaponRack1PF_V, tile.transform);
+                                Instantiate(WeaponRack1PF, tile.transform);
                             }
                             else
                             {
-                                Instantiate(WeaponRack2PF_V, tile.transform);
+                                Instantiate(WeaponRack2PF, tile.transform);
                             }
                         }
 
-                        if (currentSelection == Selection.WRH)
+                        if (currentSelection == Selection.CUP)
                         {
                             if (PropType == 1)
                             {
-                                Instantiate(WeaponRack1PF_H, tile.transform);
+                                Instantiate(Cupboard1PF, tile.transform);
                             }
                             else
                             {
-                                Instantiate(WeaponRack2PF_H, tile.transform);
+                                Instantiate(Cupboard2PF, tile.transform);
                             }
                         }
 
-                        if (currentSelection == Selection.CUPH)
+                        if (currentSelection == Selection.TABLE)
                         {
                             if (PropType == 1)
                             {
-                                Instantiate(Cupboard1PF_H, tile.transform);
+                                Instantiate(Table1PF, tile.transform);
                             }
                             else
                             {
-                                Instantiate(Cupboard2PF_H, tile.transform);
-                            }
-                        }
-
-                        if (currentSelection == Selection.CUPV)
-                        {
-                            if (PropType == 1)
-                            {
-                                Instantiate(Cupboard1PF_V, tile.transform);
-                            }
-                            else
-                            {
-                                Instantiate(Cupboard2PF_V, tile.transform);
-                            }
-                        }
-
-                        if (currentSelection == Selection.TABLEH)
-                        {
-                            if (PropType == 1)
-                            {
-                                Instantiate(Table1PF_H, tile.transform);
-                            }
-                            else
-                            {
-                                Instantiate(Table2PF_H, tile.transform);
-                            }
-                        }
-
-                        if (currentSelection == Selection.TABLEV)
-                        {
-                            if (PropType == 1)
-                            {
-                                Instantiate(Table1PF_V, tile.transform);
-                            }
-                            else
-                            {
-                                Instantiate(Table2PF_V, tile.transform);
+                                Instantiate(Table2PF, tile.transform);
                             }
                         }
 
@@ -516,6 +512,30 @@ public class GridManager : MonoBehaviour
                             else
                             {
                                 Instantiate(Chest2PF, tile.transform);
+                            }
+                        }
+
+                        if (currentSelection == Selection.ALCH)
+                        {
+                            if (PropType == 1)
+                            {
+                                Instantiate(AlchemistBench1PF, tile.transform);
+                            }
+                            else
+                            {
+                                Instantiate(AlchemistBench2PF, tile.transform);
+                            }
+                        }
+
+                        if (currentSelection == Selection.SORC)
+                        {
+                            if (PropType == 1)
+                            {
+                                Instantiate(SorcererTable1PF, tile.transform);
+                            }
+                            else
+                            {
+                                Instantiate(SorcererTable2PF, tile.transform);
                             }
                         }
                     }
