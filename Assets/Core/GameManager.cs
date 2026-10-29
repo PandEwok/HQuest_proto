@@ -93,8 +93,15 @@ public class GameManager : MonoBehaviour
         return spawnedCharacter;
     }
 
+    //To be sure that the end turn is triggered by the right player (not used for the button, only for the pit)
+    public void TriggerEndTurnFor(Character requester)
+    {
+        if (currentTurn >= heroCharacters.Count || heroCharacters[currentTurn] != requester) return;
+        TriggerEndTurn();
+    }
     public void TriggerEndTurn()
     {
+        if (endOfTurn) return; //Anti double call
         CombatUI.GetComponent<TurnHandoverPopup>().ToggleHandOverPanel(true);
         endOfTurn = true;
     }
@@ -106,6 +113,8 @@ public class GameManager : MonoBehaviour
         //Debug.Log(currentTurn);
         if (endOfTurn)
         {
+            if (currentTurn < heroTurns)
+                GameSession.SelectedHeroes[currentTurn].OnTurnEnded();
             moved = false; actionPerformed = false;
             currentTurn += 1;
             if (currentTurn > heroTurns)
@@ -165,6 +174,7 @@ public class GameManager : MonoBehaviour
         if (currentTurn < heroTurns)
         {
             HeroCard hero = GameSession.SelectedHeroes[currentTurn];
+            hero.OnTurnStarted();
             if (playerNameTxt.GetComponent<TMP_Text>() != null)
             {
                 playerNameTxt.GetComponent<TMP_Text>().text = hero.title + "'s Turn";

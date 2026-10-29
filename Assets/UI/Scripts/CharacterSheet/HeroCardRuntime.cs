@@ -30,6 +30,7 @@ public partial class HeroCard
     private readonly bool[] questsCompleted = new bool[TotalQuests];
     private int attackModifier;
     private int defenseModifier;
+    private int pitPenaltyState; // 0 = none, 1 = fell this turn, 2 = penalty active on next turn
 
     /// <summary>Fired after any change, so the sheet can refresh itself.</summary>
     public event Action Changed;
@@ -55,6 +56,7 @@ public partial class HeroCard
         CurrentMind = startMind;
         Gold = 0;
         attackModifier = 0;
+        pitPenaltyState = 0;
         defenseModifier = 0;
         EquippedWeapon = null;
         owned.Clear();
@@ -128,6 +130,28 @@ public partial class HeroCard
         attackModifier = 0;
         defenseModifier = 0;
         NotifyChanged();
+    }
+
+    /// <summary>Pit fall: -1 attack die during this hero's NEXT turn (the dice minimum of 1 is handled by CurrentAttackDice).</summary>
+    public void ApplyPitPenalty()
+    {
+        if (!CanModify()) return;
+        if (pitPenaltyState == 0) ModifyAttackDice(-1);   // no stacking if already penalized
+        pitPenaltyState = 1;
+    }
+
+    /// <summary>Call at the start of this hero's turn.</summary>
+    public void OnTurnStarted()
+    {
+        if (pitPenaltyState == 1) pitPenaltyState = 2;
+    }
+
+    /// <summary>Call at the end of this hero's turn.</summary>
+    public void OnTurnEnded()
+    {
+        if (pitPenaltyState != 2) return;
+        ModifyAttackDice(+1);
+        pitPenaltyState = 0;
     }
 
     // ---------------------------------------------------------- body / mind

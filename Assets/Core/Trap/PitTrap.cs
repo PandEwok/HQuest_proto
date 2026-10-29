@@ -17,17 +17,25 @@ public class PitTrap : ITrap
 
     public void OnSpring(Character hero)
     {
+        if (IsSprung) return;
         IsSprung = true;
         Debug.Log("Zargon: 'You have just stumbled into a pit!'");
 
-        // Inflige 1 Point de Corps (Body Point)
-        if (GameSession.ActiveHero != null)
+        var gameManager = UnityEngine.Object.FindFirstObjectByType<GameManager>();
+        if (gameManager == null || hero == null)
         {
-            GameSession.ActiveHero.ModifyBodyPoints(-1);
+            Debug.LogWarning("PitTrap: GameManager ou Character introuvable.");
+            return;
         }
 
-        // Fin du tour du héros pour ce déplacement
-        // TODO: Placer le tile visuel de fosse sous la figurine du héros
+        HeroCard card = gameManager.GetCardFromCharacter(hero);
+        if (card != null)
+        {
+            card.ModifyBodyPoints(-1);
+            card.ApplyPitPenalty();
+        }
+        hero.InterruptMovement(() => gameManager.TriggerEndTurnFor(hero));
+        gameManager.TriggerEndTurn();
     }
 
     public void Disarm(Character hero)
