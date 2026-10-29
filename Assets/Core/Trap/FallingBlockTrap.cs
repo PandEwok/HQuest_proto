@@ -11,10 +11,17 @@ public class FallingBlockTrap : ITrap
     public bool CanBeJumped => !IsSprung;
 
     private CombatDiceManager diceManager;
+    private bool blockPlaced = false;
 
-    public FallingBlockTrap(CombatDiceManager diceManager)
+    public GameObject Owner { get; set; }
+
+    public GameObject BlockPrefab { get; set; }
+
+    public FallingBlockTrap(CombatDiceManager diceManager, GameObject owner = null, GameObject blockPrefab = null)
     {
         this.diceManager = diceManager;
+        Owner = owner;
+        BlockPrefab = blockPrefab;
     }
 
     public void OnDiscovered(Character hero)
@@ -25,35 +32,83 @@ public class FallingBlockTrap : ITrap
 
     public void OnSpring(Character hero)
     {
+        if (IsSprung) return;
         IsSprung = true;
         IsDiscovered = true;
         Debug.Log("Zargon: \"You've just sprung a falling-block trap! The ceiling is caving in! Look out!\"");
 
-        int skullsRolled = 0;
-        if (diceManager != null)
+        var gameManager = UnityEngine.Object.FindFirstObjectByType<GameManager>();
+        if (gameManager == null || hero == null)
         {
-            // Utilise la méthode privée de tirage ou l'équivalent via CombatDiceManager
-            // On peut simuler 3 dés et compter les crânes
-            var results = diceManager.ResolveCombat(true, 3, 0, out List<CombatDiceManager.DieFace> attackRolls, out _);
-            // Alternative : compter directement les crânes dans attackRolls
-            skullsRolled = 0;
-            foreach (var face in attackRolls)
+            Debug.LogWarning("FallingBlockTrap: GameManager ou Character introuvable.");
+            PlaceBlock();
+            return;
+        }
+
+        int skullsRolled = RollSkulls(3);
+        Debug.Log($"FallingBlockTrap: {skullsRolled} crâne(s) obtenu(s) sur 3 dés.");
+
+        if (skullsRolled > 0)
+        {
+            HeroCard card = gameManager.GetCardFromCharacter(hero);
+            if (card != null)
             {
-                if (face == CombatDiceManager.DieFace.Skull) skullsRolled++;
+                card.ModifyBodyPoints(-skullsRolled);
+                Debug.Log($"Le plafond s'écroule et {hero.name} perd {skullsRolled} Point(s) de Corps.");
+            }
+            else
+            {
+                Debug.LogWarning("FallingBlockTrap: HeroCard introuvable, dégâts non appliqués.");
             }
         }
         else
         {
-            skullsRolled = Random.Range(0, 4); // Sécurité si le manager n'est pas assigné
+            Debug.Log($"{hero.name} évite les débris : aucun dégât.");
         }
 
-        if (skullsRolled > 0 && GameSession.ActiveHero != null)
+        hero.InterruptMovement(() =>
         {
-            GameSession.ActiveHero.ModifyBodyPoints(-skullsRolled);
-            Debug.Log($"Le plafond s'écroule et inflige {skullsRolled} dégâts de Point de Corps.");
-        }
+            Debug.Log("Le héros peut avancer ou reculer d'une case (sans dé), ou terminer son tour.");
+            gameManager.GrantBonusMove(hero, 1, PlaceBlock);
+        });
+    }
 
-        Debug.Log("La case est maintenant un bloc permanent. Le héros doit choisir d'avancer ou de reculer sur une case vide, ce qui termine son tour.");
+    private int RollSkulls(int diceCount)
+    {
+        int skulls = 0;
+        if (diceManager != null)
+        {
+            diceManager.ResolveCombat(true, diceCount, 0, out List<CombatDiceManager.DieFace> rolls, out _);
+            foreach (var face in rolls)
+            {
+                if (face == CombatDiceManager.DieFace.Skull) skulls++;
+            }
+        }
+        else
+        {
+            Debug.LogWarning("FallingBlockTrap: CombatDiceManager manquant, tirage aléatoire de secours.");
+            skulls = Random.Range(0, diceCount + 1);
+        }
+        return skulls;
+    }
+
+    private void PlaceBlock()
+    {
+        if (blockPlaced) return;
+        blockPlaced = true;
+
+        Debug.Log($"FallingBlockTrap.PlaceBlock: Owner={(Owner != null)}, BlockPrefab={(BlockPrefab != null ? BlockPrefab.name : "NULL")}");
+
+        if (Owner != null)
+        {
+            if (BlockPrefab != null)
+            {
+                var block = UnityEngine.Object.Instantiate(BlockPrefab, Owner.transform.position, Owner.transform.rotation);
+                block.SetActive(true);
+                Debug.Log($"Bloc instancié : {block.name}, pos={block.transform.position}, scale={block.transform.lossyScale}", block);
+            }
+            UnityEngine.Object.Destroy(Owner);
+        }
     }
 
     public void Disarm(Character hero)

@@ -37,7 +37,7 @@ public class Character : MonoBehaviour
         positionInGrid = newPos;
         transform.position = worldPos;
     }*/
-    public IEnumerator MoveAlongPath(List<Tile> path)
+    public IEnumerator MoveAlongPath(List<Tile> path, System.Action onComplete = null)
     {
         isMoving = true;
         interruptRequested = false;
@@ -74,6 +74,10 @@ public class Character : MonoBehaviour
             var callback = onInterruptedMoveEnd;
             onInterruptedMoveEnd = null;
             callback?.Invoke();
+        }
+        else
+        {
+            onComplete?.Invoke();   // seulement si le déplacement n'a pas été interrompu
         }
     }
 

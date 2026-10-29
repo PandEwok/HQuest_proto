@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour
 
     System.Random random;
 
+    bool bonusMoveActive;
+    System.Action bonusMoveCallback;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -116,6 +119,7 @@ public class GameManager : MonoBehaviour
             if (currentTurn < heroTurns)
                 GameSession.SelectedHeroes[currentTurn].OnTurnEnded();
             moved = false; actionPerformed = false;
+            FinishBonusMove(null);
             currentTurn += 1;
             if (currentTurn > heroTurns)
             {
@@ -152,7 +156,8 @@ public class GameManager : MonoBehaviour
                                 List<Tile> path = hero.FindPath(tile, targetTile);
                                 if (path != null)
                                 {
-                                    StartCoroutine(hero.MoveAlongPath(path));
+                                    System.Action onDone = bonusMoveActive ? () => FinishBonusMove(hero) : null;
+                                    StartCoroutine(hero.MoveAlongPath(path, onDone));
                                     moved = true;
                                     hero.ClearMovementRange();
                                 }
@@ -217,5 +222,28 @@ public class GameManager : MonoBehaviour
     public HeroCard GetCurrentHeroCard()
     {
         return GameSession.SelectedHeroes[currentTurn];
+    }
+
+    public void GrantBonusMove(Character hero, int range, System.Action onFinished)
+    {
+        if (currentTurn >= heroCharacters.Count || heroCharacters[currentTurn] != hero)
+        {
+            onFinished?.Invoke();
+            return;
+        }
+        hero.movementRange = range;
+        moved = false;
+        bonusMoveActive = true;
+        bonusMoveCallback = onFinished;
+    }
+
+    void FinishBonusMove(Character endTurnFor)
+    {
+        if (!bonusMoveActive) return;
+        bonusMoveActive = false;
+        var callback = bonusMoveCallback;
+        bonusMoveCallback = null;
+        callback?.Invoke();
+        if (endTurnFor != null) TriggerEndTurnFor(endTurnFor);
     }
 }

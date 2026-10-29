@@ -3,7 +3,8 @@ using UnityEngine;
 public class TrapBehaviour : MonoBehaviour
 {
     [Header("Configuration du Piège")]
-    [SerializeField] private TrapType trapType; // <-- Ceci va apparaître dans l'Inspecteur
+    [SerializeField] private TrapType trapType;
+    [SerializeField] private GameObject blockPrefab;
 
     private ITrap trapLogic;
     public ITrap TrapLogic => trapLogic;
@@ -29,7 +30,7 @@ public class TrapBehaviour : MonoBehaviour
                 trapLogic = new SpearTrap(diceManager, gameObject);
                 break;
             case TrapType.FallingBlockTrap:
-                trapLogic = new FallingBlockTrap(diceManager);
+                trapLogic = new FallingBlockTrap(diceManager, gameObject, blockPrefab);
                 break;
         }
     }

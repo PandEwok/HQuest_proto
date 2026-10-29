@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TrapBehaviour
   trapType: 2
+  blockPrefab: {fileID: 8004093930818766245, guid: c8ed108c0113dd249b5fc664408ebf15, type: 3}
 --- !u!1001 &3173263822631135277
 PrefabInstance:
   m_ObjectHideFlags: 0
