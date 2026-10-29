@@ -123,6 +123,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // utility methods (get characters and cards)
     public HeroCard GetCardFromCharacter(Character character)
     {
         int index = heroCharacters.IndexOf(character);
