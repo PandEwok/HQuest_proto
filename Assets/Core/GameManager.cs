@@ -122,4 +122,25 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    public HeroCard GetCardFromCharacter(Character character)
+    {
+        int index = heroCharacters.IndexOf(character);
+
+        return GameSession.SelectedHeroes[index];
+    }
+    public Character GetCharacterFromCcard(HeroCard card)
+    {
+        int index = GameSession.SelectedHeroes.IndexOf(card);
+
+        return heroCharacters[index];
+    }
+    public Character GetCurrentCharacter()
+    {
+        return heroCharacters[currentTurn];
+    }
+    public HeroCard GetCurrentHeroCard()
+    {
+        return GameSession.SelectedHeroes[currentTurn];
+    }
 }
