@@ -58704,8 +58704,10 @@ MonoBehaviour:
   _cam: {fileID: 330585546}
   _roomPrefab: {fileID: -5077946675272694743, guid: b82dd172a1acabd46b4ad9af32c6af63, type: 3}
   _doorPrefab: {fileID: -837681063964779121, guid: 8a7457cbd967b7142b1be9f56c9e831f, type: 3}
-  RockPF: {fileID: 0}
-  TrapPF: {fileID: 5345008905422333103, guid: da9aaace707a3ec4c998ed6b52730fb5, type: 3}
+  RockPF: {fileID: 6551990066942125379, guid: b19d89c78a710d74bbab0be4c46fba78, type: 3}
+  SpikeTrapPF: {fileID: 5345008905422333103, guid: da9aaace707a3ec4c998ed6b52730fb5, type: 3}
+  PitTrapPF: {fileID: 5345008905422333103, guid: bb54dfdb2f27a0643aa46ee62edfbccf, type: 3}
+  FallingBlockTrapPF: {fileID: 5345008905422333103, guid: 8bdabce58e7560b418b0afb7c21150b2, type: 3}
   WeaponRack1PF_H: {fileID: 2644583586431922036, guid: a8f195229f80f5b4ab30732a7ebabb55, type: 3}
   WeaponRack1PF_V: {fileID: 3905069605512339277, guid: 710101c52b9f2044390046d26fd3c056, type: 3}
   WeaponRack2PF_H: {fileID: 447069366180780000, guid: 5efb0fa942db0b543bcb98c9945991ed, type: 3}

@@ -21,7 +21,9 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Door _doorPrefab;
 
     [SerializeField] private GameObject RockPF;
-    [SerializeField] private GameObject TrapPF;
+    [SerializeField] private GameObject SpikeTrapPF;
+    [SerializeField] private GameObject PitTrapPF;
+    [SerializeField] private GameObject FallingBlockTrapPF;
     [SerializeField] private GameObject WeaponRack1PF_H;
     [SerializeField] private GameObject WeaponRack1PF_V;
     [SerializeField] private GameObject WeaponRack2PF_H;
@@ -66,7 +68,9 @@ public class GridManager : MonoBehaviour
         ROOM,
         DOOR,
         ROCK,
-        TRAP,
+        SPKTRAP,
+        FLLTRAP,
+        PITTRAP,
         WRV, //WeaponRackVertical
         WRH,  //WeaponRackHorizontal
         CUPV,
@@ -416,9 +420,19 @@ public class GridManager : MonoBehaviour
                             Instantiate(RockPF, tile.transform);
                         }
 
-                        if (currentSelection == Selection.TRAP)
+                        if (currentSelection == Selection.SPKTRAP)
                         {
-                            Instantiate(TrapPF, tile.transform);
+                            Instantiate(SpikeTrapPF, tile.transform);
+                        }
+
+                        if (currentSelection == Selection.PITTRAP)
+                        {
+                            Instantiate(PitTrapPF, tile.transform);
+                        }
+
+                        if (currentSelection == Selection.FLLTRAP)
+                        {
+                            Instantiate(FallingBlockTrapPF, tile.transform);
                         }
 
                         if (currentSelection == Selection.WRV)
