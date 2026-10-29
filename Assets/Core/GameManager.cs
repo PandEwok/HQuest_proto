@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
 
     List<Character> heroCharacters = new List<Character>();
 
+    [SerializeField] private GameObject CombatUI;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -76,11 +78,16 @@ public class GameManager : MonoBehaviour
         return spawnedCharacter;
     }
 
+    public void TriggerEndTurn()
+    {
+        CombatUI.GetComponent<TurnHandoverPopup>().ToggleHandOverPanel(true);
+        endOfTurn = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        endOfTurn = moved && actionPerformed;
-
+        //Debug.Log(currentTurn);
         if (endOfTurn)
         {
             moved = false; actionPerformed = false;
@@ -88,9 +95,9 @@ public class GameManager : MonoBehaviour
             if (currentTurn > heroTurns)
             {
                 currentTurn = 0;
-                Turn();
-                endOfTurn = false;
             }
+            Turn();
+            endOfTurn = false;
         }
         // playing turn
         else

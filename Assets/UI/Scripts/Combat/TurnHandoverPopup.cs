@@ -11,13 +11,14 @@ public class TurnHandoverPopup : MonoBehaviour
     [SerializeField] private Button continueButton;
     [SerializeField] private Animator TurnHandOverPanelAnim;
 
+
     public static bool IsOpen { get; private set; } // friends can check this to ignore input
     private Action onContinue;
 
     private void Awake()
     {
         continueButton.onClick.AddListener(OnContinueClicked);
-        panel.SetActive(false);
+        //panel.SetActive(false);
     }
 
     public void Show(string who, Action onContinue = null)
@@ -35,8 +36,9 @@ public class TurnHandoverPopup : MonoBehaviour
         onContinue?.Invoke();
     }
 
-    private void ToggleHandOverPanel(bool menuOpen)
+    public void ToggleHandOverPanel(bool menuOpen)
     {
-        TurnHandOverPanelAnim.SetBool("IsOpen", menuOpen);
+        TurnHandOverPanelAnim.SetBool("isOpen", menuOpen);
+        Debug.Log("paf");
     }
 }
