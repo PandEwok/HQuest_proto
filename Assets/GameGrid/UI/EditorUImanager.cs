@@ -12,6 +12,24 @@ public class EditorUImanager : MonoBehaviour
     private Button RemoveButton;
     private Button RotateButton;
 
+
+    // place enemy buttons
+    private Button goblinButton;
+    private Button skeletonButton;
+    private Button zombiButton;
+    private Button orcButton;
+
+    [SerializeField] private Enemy goblinPF;
+    [SerializeField] private Enemy skeletonPF;
+    [SerializeField] private Enemy zombiPF;
+    [SerializeField] private Enemy orcPF;
+    [SerializeField] private Enemy abominationPF;
+    [SerializeField] private Enemy mummyPF;
+    [SerializeField] private Enemy dreadWarriorPF;
+    [SerializeField] private Enemy gargoylePF;
+
+
+
     private Button roomButton;
     private Button doorButton;
     private Button SecretDoorButton;
@@ -128,6 +146,21 @@ public class EditorUImanager : MonoBehaviour
         StairsButton = root.Q<Button>("PlaceStairs");
 
         StairsButton.clicked += StairsSelection;
+
+
+
+        // enemies
+        goblinButton = root.Q<Button>("PlaceGoblin");
+        goblinButton.clicked += GoblinSelection;
+
+        skeletonButton = root.Q<Button>("PlaceSkeleton");
+        skeletonButton.clicked += SkeletonSelection;
+
+        zombiButton = root.Q<Button>("PlaceZombi");
+        zombiButton.clicked += ZombiSelection;
+
+        orcButton = root.Q<Button>("PlaceOrc");
+        orcButton.clicked += OrcSelection;
     }
 
     //MODES
@@ -213,5 +246,29 @@ public class EditorUImanager : MonoBehaviour
     private void StairsSelection()
     {
         gridManager.currentSelection = GridManager.Selection.STAIRS;
+    }
+
+
+
+    // enemies
+    private void GoblinSelection()
+    {
+        gridManager.currentSelection = GridManager.Selection.ENEMY;
+        gridManager.selectedEnemy = goblinPF;
+    }
+    private void SkeletonSelection()
+    {
+        gridManager.currentSelection = GridManager.Selection.ENEMY;
+        gridManager.selectedEnemy = skeletonPF;
+    }
+    private void ZombiSelection()
+    {
+        gridManager.currentSelection = GridManager.Selection.ENEMY;
+        gridManager.selectedEnemy = zombiPF;
+    }
+    private void OrcSelection()
+    {
+        gridManager.currentSelection = GridManager.Selection.ENEMY;
+        gridManager.selectedEnemy = orcPF;
     }
 }

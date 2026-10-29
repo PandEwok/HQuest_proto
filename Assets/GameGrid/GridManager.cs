@@ -1,3 +1,4 @@
+using NUnit.Framework.Constraints;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,6 +20,18 @@ public class GridManager : MonoBehaviour
 
     [SerializeField] private Room _roomPrefab;
     [SerializeField] private Door _doorPrefab;
+
+    // ENEMIES PF
+    [SerializeField] private Enemy goblinPF;
+    [SerializeField] private Enemy skeletonPF;
+    [SerializeField] private Enemy zombiPF;
+    [SerializeField] private Enemy orcPF;
+    [SerializeField] private Enemy abominationPF;
+    [SerializeField] private Enemy mummyPF;
+    [SerializeField] private Enemy dreadWarriorPF;
+    [SerializeField] private Enemy gargoylePF;
+
+
     [SerializeField] private SecretDoor _SecretDoorPrefab;
 
     [SerializeField] private GameObject RockPF;
@@ -86,8 +99,12 @@ public class GridManager : MonoBehaviour
         SORC,
         TOMB,
         THRONE,
-        STAIRS
+        STAIRS,
+        ENEMY
     }
+
+    [HideInInspector] public Enemy selectedEnemy;
+
     [HideInInspector] public Selection currentSelection = Selection.ROOM;
 
 
@@ -455,6 +472,26 @@ public class GridManager : MonoBehaviour
                     if (wall.CompareTag("Wall"))
                     {
                         ReplaceBySecretDoor(wall);
+                    }
+                }
+            }
+        }
+        else if (currentSelection == Selection.ENEMY)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out RaycastHit hit))
+                {
+                    GameObject tileObj = hit.collider.gameObject;
+                    Tile tile = tileObj.GetComponent<Tile>();
+                    if (tileObj.CompareTag("Tile"))
+                    {
+                        GameObject enemySpawned = Instantiate(selectedEnemy.gameObject, tile.surface.transform.position, Quaternion.identity);
+                        var inverseTiles = _tiles.ToDictionary(x => x.Value, x => x.Key);
+                        Vector2 gridPos = Vector2.zero;
+                        inverseTiles.TryGetValue(tile, out gridPos);
+                        enemySpawned.GetComponent<Enemy>().positionInGrid = gridPos;
                     }
                 }
             }
