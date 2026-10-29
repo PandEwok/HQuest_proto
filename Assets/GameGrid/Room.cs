@@ -273,6 +273,8 @@ public class Room : MonoBehaviour
                 ClearRocks();
             }
         }
+        //Debug.Log("room number of tile : " + tiles.Count);
+        
         //Debug.Log(this.name + " number of doors " + doors.Count);
     }
 

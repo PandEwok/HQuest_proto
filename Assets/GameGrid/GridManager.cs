@@ -395,6 +395,7 @@ public class GridManager : MonoBehaviour
                             }
                         }
                     }
+                    tilesInSelection.Clear();
                 }
             }
         }
