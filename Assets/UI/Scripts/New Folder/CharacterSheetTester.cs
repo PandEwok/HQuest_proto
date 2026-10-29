@@ -7,17 +7,31 @@ using UnityEngine;
 /// How to use: fill the fields in the Inspector, press Play, then open the three-dots menu
 /// (or right-click) on this component's header: the "Test: ..." commands change the hero live.
 /// The public methods can also be wired to normal UI Buttons.
+/// With a second hero template assigned you can test giving items between two heroes;
+/// "Switch shown hero" shows the other hero on the sheet.
 /// </summary>
 public class CharacterSheetTester : MonoBehaviour
 {
     [SerializeField] private CharacterSheetPanel sheet;
+
+    [Header("Hero 1 (shown on the sheet at start)")]
     [SerializeField] private HeroCard heroTemplate;   // a HeroCard ASSET from your project
     [SerializeField] private string heroName = "Test Hero";
     [SerializeField, TextArea] private string heroDescription = "A brave adventurer.";
-    [Tooltip("Extra items given at start (weapons, armor, potions...). Class restrictions still apply.")]
+
+    [Header("Hero 2 (optional, needed to test giving items)")]
+    [SerializeField] private HeroCard secondHeroTemplate;
+    [SerializeField] private string secondHeroName = "Test Hero 2";
+
+    [Header("Extra items given to hero 1 at start (class restrictions still apply)")]
     [SerializeField] private EquipmentCard[] extraEquipment;
+    [SerializeField] private ArtifactCard[] extraArtifacts;
+    [SerializeField] private CardData[] extraPotions;
 
     public HeroCard Hero { get; private set; }
+    public HeroCard SecondHero { get; private set; }
+    /// <summary>The hero currently displayed on the sheet. The "Test:" commands act on this one.</summary>
+    public HeroCard Shown { get; private set; }
 
     private void Start()
     {
@@ -29,34 +43,76 @@ public class CharacterSheetTester : MonoBehaviour
 
         // The runtime copy is the player's own hero; the asset is never modified.
         Hero = HeroCard.CreateRuntimeCopy(heroTemplate, heroName, heroDescription);
+        GiveStartItems(Hero);
+        HeroParty.Register(Hero);
 
-        foreach (var card in extraEquipment)
-            if (card != null && !Hero.Equip(card))
-                Debug.LogWarning($"CharacterSheetTester: '{card.title}' cannot be used by this hero class.");
+        if (secondHeroTemplate != null)
+        {
+            SecondHero = HeroCard.CreateRuntimeCopy(secondHeroTemplate, secondHeroName, "");
+            HeroParty.Register(SecondHero);
+        }
 
+        Shown = Hero;
         sheet.Bind(Hero);
     }
 
-    [ContextMenu("Test: Lose 1 Body")]   public void LoseBody()   { if (Hero != null) Hero.ModifyBodyPoints(-1); }
-    [ContextMenu("Test: Gain 1 Body")]   public void GainBody()   { if (Hero != null) Hero.ModifyBodyPoints(1); }
-    [ContextMenu("Test: Lose 1 Mind")]   public void LoseMind()   { if (Hero != null) Hero.ModifyMindPoints(-1); }
-    [ContextMenu("Test: Gain 1 Mind")]   public void GainMind()   { if (Hero != null) Hero.ModifyMindPoints(1); }
-    [ContextMenu("Test: Restore Body and Mind")] public void Restore() { if (Hero != null) Hero.RestoreBodyAndMind(); }
+    private void OnDestroy()
+    {
+        HeroParty.Unregister(Hero);
+        HeroParty.Unregister(SecondHero);
+    }
 
-    [ContextMenu("Test: +10 Gold")]      public void AddGold()    { if (Hero != null) Hero.AddGold(10); }
-    [ContextMenu("Test: Spend 5 Gold")]  public void SpendGold()  { if (Hero != null) Hero.TrySpendGold(5); }
+    private void GiveStartItems(HeroCard target)
+    {
+        foreach (var card in extraEquipment)
+            if (card != null && !target.Equip(card))
+                Debug.LogWarning($"CharacterSheetTester: '{card.title}' cannot be used by this hero class.");
 
-    [ContextMenu("Test: Attack dice +1")]  public void AttackUp()   { if (Hero != null) Hero.ModifyAttackDice(1); }
-    [ContextMenu("Test: Attack dice -1")]  public void AttackDown() { if (Hero != null) Hero.ModifyAttackDice(-1); }
-    [ContextMenu("Test: Defend dice +1")]  public void DefendUp()   { if (Hero != null) Hero.ModifyDefenseDice(1); }
-    [ContextMenu("Test: Defend dice -1")]  public void DefendDown() { if (Hero != null) Hero.ModifyDefenseDice(-1); }
-    [ContextMenu("Test: Reset dice modifiers")] public void ResetDice() { if (Hero != null) Hero.ResetDiceModifiers(); }
+        foreach (var artifact in extraArtifacts)
+        {
+            if (artifact == null) continue;
+            bool ok = artifact.slot == ArtifactSlot.Consumable ? target.AddArtifact(artifact) : target.EquipArtifact(artifact);
+            if (!ok) Debug.LogWarning($"CharacterSheetTester: '{artifact.title}' cannot be used by this hero class.");
+        }
+
+        foreach (var potion in extraPotions)
+            if (potion != null && !target.AddPotion(potion))
+                Debug.LogWarning($"CharacterSheetTester: '{potion.title}' is not a valid potion for this hero.");
+    }
+
+    [ContextMenu("Test: Switch shown hero")]
+    public void SwitchHero()
+    {
+        if (SecondHero == null)
+        {
+            Debug.LogWarning("CharacterSheetTester: assign a Second Hero Template first.", this);
+            return;
+        }
+        Shown = Shown == Hero ? SecondHero : Hero;
+        sheet.HideDetails();
+        sheet.Bind(Shown);
+    }
+
+    [ContextMenu("Test: Lose 1 Body")]   public void LoseBody()   { if (Shown != null) Shown.ModifyBodyPoints(-1); }
+    [ContextMenu("Test: Gain 1 Body")]   public void GainBody()   { if (Shown != null) Shown.ModifyBodyPoints(1); }
+    [ContextMenu("Test: Lose 1 Mind")]   public void LoseMind()   { if (Shown != null) Shown.ModifyMindPoints(-1); }
+    [ContextMenu("Test: Gain 1 Mind")]   public void GainMind()   { if (Shown != null) Shown.ModifyMindPoints(1); }
+    [ContextMenu("Test: Restore Body and Mind")] public void Restore() { if (Shown != null) Shown.RestoreBodyAndMind(); }
+
+    [ContextMenu("Test: +10 Gold")]      public void AddGold()    { if (Shown != null) Shown.AddGold(10); }
+    [ContextMenu("Test: Spend 5 Gold")]  public void SpendGold()  { if (Shown != null) Shown.TrySpendGold(5); }
+
+    [ContextMenu("Test: Attack dice +1")]  public void AttackUp()   { if (Shown != null) Shown.ModifyAttackDice(1); }
+    [ContextMenu("Test: Attack dice -1")]  public void AttackDown() { if (Shown != null) Shown.ModifyAttackDice(-1); }
+    [ContextMenu("Test: Defend dice +1")]  public void DefendUp()   { if (Shown != null) Shown.ModifyDefenseDice(1); }
+    [ContextMenu("Test: Defend dice -1")]  public void DefendDown() { if (Shown != null) Shown.ModifyDefenseDice(-1); }
+    [ContextMenu("Test: Reset dice modifiers")] public void ResetDice() { if (Shown != null) Shown.ResetDiceModifiers(); }
 
     [ContextMenu("Test: Complete next quest")]
     public void CompleteNextQuest()
     {
-        if (Hero == null) return;
+        if (Shown == null) return;
         for (int q = 1; q <= HeroCard.TotalQuests; q++)
-            if (!Hero.IsQuestCompleted(q)) { Hero.CompleteQuest(q); return; }
+            if (!Shown.IsQuestCompleted(q)) { Shown.CompleteQuest(q); return; }
     }
 }
