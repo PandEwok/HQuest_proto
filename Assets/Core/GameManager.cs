@@ -1,11 +1,6 @@
-using NUnit.Framework;
 using System.Collections.Generic;
-using System.IO;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.ShaderGraph.Serialization;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 public class GameManager : MonoBehaviour
@@ -13,7 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GridManager gridManager;
     [SerializeField] private CharacterSheetController sheetController;
 
-    [SerializeField] List<TextAsset> QuestMaps;
+    //[SerializeField] List<TextAsset> QuestMaps;
 
     int heroTurns = 0;
     int currentTurn = 0;
@@ -42,13 +37,25 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (QuestMaps.Count > 0)
+        //if (QuestMaps.Count > 0)
+        //{
+        //    MapSaveData mapData = JsonUtility.FromJson<MapSaveData>(QuestMaps[0].text);
+        //    //gridManager.ApplyMap(mapData);
+        //    Debug.Log($"[Quest] v{mapData.version} walls:{mapData.walls.Count} props:{mapData.props.Count}");
+        //    bool ok = gridManager.ApplyMap(mapData);
+        //    Debug.Log($"[Quest] ApplyMap = {ok}");
+        //}
+
+        QuestData activeQuest = GameSession.CurrentQuest;
+        if (activeQuest != null && activeQuest.mapFile != null)
         {
-            MapSaveData mapData = JsonUtility.FromJson<MapSaveData>(QuestMaps[0].text);
-            //gridManager.ApplyMap(mapData);
-            Debug.Log($"[Quest] v{mapData.version} walls:{mapData.walls.Count} props:{mapData.props.Count}");
+            MapSaveData mapData = JsonUtility.FromJson<MapSaveData>(activeQuest.mapFile.text);
             bool ok = gridManager.ApplyMap(mapData);
-            Debug.Log($"[Quest] ApplyMap = {ok}");
+            Debug.Log($"[Quest] Chargement de la map pour '{activeQuest.title}' (v{mapData.version}) - ApplyMap = {ok}");
+        }
+        else
+        {
+            Debug.LogError("GameManager : Aucune quête active trouvée dans GameSession ou aucun fichier de map assigné sur le QuestData !");
         }
 
         heroTurns = GameSession.SelectedHeroes.Count;

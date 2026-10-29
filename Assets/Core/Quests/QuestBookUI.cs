@@ -14,6 +14,9 @@ public enum QuestBookMode
 [RequireComponent(typeof(UIDocument))]
 public class QuestBookUI : MonoBehaviour
 {
+    [Header("Scène de jeu")]
+    [SerializeField] private string gameSceneName = "GameScene";
+
     public QuestLibrary library;                         // nécessaire en mode Selection
     public QuestBookMode mode = QuestBookMode.Selection; // mode au démarrage
     public bool unlockAllForTesting;
@@ -35,7 +38,7 @@ public class QuestBookUI : MonoBehaviour
     bool ready;
 
     void OnEnable() { TryInit(); }
-    void Start() { TryInit(); }   // l'UIDocument n'est parfois pas encore prêt pendant OnEnable
+    void Start() {TryInit();}
 
     bool TryInit()
     {
@@ -182,8 +185,15 @@ public class QuestBookUI : MonoBehaviour
 
     void OnStart()
     {
-        if (mode == QuestBookMode.Selection && current != null && QuestProgress.IsUnlocked(current))
-            QuestChosen?.Invoke(current);
+        if (mode != QuestBookMode.Selection || current == null || !QuestProgress.IsUnlocked(current)) return;
+
+        GameSession.StartQuest(current);
+        QuestChosen?.Invoke(current);
+
+        if (!string.IsNullOrEmpty(gameSceneName))
+            UnityEngine.SceneManagement.SceneManager.LoadScene(gameSceneName);
+        else
+            Debug.LogWarning("QuestBookUI : nom de la scène de jeu non renseigné !");
     }
 
     void OnClose() { Hide(); Closed?.Invoke(); }

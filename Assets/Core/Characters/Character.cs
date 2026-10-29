@@ -163,7 +163,11 @@ public class Character : MonoBehaviour
     public void ShowMovementRange(int movement)
     {
         ClearMovementRange();
-
+        if(gridManager.GetTileAtPosition(positionInGrid) == null)
+        {
+            Debug.LogWarning($"Character.ShowMovementRange: No tile found at position {positionInGrid}");
+            return;
+        }
         Tile currentTile =
             gridManager.GetTileAtPosition(positionInGrid);
 
