@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dwarf
       objectReference: {fileID: 0}
+    - target: {fileID: 3451590798554153946, guid: c6118ce09d8dc554f923394a7474819a, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 8181774636241558600, guid: c6118ce09d8dc554f923394a7474819a, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -56,7 +60,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3451590798554153946, guid: c6118ce09d8dc554f923394a7474819a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8582283360735260280, guid: c6118ce09d8dc554f923394a7474819a, type: 3}
@@ -87,7 +92,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
