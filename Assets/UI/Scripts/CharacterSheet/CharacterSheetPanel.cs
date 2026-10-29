@@ -49,6 +49,27 @@ public class CharacterSheetPanel : MonoBehaviour
 
     private HeroCard hero;
 
+    private void OnEnable()
+    {
+        // À l'ouverture du panneau, on va chercher le GameManager présent dans la scène
+        var gameManager = FindFirstObjectByType<GameManager>();
+
+        if (gameManager != null)
+        {
+            // Utilise la méthode existante du GameManager pour obtenir la carte du héros actif
+            HeroCard currentHero = gameManager.GetCurrentHeroCard();
+            if (currentHero != null)
+            {
+                Bind(currentHero);
+            }
+        }
+        else if (GameSession.SelectedHeroes.Count > 0)
+        {
+            // Fallback sur le premier héros sélectionné si le GameManager n'est pas trouvé
+            Bind(GameSession.SelectedHeroes[0]);
+        }
+    }
+
     private void OnDestroy()
     {
         if (hero != null) hero.Changed -= Refresh;
