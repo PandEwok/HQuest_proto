@@ -19,7 +19,6 @@ public class Room : MonoBehaviour
     [SerializeField] private GameObject wallPropPF2;
     [SerializeField] private GameObject wallPropPF3;
     [SerializeField] private GameObject wallPropPF4;
-    [SerializeField] private GameObject wallPropPF5;
     [SerializeField] private GameObject rockFillPF;
     [SerializeField] private GameObject rockEdgePF;
 
@@ -204,9 +203,6 @@ public class Room : MonoBehaviour
                                                 break;
                                             case 4:
                                                 wallPFType = wallPropPF4;
-                                                break;
-                                            case 5:
-                                                wallPFType = wallPropPF5;
                                                 break;
                                             default:
                                                 wallPFType = wallPF;

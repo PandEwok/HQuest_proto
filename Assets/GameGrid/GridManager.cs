@@ -38,6 +38,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private GameObject AlchemistBench2PF;
     [SerializeField] private GameObject TombPF;
     [SerializeField] private GameObject ThronePF;
+    [SerializeField] private GameObject StairsPF;
 
 
     public GameObject CorridorTiles;
@@ -68,6 +69,7 @@ public class GridManager : MonoBehaviour
         NONE,
         ROOM,
         DOOR,
+        SCRTDOOR,
         ROCK,
         SPKTRAP,
         FLLTRAP,
@@ -79,7 +81,8 @@ public class GridManager : MonoBehaviour
         ALCH,
         SORC,
         TOMB,
-        THRONE
+        THRONE,
+        STAIRS
     }
     [HideInInspector] public Selection currentSelection = Selection.ROOM;
 
@@ -426,6 +429,22 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
+        else if (currentSelection == Selection.SCRTDOOR) // SECRET DOOR
+        {
+            // add secret door (left click)
+            if (Input.GetMouseButtonDown(0))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out RaycastHit hit))
+                {
+                    GameObject wall = hit.collider.gameObject;
+                    if (wall.CompareTag("Wall"))
+                    {
+                        ReplaceByDoor(wall);
+                    }
+                }
+            }
+        }
         else // PROPS
         {
             if (Input.GetMouseButtonDown(0))
@@ -465,6 +484,11 @@ public class GridManager : MonoBehaviour
                         if (currentSelection == Selection.THRONE)
                         {
                             Instantiate(ThronePF, tile.transform);
+                        }
+
+                        if (currentSelection == Selection.STAIRS)
+                        {
+                            Instantiate(StairsPF, tile.transform);
                         }
 
                         if (currentSelection == Selection.WR)

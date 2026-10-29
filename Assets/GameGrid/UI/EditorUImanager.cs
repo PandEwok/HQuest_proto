@@ -14,6 +14,7 @@ public class EditorUImanager : MonoBehaviour
 
     private Button roomButton;
     private Button doorButton;
+    private Button SecretDoorButton;
     private Button spikeTrapButton;
     private Button pitTrapButton;
     private Button fallingBlockTrapButton;
@@ -26,6 +27,8 @@ public class EditorUImanager : MonoBehaviour
     private Button SorcererTableButton;
     private Button ThroneButton;
     private Button TombButton;
+    private Button StairsButton;
+
     public List<Placeable> placeableList = new List<Placeable>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -69,6 +72,10 @@ public class EditorUImanager : MonoBehaviour
         doorButton = root.Q<Button>("PlaceDoor");
 
         doorButton.clicked += DoorSelection;
+
+        SecretDoorButton = root.Q<Button>("PlaceSecretDoor");
+
+        SecretDoorButton.clicked += SecretDoorSelection;
 
         rockButton = root.Q<Button>("PlaceRock");
 
@@ -117,6 +124,10 @@ public class EditorUImanager : MonoBehaviour
         ThroneButton = root.Q<Button>("PlaceThrone");
 
         ThroneButton.clicked += ThroneSelection;
+
+        StairsButton = root.Q<Button>("PlaceStairs");
+
+        StairsButton.clicked += StairsSelection;
     }
 
     //MODES
@@ -146,6 +157,10 @@ public class EditorUImanager : MonoBehaviour
     private void DoorSelection()
     {
         gridManager.currentSelection = GridManager.Selection.DOOR;
+    }
+    private void SecretDoorSelection()
+    {
+        gridManager.currentSelection = GridManager.Selection.SCRTDOOR;
     }
     private void RockSelection()
     {
@@ -194,5 +209,9 @@ public class EditorUImanager : MonoBehaviour
     private void ThroneSelection()
     {
         gridManager.currentSelection = GridManager.Selection.THRONE;
+    }
+    private void StairsSelection()
+    {
+        gridManager.currentSelection = GridManager.Selection.STAIRS;
     }
 }
