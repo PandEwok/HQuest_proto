@@ -9,7 +9,7 @@ public class Character : MonoBehaviour
     [HideInInspector] public Vector2 positionInGrid = new Vector2(0,0);
 
     List<Tile> highlightedTiles = new();
-
+    [HideInInspector] public int movementRange = 0;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -45,7 +45,7 @@ public class Character : MonoBehaviour
                     Vector3.MoveTowards(
                         transform.position,
                         targetPos,
-                        4f * Time.deltaTime);
+                        10f * Time.deltaTime);
 
                 yield return null;
             }

@@ -59114,24 +59114,26 @@ MonoBehaviour:
   _cam: {fileID: 330585546}
   _roomPrefab: {fileID: -5077946675272694743, guid: b82dd172a1acabd46b4ad9af32c6af63, type: 3}
   _doorPrefab: {fileID: -837681063964779121, guid: 8a7457cbd967b7142b1be9f56c9e831f, type: 3}
+  _SecretDoorPrefab: {fileID: 0}
   RockPF: {fileID: 0}
   SpikeTrapPF: {fileID: 0}
   PitTrapPF: {fileID: 0}
   FallingBlockTrapPF: {fileID: 0}
-  WeaponRack1PF_H: {fileID: 0}
-  WeaponRack1PF_V: {fileID: 0}
-  WeaponRack2PF_H: {fileID: 0}
-  WeaponRack2PF_V: {fileID: 0}
-  Cupboard1PF_H: {fileID: 0}
-  Cupboard1PF_V: {fileID: 0}
-  Cupboard2PF_H: {fileID: 0}
-  Cupboard2PF_V: {fileID: 0}
-  Table1PF_H: {fileID: 0}
-  Table1PF_V: {fileID: 0}
-  Table2PF_H: {fileID: 0}
-  Table2PF_V: {fileID: 0}
+  WeaponRack1PF: {fileID: 0}
+  WeaponRack2PF: {fileID: 0}
+  Cupboard1PF: {fileID: 0}
+  Cupboard2PF: {fileID: 0}
+  Table1PF: {fileID: 0}
+  Table2PF: {fileID: 0}
   Chest1PF: {fileID: 0}
   Chest2PF: {fileID: 0}
+  SorcererTable1PF: {fileID: 0}
+  SorcererTable2PF: {fileID: 0}
+  AlchemistBench1PF: {fileID: 0}
+  AlchemistBench2PF: {fileID: 0}
+  TombPF: {fileID: 0}
+  ThronePF: {fileID: 0}
+  StairsPF: {fileID: 0}
   CorridorTiles: {fileID: 1811731107}
   currentMode: 0
   currentSelection: 1
@@ -111333,6 +111335,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   gridManager: {fileID: 310863035}
   sheetController: {fileID: 792013645}
+  QuestMaps:
+  - {fileID: 4900000, guid: aaef640ccd50e1f42a1c57b8f324e62b, type: 3}
+  - {fileID: 4900000, guid: 2167df9f64296a44294e37e715678205, type: 3}
   playerNameTxt: {fileID: 1684354303}
   moved: 0
   actionPerformed: 0
@@ -149513,7 +149518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3562954905636720811, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 428.40176
+      value: 428.40182
       objectReference: {fileID: 0}
     - target: {fileID: 3604311546152199060, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
       propertyPath: m_IsActive
