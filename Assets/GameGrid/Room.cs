@@ -78,7 +78,6 @@ public class Room : MonoBehaviour
         List<GameObject> wallsTempList = new List<GameObject>();
         foreach (GameObject obj in walls)
         {
-            Debug.Log("wall c");
             wallsTempList.Add(obj);
         }
         walls.Clear();
@@ -274,7 +273,7 @@ public class Room : MonoBehaviour
                 ClearRocks();
             }
         }
-        Debug.Log(this.name + " number of doors " + doors.Count);
+        //Debug.Log(this.name + " number of doors " + doors.Count);
     }
 
     public void GiveId(int id = 0)

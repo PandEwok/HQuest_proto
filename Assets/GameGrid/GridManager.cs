@@ -659,6 +659,7 @@ public class GridManager : MonoBehaviour
                 else Debug.LogWarning($"Load: no wall between {doorData.tileA} and {doorData.tileB}, door skipped.");
             }
         }
+        foreach (Room room in createdRooms) { room.UpdateShape(); }
 
         return true;
     }
