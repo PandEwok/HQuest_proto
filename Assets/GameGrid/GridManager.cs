@@ -55,7 +55,8 @@ public class GridManager : MonoBehaviour
     int PropType;
 
 
-    [HideInInspector] public enum Mode
+    [HideInInspector]
+    public enum Mode
     {
         GAME,
         ADD,
@@ -292,7 +293,7 @@ public class GridManager : MonoBehaviour
                 GameObject tile = hit.collider.gameObject;
                 if (!tile.CompareTag("Tile"))
                 {
-                    tile.transform.Rotate(0,90,0) ;
+                    tile.transform.Rotate(0, 90, 0);
                 }
             }
         }
@@ -338,7 +339,8 @@ public class GridManager : MonoBehaviour
                             Vector2 tilePos;
                             inverseTiles.TryGetValue(tile, out tilePos);
 
-                            if (tilesInSelection != null) {
+                            if (tilesInSelection != null)
+                            {
                                 foreach (Tile curTile in tilesInSelection)
                                 {
                                     curTile._highlight.SetActive(false);
@@ -587,7 +589,7 @@ public class GridManager : MonoBehaviour
     public int GridWidth => _width;
     public int GridHeight => _height;
 
-    /// <summary>Captures the current map (rooms + doors) into a serializable object.</summary>
+    /// <summary>Captures the current map (rooms, doors, walls, props) into a serializable object.</summary>
     public MapSaveData CaptureMap(string mapName)
     {
         var data = new MapSaveData
@@ -621,25 +623,91 @@ public class GridManager : MonoBehaviour
             data.rooms.Add(roomData);
         }
 
+        // doors + secret doors
         var doneDoors = new HashSet<string>();
-        foreach (Door door in GetComponentsInChildren<Door>())
+        var allDoors = new List<(Component comp, List<Tile> tiles, bool secret)>();
+        foreach (Door d in GetComponentsInChildren<Door>()) allDoors.Add((d, d.parentTiles, false));
+        foreach (SecretDoor d in GetComponentsInChildren<SecretDoor>()) allDoors.Add((d, d.parentTiles, true));
+
+        foreach (var door in allDoors)
         {
-            if (door.parentTiles == null || door.parentTiles.Count < 2) continue;
-            if (!coords.TryGetValue(door.parentTiles[0], out Vector2 a)) continue;
-            if (!coords.TryGetValue(door.parentTiles[1], out Vector2 b)) continue;
+            if (door.tiles == null || door.tiles.Count < 2) continue;
+            if (door.tiles[0] == null || door.tiles[1] == null) continue;
+            if (!coords.TryGetValue(door.tiles[0], out Vector2 a)) continue;
+            if (!coords.TryGetValue(door.tiles[1], out Vector2 b)) continue;
 
             var doorData = new DoorSaveData
             {
                 tileA = new Vector2Int(Mathf.RoundToInt(a.x), Mathf.RoundToInt(a.y)),
-                tileB = new Vector2Int(Mathf.RoundToInt(b.x), Mathf.RoundToInt(b.y))
+                tileB = new Vector2Int(Mathf.RoundToInt(b.x), Mathf.RoundToInt(b.y)),
+                isSecret = door.secret,
+                localEuler = door.comp.transform.localEulerAngles
             };
 
             // avoid duplicates
-            string key = doorData.tileA.x < doorData.tileB.x || (doorData.tileA.x == doorData.tileB.x && doorData.tileA.y <= doorData.tileB.y)
+            string key = (doorData.tileA.x < doorData.tileB.x || (doorData.tileA.x == doorData.tileB.x && doorData.tileA.y <= doorData.tileB.y)
                 ? $"{doorData.tileA}-{doorData.tileB}"
-                : $"{doorData.tileB}-{doorData.tileA}";
+                : $"{doorData.tileB}-{doorData.tileA}") + (door.secret ? "-s" : "");
             if (doneDoors.Add(key)) data.doors.Add(doorData);
         }
+
+        // walls (prefab + rotation): they are normally picked at random by Room.UpdateShape
+        foreach (var kv in coords)
+        {
+            Tile owner = kv.Key;
+            foreach (Transform child in owner.transform)
+            {
+                string id = _roomPrefab.GetWallId(child.gameObject);
+                if (id == null) continue;
+
+                Wall wall = child.GetComponent<Wall>();
+                if (wall == null || wall.parentTiles == null) continue;
+
+                Tile other = wall.parentTiles.Find(x => x != null && x != owner);
+                if (other == null || !coords.TryGetValue(other, out Vector2 o)) continue;
+
+                data.walls.Add(new WallSaveData
+                {
+                    tileA = new Vector2Int(Mathf.RoundToInt(kv.Value.x), Mathf.RoundToInt(kv.Value.y)),
+                    tileB = new Vector2Int(Mathf.RoundToInt(o.x), Mathf.RoundToInt(o.y)),
+                    prefab = id,
+                    localEuler = child.localEulerAngles
+                });
+            }
+        }
+
+        // props (furniture, traps, rocks, stairs...): everything placed on a tile that Room did not generate itself
+        var propPrefabs = BuildPropRegistry();
+        var generated = new HashSet<GameObject>();
+        foreach (Tile t in coords.Keys)
+        {
+            foreach (GameObject w in t.walls) if (w != null) generated.Add(w);
+        }
+        foreach (Room room in GetComponentsInChildren<Room>())
+        {
+            foreach (GameObject o in room.rocks) if (o != null) generated.Add(o);
+            foreach (GameObject o in room.walls) if (o != null) generated.Add(o);
+            foreach (GameObject o in room.doors) if (o != null) generated.Add(o);
+        }
+        foreach (var kv in coords)
+        {
+            foreach (Transform child in kv.Key.transform)
+            {
+                if (generated.Contains(child.gameObject)) continue;
+                string id = Room.StripClone(child.name);
+                if (!propPrefabs.ContainsKey(id)) continue;
+
+                data.props.Add(new PropSaveData
+                {
+                    tile = new Vector2Int(Mathf.RoundToInt(kv.Value.x), Mathf.RoundToInt(kv.Value.y)),
+                    prefab = id,
+                    localPosition = child.localPosition,
+                    localEuler = child.localEulerAngles,
+                    localScale = child.localScale
+                });
+            }
+        }
+
         return data;
     }
 
@@ -692,6 +760,24 @@ public class GridManager : MonoBehaviour
             room.Start();
             createdRooms.Add(room);
         }
+        // v2 saves: impose the saved walls so Room.UpdateShape does not pick them at random
+        if (data.version >= 2)
+        {
+            var forced = new Dictionary<(Tile, Tile), Room.ForcedWall>();
+            foreach (WallSaveData w in data.walls)
+            {
+                if (!TryGetTile(w.tileA, out Tile wa) || !TryGetTile(w.tileB, out Tile wb)) continue;
+                GameObject wallPrefab = _roomPrefab.FindWallPrefab(w.prefab);
+                if (wallPrefab == null)
+                {
+                    Debug.LogWarning($"Load: unknown wall prefab '{w.prefab}', skipped.");
+                    continue;
+                }
+                forced[Room.PairKey(wa, wb)] = new Room.ForcedWall { prefab = wallPrefab, owner = wa, localEuler = w.localEuler };
+            }
+            foreach (Room room in createdRooms) room.forcedWalls = forced;
+        }
+
         foreach (Room room in createdRooms) room.UpdateShape();
 
         // 4. put the doors back
@@ -700,13 +786,61 @@ public class GridManager : MonoBehaviour
             if (TryGetTile(doorData.tileA, out Tile a) && TryGetTile(doorData.tileB, out Tile b))
             {
                 GameObject wall = FindWallBetween(a, b);
-                if (wall != null) ReplaceByDoor(wall);
+                if (wall != null)
+                {
+                    GameObject placed = doorData.isSecret ? ReplaceBySecretDoor(wall) : ReplaceByDoor(wall);
+                    if (data.version >= 2 && placed != null) placed.transform.localEulerAngles = doorData.localEuler;
+                }
                 else Debug.LogWarning($"Load: no wall between {doorData.tileA} and {doorData.tileB}, door skipped.");
             }
         }
         foreach (Room room in createdRooms) { room.UpdateShape(); }
 
+        // walls are now in place: back to the normal (random) behaviour for future edits
+        foreach (Room room in createdRooms) room.forcedWalls = null;
+
+        // 5. props (furniture, traps, rocks, stairs...)
+        if (data.version >= 2) RestoreProps(data.props);
+
         return true;
+    }
+
+    /// <summary>Prefab name -> prefab, for everything the user can place on a tile.</summary>
+    Dictionary<string, GameObject> BuildPropRegistry()
+    {
+        var registry = new Dictionary<string, GameObject>();
+        GameObject[] all =
+        {
+            RockPF, SpikeTrapPF, PitTrapPF, FallingBlockTrapPF,
+            WeaponRack1PF, WeaponRack2PF, Cupboard1PF, Cupboard2PF,
+            Table1PF, Table2PF, Chest1PF, Chest2PF,
+            SorcererTable1PF, SorcererTable2PF, AlchemistBench1PF, AlchemistBench2PF,
+            TombPF, ThronePF, StairsPF
+        };
+        foreach (GameObject pf in all)
+        {
+            if (pf != null && !registry.ContainsKey(pf.name)) registry[pf.name] = pf;
+        }
+        return registry;
+    }
+
+    void RestoreProps(List<PropSaveData> props)
+    {
+        if (props == null) return;
+        var registry = BuildPropRegistry();
+        foreach (PropSaveData p in props)
+        {
+            if (!TryGetTile(p.tile, out Tile tile)) continue;
+            if (!registry.TryGetValue(p.prefab, out GameObject prefab))
+            {
+                Debug.LogWarning($"Load: unknown prop prefab '{p.prefab}', skipped.");
+                continue;
+            }
+            GameObject go = Instantiate(prefab, tile.transform);
+            go.transform.localPosition = p.localPosition;
+            go.transform.localEulerAngles = p.localEuler;
+            go.transform.localScale = p.localScale;
+        }
     }
 
     bool TryGetTile(Vector2Int coords, out Tile tile)
@@ -727,7 +861,7 @@ public class GridManager : MonoBehaviour
     }
 
 
-    public void ReplaceByDoor(GameObject target)
+    public GameObject ReplaceByDoor(GameObject target)
     {
         var door = Instantiate(_doorPrefab, target.transform.position, target.transform.rotation, target.transform.parent);
         Wall wall = target.GetComponent<Wall>();
@@ -766,9 +900,10 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
+        return door.gameObject;
     }
 
-    public void ReplaceBySecretDoor(GameObject target)
+    public GameObject ReplaceBySecretDoor(GameObject target)
     {
         var secretDoor = Instantiate(_SecretDoorPrefab, target.transform.position, target.transform.rotation, target.transform.parent);
         Wall wall = target.GetComponent<Wall>();
@@ -807,6 +942,7 @@ public class GridManager : MonoBehaviour
                 }
             }
         }
+        return secretDoor.gameObject;
     }
 
     public Vector2 GetTileCoords(Tile tile)
