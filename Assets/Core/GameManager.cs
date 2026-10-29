@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
 
         if (endOfTurn)
         {
+            moved = false; actionPerformed = false;
             currentTurn += 1;
             if (currentTurn > heroTurns)
             {

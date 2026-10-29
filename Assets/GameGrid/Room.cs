@@ -21,6 +21,7 @@ public class Room : MonoBehaviour
     [SerializeField] private GameObject wallPropPF4;
     [SerializeField] private GameObject wallPropPF5;
     [SerializeField] private GameObject rockFillPF;
+    [SerializeField] private GameObject rockEdgePF;
 
     [HideInInspector] public List<GameObject> rocks = new List<GameObject>();
 
@@ -130,7 +131,7 @@ public class Room : MonoBehaviour
                 Vector2 tilePos;
                 inverseTiles.TryGetValue(tile, out tilePos);
 
-                Vector2 upTile = tilePos + new Vector2(0,1);
+                Vector2 upTile = tilePos + new Vector2(0, 1);
                 Vector2 downTile = tilePos + new Vector2(0, -1);
                 Vector2 rightTile = tilePos + new Vector2(1, 0);
                 Vector2 leftTile = tilePos + new Vector2(-1, 0);
@@ -151,11 +152,14 @@ public class Room : MonoBehaviour
                             // check if wall already exists in neighbor
                             foreach (Transform child in nTile.transform.GetComponentsInChildren<Transform>())
                             {
-                                if (child.CompareTag("Wall") || child.CompareTag("Door")) {
-                                    if (child.position == tileWorldPos) {
+                                if (child.CompareTag("Wall") || child.CompareTag("Door"))
+                                {
+                                    if (child.position == tileWorldPos)
+                                    {
                                         wallAlreadyPresent = true;
 
-                                        if (child.CompareTag("Door") && !doors.Contains(child.gameObject)) {
+                                        if (child.CompareTag("Door") && !doors.Contains(child.gameObject))
+                                        {
                                             doors.Add(child.gameObject);
                                         }
                                     }
@@ -236,18 +240,38 @@ public class Room : MonoBehaviour
                             }
                         }
                     }
-                    else {
+                    else
+                    {
                         notForeignTiles++;
                     }
                 }
                 if (notForeignTiles >= 4)
                 {
+
                     if (doors.Count < 1)
                     {
                         var spawnedRock = Instantiate(rockFillPF, tile.surface.transform.position, Quaternion.identity, tile.transform);
                         rocks.Add(spawnedRock);
                     }
                 }
+            }
+            if (doors.Count < 1)
+            {
+                foreach (GameObject wall in walls)
+                {
+                    Vector3 rockPos = wall.transform.position;
+                    Transform wallParent = wall.transform.parent;
+                    Tile parentTile = wallParent.GetComponent<Tile>();
+                    var spawnedRock = Instantiate(rockEdgePF, rockPos, Quaternion.identity, wallParent);
+                    spawnedRock.transform.LookAt(parentTile.surface.transform);
+                    rocks.Add(spawnedRock);
+                }
+
+                //ClearWalls();
+            }
+            else
+            {
+                ClearRocks();
             }
         }
         Debug.Log(this.name + " number of doors " + doors.Count);
