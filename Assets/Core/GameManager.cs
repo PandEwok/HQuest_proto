@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] public GridManager gridManager;
+    [SerializeField] private CharacterSheetController sheetController;
 
     int heroTurns = 0;
     int currentTurn = 0;
@@ -26,6 +27,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Character wizard;
 
     List<Character> heroCharacters = new List<Character>();
+
+    [SerializeField] private GameObject CombatUI;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -75,11 +78,16 @@ public class GameManager : MonoBehaviour
         return spawnedCharacter;
     }
 
+    public void TriggerEndTurn()
+    {
+        CombatUI.GetComponent<TurnHandoverPopup>().ToggleHandOverPanel(true);
+        endOfTurn = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        endOfTurn = moved && actionPerformed;
-
+        //Debug.Log(currentTurn);
         if (endOfTurn)
         {
             moved = false; actionPerformed = false;
@@ -87,9 +95,9 @@ public class GameManager : MonoBehaviour
             if (currentTurn > heroTurns)
             {
                 currentTurn = 0;
-                Turn();
-                endOfTurn = false;
             }
+            Turn();
+            endOfTurn = false;
         }
         // playing turn
         else
@@ -113,6 +121,11 @@ public class GameManager : MonoBehaviour
                 playerNameTxt.GetComponent<TMP_Text>().text = hero.title + "'s Turn";
             }
 
+            if (sheetController != null )
+            {
+                sheetController.BindCurrentHero();
+            }
+
         } // else if Zargon's turn
         else
         {
@@ -121,5 +134,27 @@ public class GameManager : MonoBehaviour
                 playerNameTxt.GetComponent<TMP_Text>().text = "Zargon's Turn";
             }
         }
+    }
+
+    // utility methods (get characters and cards)
+    public HeroCard GetCardFromCharacter(Character character)
+    {
+        int index = heroCharacters.IndexOf(character);
+
+        return GameSession.SelectedHeroes[index];
+    }
+    public Character GetCharacterFromCcard(HeroCard card)
+    {
+        int index = GameSession.SelectedHeroes.IndexOf(card);
+
+        return heroCharacters[index];
+    }
+    public Character GetCurrentCharacter()
+    {
+        return heroCharacters[currentTurn];
+    }
+    public HeroCard GetCurrentHeroCard()
+    {
+        return GameSession.SelectedHeroes[currentTurn];
     }
 }

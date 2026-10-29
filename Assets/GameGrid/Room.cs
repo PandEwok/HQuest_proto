@@ -99,7 +99,7 @@ public class Room : MonoBehaviour
         {
             rocksTempList.Add(obj);
         }
-        walls.Clear();
+        rocks.Clear();
         foreach (GameObject rock in rocksTempList)
         {
             Destroy(rock);
@@ -227,6 +227,7 @@ public class Room : MonoBehaviour
 
                                 var spawnedWall = Instantiate(wallPFType, tileWorldPos, Quaternion.identity, tile.transform);
                                 spawnedWall.transform.LookAt(tile.surface.transform);
+
                                 // adding to relationship lists
                                 walls.Add(spawnedWall);
                                 tile.walls.Add(spawnedWall);
@@ -234,6 +235,14 @@ public class Room : MonoBehaviour
                                 spawnedWall.GetComponent<Wall>().parentTiles.Add(tile);
                                 spawnedWall.GetComponent<Wall>().parentTiles.Add(nTile);
                             }
+                            var spawnedRock = Instantiate(rockEdgePF, tileWorldPos, Quaternion.identity, tile.transform);
+                            spawnedRock.transform.LookAt(tile.surface.transform);
+                            // adding rock to relationship lists
+                            rocks.Add(spawnedRock);
+                            tile.walls.Add(spawnedRock);
+                            nTile.walls.Add(spawnedRock);
+                            spawnedRock.GetComponent<Wall>().parentTiles.Add(tile);
+                            spawnedRock.GetComponent<Wall>().parentTiles.Add(nTile);
                         }
                     }
                     else
@@ -253,24 +262,14 @@ public class Room : MonoBehaviour
             }
             if (doors.Count < 1)
             {
-                foreach (GameObject wall in walls)
-                {
-                    Vector3 rockPos = wall.transform.position;
-                    Transform wallParent = wall.transform.parent;
-                    Tile parentTile = wallParent.GetComponent<Tile>();
-                    var spawnedRock = Instantiate(rockEdgePF, rockPos, Quaternion.identity, wallParent);
-                    spawnedRock.transform.LookAt(parentTile.surface.transform);
-                    rocks.Add(spawnedRock);
-                }
-
-                //ClearWalls();
+                ClearWalls();
             }
             else
             {
                 ClearRocks();
             }
         }
-        Debug.Log(this.name + " number of doors " + doors.Count);
+        //Debug.Log(this.name + " number of doors " + doors.Count);
     }
 
     public void GiveId(int id = 0)

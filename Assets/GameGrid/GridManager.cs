@@ -44,6 +44,8 @@ public class GridManager : MonoBehaviour
 
     public GameObject CorridorTiles;
 
+    List<Tile> tilesInSelection;
+
     bool isMarking = false;
     Vector2 markPositionStart;
     Vector2 markPositionEnd;
@@ -335,7 +337,15 @@ public class GridManager : MonoBehaviour
                             var inverseTiles = _tiles.ToDictionary(x => x.Value, x => x.Key);
                             Vector2 tilePos;
                             inverseTiles.TryGetValue(tile, out tilePos);
-                            List<Tile> tilesInSelection = GetTilesFromSelection(markPositionStart, tilePos);
+
+                            if (tilesInSelection != null) {
+                                foreach (Tile curTile in tilesInSelection)
+                                {
+                                    curTile._highlight.SetActive(false);
+                                }
+                            }
+
+                            tilesInSelection = GetTilesFromSelection(markPositionStart, tilePos);
 
                             foreach (Tile curTile in tilesInSelection)
                             {
@@ -694,6 +704,7 @@ public class GridManager : MonoBehaviour
                 else Debug.LogWarning($"Load: no wall between {doorData.tileA} and {doorData.tileB}, door skipped.");
             }
         }
+        foreach (Room room in createdRooms) { room.UpdateShape(); }
 
         return true;
     }

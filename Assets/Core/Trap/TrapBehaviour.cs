@@ -42,6 +42,15 @@ public class TrapBehaviour : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Contact avec " + other.name);
+        Hero hero = other.GetComponentInParent<Hero>();
+        if (hero == null) return;
+
+        OnTriggerSpring(hero);
+    }
+
     public void OnSearched(Character hero)
     {
         if (trapLogic != null && !trapLogic.IsDiscovered)
