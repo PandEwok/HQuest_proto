@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] public GridManager gridManager;
+    [SerializeField] private CharacterSheetController sheetController;
 
     int heroTurns = 0;
     int currentTurn = 0;
@@ -111,6 +112,11 @@ public class GameManager : MonoBehaviour
             if (playerNameTxt.GetComponent<TMP_Text>() != null)
             {
                 playerNameTxt.GetComponent<TMP_Text>().text = hero.title + "'s Turn";
+            }
+
+            if (sheetController != null )
+            {
+                sheetController.BindCurrentHero();
             }
 
         } // else if Zargon's turn

@@ -111332,6 +111332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   gridManager: {fileID: 310863035}
+  sheetController: {fileID: 792013645}
   playerNameTxt: {fileID: 1684354303}
   moved: 0
   actionPerformed: 0
@@ -149210,6 +149211,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 906465642854075872, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
+      propertyPath: m_Name
+      value: CharacterSheetController
+      objectReference: {fileID: 0}
     - target: {fileID: 992807735518588437, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -149288,6 +149293,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1787130236433318063, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1787130236433318063, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1997543412842626086, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
@@ -149408,7 +149417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3562954905636720811, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 428.40186
+      value: 428.40173
       objectReference: {fileID: 0}
     - target: {fileID: 3604311546152199060, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
       propertyPath: m_IsActive
@@ -149922,7 +149931,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7543830518382122968, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6236899619446218370, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
@@ -149931,8 +149941,41 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6236899619446218370, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1373347114}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 906465642854075872, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 792013645}
   m_SourcePrefab: {fileID: 100100000, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
+--- !u!1 &792013643 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 906465642854075872, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
+  m_PrefabInstance: {fileID: 792013642}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &792013644 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1595555196148944725, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
+  m_PrefabInstance: {fileID: 792013642}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd332216daaca4499170ba3ca9e97c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterSheetPanel
+--- !u!114 &792013645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792013643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0048e7cb347f7464b897f78d737d51b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterSheetController
+  sheetPanel: {fileID: 792013644}
+  gameManager: {fileID: 582105902}
 --- !u!1 &792450578
 GameObject:
   m_ObjectHideFlags: 0
