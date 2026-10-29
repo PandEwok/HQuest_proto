@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private PanelManager panelManager;
+
     [SerializeField] public GridManager gridManager;
     [SerializeField] private CharacterSheetController sheetController;
 

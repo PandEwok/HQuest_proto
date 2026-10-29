@@ -111331,6 +111331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4b66678b8b9a34993f93fff22cb106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  panelManager: {fileID: 0}
   gridManager: {fileID: 310863035}
   sheetController: {fileID: 792013645}
   playerNameTxt: {fileID: 1684354303}
@@ -149383,6 +149384,22 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1818338758401395628, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818338758401395628, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 792013651}
+    - target: {fileID: 1818338758401395628, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Toggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818338758401395628, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PanelManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1997543412842626086, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -149449,7 +149466,7 @@ PrefabInstance:
       objectReference: {fileID: 1384927493}
     - target: {fileID: 2881137650829304689, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
       propertyPath: m_RenderMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2881137650829304689, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
       propertyPath: m_PlaneDistance
@@ -149513,7 +149530,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3562954905636720811, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 428.40176
+      value: 428.40152
       objectReference: {fileID: 0}
     - target: {fileID: 3604311546152199060, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
       propertyPath: m_IsActive
@@ -149875,6 +149892,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7270377594702776994, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7270377594702776994, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 792013651}
+    - target: {fileID: 7270377594702776994, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Toggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7270377594702776994, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PanelManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7270377594702776994, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7516371640774633165, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -150038,6 +150075,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1373347114}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2650914444119104846, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 792013651}
     - targetCorrespondingSourceObject: {fileID: 906465642854075872, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 792013645}
@@ -150072,6 +150112,68 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CharacterSheetController
   sheetPanel: {fileID: 792013644}
   gameManager: {fileID: 582105902}
+--- !u!1 &792013646 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2650914444119104846, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
+  m_PrefabInstance: {fileID: 792013642}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &792013647 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2726879768167783056, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
+  m_PrefabInstance: {fileID: 792013642}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &792013648 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7270377594702776994, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
+  m_PrefabInstance: {fileID: 792013642}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!95 &792013649 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4888383676915545990, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
+  m_PrefabInstance: {fileID: 792013642}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &792013650 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1818338758401395628, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
+  m_PrefabInstance: {fileID: 792013642}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &792013651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792013646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c54ab123b12425f409c7d0c53db9b088, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PanelManager
+  panels:
+  - name: CharacterSheet
+    openButton: {fileID: 792013650}
+    animator: {fileID: 792013649}
+    boolName: IsOpen
+    visibleToHeroes: 1
+    visibleToZargon: 1
+  - name: RuleBook
+    openButton: {fileID: 792013648}
+    animator: {fileID: 792013647}
+    boolName: IsOpen
+    visibleToHeroes: 0
+    visibleToZargon: 1
 --- !u!1 &792450578
 GameObject:
   m_ObjectHideFlags: 0
