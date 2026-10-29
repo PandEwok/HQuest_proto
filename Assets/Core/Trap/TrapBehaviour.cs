@@ -26,7 +26,7 @@ public class TrapBehaviour : MonoBehaviour
                 trapLogic = new PitTrap();
                 break;
             case TrapType.SpearTrap:
-                trapLogic = new SpearTrap(diceManager);
+                trapLogic = new SpearTrap(diceManager, gameObject);
                 break;
             case TrapType.FallingBlockTrap:
                 trapLogic = new FallingBlockTrap(diceManager);

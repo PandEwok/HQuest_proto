@@ -59116,9 +59116,9 @@ MonoBehaviour:
   _doorPrefab: {fileID: -837681063964779121, guid: 8a7457cbd967b7142b1be9f56c9e831f, type: 3}
   _SecretDoorPrefab: {fileID: 0}
   RockPF: {fileID: 0}
-  SpikeTrapPF: {fileID: 0}
+  SpikeTrapPF: {fileID: 5345008905422333103, guid: da9aaace707a3ec4c998ed6b52730fb5, type: 3}
   PitTrapPF: {fileID: 5345008905422333103, guid: bb54dfdb2f27a0643aa46ee62edfbccf, type: 3}
-  FallingBlockTrapPF: {fileID: 0}
+  FallingBlockTrapPF: {fileID: 5345008905422333103, guid: 8bdabce58e7560b418b0afb7c21150b2, type: 3}
   WeaponRack1PF: {fileID: 0}
   WeaponRack2PF: {fileID: 0}
   Cupboard1PF: {fileID: 0}
@@ -111336,6 +111336,7 @@ MonoBehaviour:
   gridManager: {fileID: 310863035}
   sheetController: {fileID: 792013645}
   QuestMaps:
+  - {fileID: 4900000, guid: dc95a2fd38325d14397e1f581b207d3f, type: 3}
   - {fileID: 4900000, guid: e074c56ae2532a6438bd81a224c6ac32, type: 3}
   - {fileID: 4900000, guid: aaef640ccd50e1f42a1c57b8f324e62b, type: 3}
   - {fileID: 4900000, guid: 2167df9f64296a44294e37e715678205, type: 3}
@@ -149519,7 +149520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3562954905636720811, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 428.40225
+      value: 428.40155
       objectReference: {fileID: 0}
     - target: {fileID: 3604311546152199060, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
       propertyPath: m_IsActive
