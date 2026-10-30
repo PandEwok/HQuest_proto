@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8214965811747074607}
   - component: {fileID: 8589103662457869357}
+  - component: {fileID: 1460945640556815052}
   m_Layer: 0
   m_Name: Stairs_PF
   m_TagString: Untagged
@@ -54,6 +55,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 2, z: 3}
   m_Center: {x: 1.5, y: 1, z: 0}
+--- !u!114 &1460945640556815052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4330594236850401230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b67106055d6c6294f8796250f49e0b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Stairs
 --- !u!1001 &2699155093336976682
 PrefabInstance:
   m_ObjectHideFlags: 0

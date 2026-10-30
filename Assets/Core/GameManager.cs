@@ -77,6 +77,25 @@ public class GameManager : MonoBehaviour
         Debug.Log(heroTurns + " Heroes will play.");
 
         Vector2 gridSpawnPos = new Vector2(10,0);
+        bool stairFound = false;
+        foreach (var kvp in gridManager._tiles)
+        {
+            Tile tile = kvp.Value;
+            if(tile != null && tile.transform.GetComponentInChildren<Stairs>() != null)
+            {
+                gridSpawnPos = kvp.Key;
+                stairFound = true;
+                break;
+            }
+        }
+        if (!stairFound)
+        {
+            Debug.LogWarning("GameManager : Aucun escalier trouvé dans la scène ! Application de la position de sécurité (10, 0).");
+        }
+        else
+        {
+            Debug.Log($"GameManager : Escalier détecté ! Les héros apparaissent aux coordonnées de grille : {gridSpawnPos}");
+        }
         foreach (HeroCard heroCard in GameSession.SelectedHeroes)
         {
 
