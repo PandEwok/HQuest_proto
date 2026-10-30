@@ -184,7 +184,12 @@ public class GameManager : MonoBehaviour
 
                     Vector3 direction = (cam.transform.position - initialCameraPosition);
                     if (direction.magnitude >= 1) { direction.Normalize(); }
-                    cam.transform.position -=  direction * 200f * Time.deltaTime * returnStrength;
+                    cam.transform.position -=  direction * 2f * returnStrength;
+                }
+
+                foreach (Camera subCam in cam.GetComponentsInChildren<Camera>())
+                {
+                    subCam.orthographicSize = cam.orthographicSize;
                 }
             }
 
