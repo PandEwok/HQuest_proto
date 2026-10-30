@@ -489,6 +489,7 @@ public class GridManager : MonoBehaviour
                         Vector2 gridPos = Vector2.zero;
                         inverseTiles.TryGetValue(tile, out gridPos);
                         enemySpawned.GetComponent<Enemy>().positionInGrid = gridPos;
+                        TagEnemy(enemySpawned, GetEnemyId(selectedEnemy));   // needed for saving
                     }
                 }
             }
@@ -748,6 +749,20 @@ public class GridManager : MonoBehaviour
             }
         }
 
+        // monsters (only the ones placed with the editor: they carry an EnemySpawnMarker)
+        foreach (EnemySpawnMarker marker in FindObjectsByType<EnemySpawnMarker>(FindObjectsSortMode.None))
+        {
+            Enemy enemy = marker.GetComponent<Enemy>();
+            if (enemy == null || string.IsNullOrEmpty(marker.monsterId)) continue;
+
+            data.monsters.Add(new MonsterSaveData
+            {
+                tile = new Vector2Int(Mathf.RoundToInt(enemy.positionInGrid.x), Mathf.RoundToInt(enemy.positionInGrid.y)),
+                monster = marker.monsterId,
+                localEuler = marker.transform.eulerAngles
+            });
+        }
+
         return data;
     }
 
@@ -758,6 +773,10 @@ public class GridManager : MonoBehaviour
 
         // 1. clear everything
         isMarking = false;
+        foreach (EnemySpawnMarker marker in FindObjectsByType<EnemySpawnMarker>(FindObjectsSortMode.None))
+        {
+            if (marker != null) DestroyImmediate(marker.gameObject);
+        }
         foreach (Room room in GetComponentsInChildren<Room>())
         {
             if (room != null) DestroyImmediate(room.gameObject);
@@ -842,6 +861,9 @@ public class GridManager : MonoBehaviour
         // 5. props (furniture, traps, rocks, stairs...)
         if (data.version >= 2) RestoreProps(data.props);
 
+        // 6. monsters
+        if (data.version >= 3) RestoreMonsters(data.monsters);
+
         return true;
     }
 
@@ -855,7 +877,7 @@ public class GridManager : MonoBehaviour
             WeaponRack1PF, WeaponRack2PF, Cupboard1PF, Cupboard2PF,
             Table1PF, Table2PF, Chest1PF, Chest2PF,
             SorcererTable1PF, SorcererTable2PF, AlchemistBench1PF, AlchemistBench2PF,
-            TombPF, ThronePF, StairsPF
+            TombPF, ThronePF, StairsPF, FireplacePF
         };
         foreach (GameObject pf in all)
         {
@@ -880,6 +902,60 @@ public class GridManager : MonoBehaviour
             go.transform.localPosition = p.localPosition;
             go.transform.localEulerAngles = p.localEuler;
             go.transform.localScale = p.localScale;
+        }
+    }
+
+    /// <summary>Monster id -> prefab. The ids are used in the save files, do not rename them.</summary>
+    Dictionary<string, Enemy> BuildEnemyRegistry()
+    {
+        var registry = new Dictionary<string, Enemy>();
+        void Add(string id, Enemy pf) { if (pf != null) registry[id] = pf; }
+        Add("Goblin", goblinPF);
+        Add("Skeleton", skeletonPF);
+        Add("Zombi", zombiPF);
+        Add("Orc", orcPF);
+        Add("Abomination", abominationPF);
+        Add("Mummy", mummyPF);
+        Add("DreadWarrior", dreadWarriorPF);
+        Add("Gargoyle", gargoylePF);
+        return registry;
+    }
+
+    /// <summary>Finds the id of a monster prefab (all the monster prefabs are named "Enemy", so the name cannot be used).</summary>
+    string GetEnemyId(Enemy prefab)
+    {
+        if (prefab == null) return null;
+        foreach (var kv in BuildEnemyRegistry())
+        {
+            if (kv.Value == prefab) return kv.Key;
+        }
+        Debug.LogWarning("Save: this monster is not one of the prefabs assigned in the GridManager, it will not be saved.");
+        return null;
+    }
+
+    static void TagEnemy(GameObject enemy, string id)
+    {
+        if (enemy == null || string.IsNullOrEmpty(id)) return;
+        var marker = enemy.GetComponent<EnemySpawnMarker>();
+        if (marker == null) marker = enemy.AddComponent<EnemySpawnMarker>();
+        marker.monsterId = id;
+    }
+
+    void RestoreMonsters(List<MonsterSaveData> monsters)
+    {
+        if (monsters == null) return;
+        var registry = BuildEnemyRegistry();
+        foreach (MonsterSaveData m in monsters)
+        {
+            if (!TryGetTile(m.tile, out Tile tile)) continue;
+            if (!registry.TryGetValue(m.monster, out Enemy prefab))
+            {
+                Debug.LogWarning($"Load: unknown monster '{m.monster}', skipped.");
+                continue;
+            }
+            Enemy enemy = Instantiate(prefab, tile.surface.transform.position, Quaternion.Euler(m.localEuler));
+            enemy.positionInGrid = new Vector2(m.tile.x, m.tile.y);
+            TagEnemy(enemy.gameObject, m.monster);
         }
     }
 

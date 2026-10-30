@@ -8,7 +8,8 @@ public class MapSaveData
 {
     // 1 = rooms + doors only (old saves, walls/props regenerated randomly)
     // 2 = + walls, props (furniture, traps...), secret doors, door rotation
-    public int version = 2;
+    // 3 = + monsters
+    public int version = 3;
     public string name;
     public long savedAtUtcTicks;
     public int width;
@@ -17,6 +18,7 @@ public class MapSaveData
     public List<DoorSaveData> doors = new List<DoorSaveData>();
     public List<WallSaveData> walls = new List<WallSaveData>();
     public List<PropSaveData> props = new List<PropSaveData>();
+    public List<MonsterSaveData> monsters = new List<MonsterSaveData>();   // v3
 
     public DateTime SavedAtLocal => new DateTime(savedAtUtcTicks, DateTimeKind.Utc).ToLocalTime();
 }
@@ -57,4 +59,13 @@ public class PropSaveData
     public Vector3 localPosition;
     public Vector3 localEuler;
     public Vector3 localScale = Vector3.one;
+}
+
+/// <summary>A monster placed on a tile.</summary>
+[Serializable]
+public class MonsterSaveData
+{
+    public Vector2Int tile;
+    public string monster;         // monster id (e.g. "Goblin", "DreadWarrior"), see GridManager.BuildEnemyRegistry
+    public Vector3 localEuler;     // world rotation of the monster
 }
