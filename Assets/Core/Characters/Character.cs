@@ -48,6 +48,7 @@ public class Character : MonoBehaviour
 
             while (Vector3.Distance(transform.position, targetPos) > 0.05f)
             {
+                transform.LookAt(targetPos);
                 transform.position =
                     Vector3.MoveTowards(
                         transform.position,

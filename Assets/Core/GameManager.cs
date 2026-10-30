@@ -10,6 +10,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GridManager gridManager;
     [SerializeField] private CharacterSheetController sheetController;
 
+    // camera zoom
+    public float zoomSpeed = 10;
+    public float minZoom = 5;
+    public float maxZoom = 17;
+    private Vector3 initialCameraPosition;
+
     //[SerializeField] List<TextAsset> QuestMaps;
 
     int heroTurns = 0;
@@ -59,6 +65,10 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("GameManager : Aucune quête active trouvée dans GameSession ou aucun fichier de map assigné sur le QuestData !");
         }
+
+
+        initialCameraPosition = Camera.main.transform.position;
+
 
         heroTurns = GameSession.SelectedHeroes.Count;
         Debug.Log(heroTurns + " Heroes will play.");
@@ -140,6 +150,48 @@ public class GameManager : MonoBehaviour
         // playing turn
         else
         {
+
+            // zoom
+            float scroll = Input.GetAxis("Mouse ScrollWheel");
+
+            if (Mathf.Abs(scroll) > 0.001f && gridManager._cam.orthographic)
+            {
+                Camera cam = gridManager._cam;
+
+                // ZOOM AVANT
+                if (scroll > 0)
+                {
+                    Vector3 mouseWorldBefore = cam.ScreenToWorldPoint(Input.mousePosition);
+                    mouseWorldBefore.y = 0;
+
+                    cam.orthographicSize -= scroll * zoomSpeed;
+                    cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minZoom, maxZoom);
+
+                    Vector3 mouseWorldAfter = cam.ScreenToWorldPoint(Input.mousePosition);
+                    mouseWorldAfter.y = 0;
+
+                    cam.transform.position += mouseWorldBefore - mouseWorldAfter;
+                }
+                // ZOOM ARRIERE
+                else
+                {
+                    cam.orthographicSize -= scroll * zoomSpeed;
+                    cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minZoom, maxZoom);
+
+                    // Plus on dézoome, plus on se rapproche
+                    // de la position initiale
+                    float returnStrength = 8f/ cam.orthographicSize;
+
+                    Vector3 direction = (cam.transform.position - initialCameraPosition);
+                    if (direction.magnitude >= 1) { direction.Normalize(); }
+                    cam.transform.position -=  direction * 200f * Time.deltaTime * returnStrength;
+                }
+            }
+
+            // zoom
+
+
+
             if (currentTurn < heroTurns) // if an hero is playing
             {
                 if (heroCharacters.Count > currentTurn)

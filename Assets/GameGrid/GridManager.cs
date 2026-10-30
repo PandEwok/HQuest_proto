@@ -10,7 +10,7 @@ public class GridManager : MonoBehaviour
 
     [SerializeField] private Tile _tilePrefab;
 
-    [SerializeField] private Transform _cam;
+    [SerializeField] public Camera _cam;
 
     [HideInInspector] public Dictionary<Vector2, Tile> _tiles;
 
