@@ -1,0 +1,27 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="HelpScreen.uss" />
+    <ui:VisualElement name="help-root" class="help-theme help-root" picking-mode="Ignore">
+        <ui:VisualElement name="help-overlay" class="help-overlay help-overlay--hidden">
+            <ui:VisualElement name="help-panel" class="help-panel">
+
+                <ui:VisualElement class="help-top-bar">
+                    <ui:Button name="help-lang-button" text="EN" class="help-lang-button" />
+                    <ui:Button name="help-close-button" text="X" class="help-close-button" />
+                </ui:VisualElement>
+
+                <ui:Label name="help-title" text="Aide" class="help-title" />
+
+                <ui:ScrollView name="help-scroll" class="help-scroll"
+                               horizontal-scroller-visibility="Hidden"
+                               vertical-scroller-visibility="Auto">
+                    <ui:Label name="help-intro" class="help-intro" />
+                    <ui:Label name="help-list-title" class="help-list-title" />
+                    <ui:VisualElement name="help-list" />
+                </ui:ScrollView>
+
+                <ui:Button name="help-ok-button" text="FERMER" class="help-ok-button" />
+
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

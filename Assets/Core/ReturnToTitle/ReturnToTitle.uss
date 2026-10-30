@@ -1,0 +1,93 @@
+/* Même identité visuelle que le bouton SAVE / LOAD : fond sombre, texte et bordure or. */
+
+.rtt-root {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+}
+
+.rtt-button {
+    height: 44px;
+    margin: 0;
+    padding: 0 18px;
+    font-size: 18px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    letter-spacing: 1px;
+    color: rgb(224, 184, 64);
+    background-color: rgb(40, 32, 48);
+    border-width: 2px;
+    border-color: rgb(120, 96, 40);
+    border-radius: 8px;
+    transition-property: background-color, scale;
+    transition-duration: 0.15s;
+}
+
+.rtt-button:hover { background-color: rgb(62, 50, 74); scale: 1.03 1.03; }
+.rtt-button:active { scale: 0.98 0.98; }
+
+/* Bouton en haut à gauche */
+.rtt-home {
+    position: absolute;
+    left: 16px;
+    top: 16px;
+}
+
+/* --- Popup --- */
+
+.rtt-modal {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    display: none;                         /* affiché par le script */
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);  /* bloque les clics sur l'éditeur derrière */
+}
+
+.rtt-panel {
+    width: 560px;
+    max-width: 90%;
+    padding: 32px 40px;
+    align-items: center;
+    background-color: rgb(32, 28, 24);
+    border-width: 4px;
+    border-color: rgb(224, 184, 64);
+    border-radius: 16px;
+}
+
+.rtt-title {
+    margin-bottom: 12px;
+    font-size: 28px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    color: rgb(244, 220, 140);
+    white-space: normal;
+}
+
+.rtt-message {
+    margin-bottom: 28px;
+    font-size: 20px;
+    -unity-text-align: middle-center;
+    color: white;
+    white-space: normal;
+}
+
+.rtt-actions {
+    flex-direction: row;
+    justify-content: center;
+}
+
+.rtt-cancel,
+.rtt-confirm {
+    height: 50px;
+    min-width: 160px;
+    margin: 0 8px;
+    font-size: 20px;
+}
+
+.rtt-confirm {
+    color: white;
+    background-color: rgb(150, 48, 48);
+    border-color: rgb(224, 184, 64);
+}
+
+.rtt-confirm:hover { background-color: rgb(180, 64, 64); }

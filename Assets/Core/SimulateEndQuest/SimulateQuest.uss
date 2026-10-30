@@ -1,0 +1,74 @@
+/* Style autonome, même identité visuelle que le reste du jeu (fond sombre, or, vert). */
+
+.simulate-root {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+}
+
+/* Colonne de boutons, remontée pour ne pas chevaucher le bouton orange "End Turn" */
+.simulate-buttons {
+    position: absolute;
+    right: 24px;
+    bottom: 120px;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.simulate-button {
+    height: 44px;
+    margin: 0 0 8px 0;
+    padding: 0 18px;
+    font-size: 18px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    letter-spacing: 1px;
+    color: white;
+    background-color: rgb(48, 130, 60);
+    border-width: 3px;
+    border-color: rgb(224, 184, 64);
+    border-radius: 12px;
+    transition-property: background-color, scale, opacity;
+    transition-duration: 0.15s;
+}
+
+.simulate-button:hover { background-color: rgb(64, 160, 76); scale: 1.03 1.03; }
+.simulate-button:active { background-color: rgb(48, 130, 60); scale: 0.98 0.98; }
+.simulate-button:disabled { opacity: 0.35; }
+
+/* --- Popup --- */
+
+.simulate-modal {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    display: none;                       /* affiché par le script */
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7); /* assombrit le jeu et bloque les clics derrière */
+}
+
+.simulate-panel {
+    width: 560px;
+    max-width: 90%;
+    padding: 36px 40px;
+    align-items: center;
+    background-color: rgb(32, 28, 24);
+    border-width: 4px;
+    border-color: rgb(224, 184, 64);
+    border-radius: 16px;
+}
+
+.simulate-message {
+    margin-bottom: 28px;
+    font-size: 28px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    color: rgb(244, 220, 140);
+    white-space: normal;
+}
+
+.simulate-confirm {
+    height: 52px;
+    min-width: 200px;
+    margin: 0;
+    font-size: 22px;
+}

@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="HelpScreen.uss" />
+    <ui:VisualElement name="help-button-root" class="help-theme help-button-root" picking-mode="Ignore">
+        <ui:Button name="help-button" text="?" class="help-button" />
+    </ui:VisualElement>
+</ui:UXML>

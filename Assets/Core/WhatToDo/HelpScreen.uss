@@ -1,0 +1,177 @@
+/* Style autonome (palette reprise de l'identité visuelle du jeu).
+   Partagé par HelpButton.uxml et HelpScreen.uxml. */
+
+.help-theme {
+    --bg: rgb(20, 17, 26);
+    --panel: rgb(38, 32, 46);
+    --panel-hover: rgb(54, 46, 66);
+    --gold: rgb(224, 184, 64);
+    --gold-dim: rgb(110, 92, 52);
+    --text: rgb(240, 232, 215);
+    --text-muted: rgb(160, 150, 140);
+    --ok: rgb(48, 130, 60);
+    --ok-hover: rgb(64, 160, 76);
+}
+
+.help-root,
+.help-button-root {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+}
+
+/* ---------- Bouton "?" ---------- */
+.help-button {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    width: 56px;
+    height: 56px;
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    color: rgb(224, 184, 64);
+    background-color: rgb(38, 32, 46);
+    border-width: 3px;
+    border-color: rgb(110, 92, 52);
+    border-radius: 28px;
+    transition-property: background-color, border-color, scale;
+    transition-duration: 0.15s;
+}
+
+.help-button:hover { background-color: rgb(54, 46, 66); border-color: rgb(224, 184, 64); scale: 1.08 1.08; }
+.help-button:active { scale: 0.95 0.95; }
+
+/* ---------- Fond assombri ---------- */
+.help-overlay {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background-color: rgba(10, 8, 14, 0.85);
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.help-overlay--hidden { display: none; }
+
+/* ---------- Panneau ---------- */
+.help-panel {
+    width: 100%;
+    max-width: 1000px;
+    max-height: 100%;
+    flex-shrink: 1;
+    padding: 28px 40px 32px 40px;
+    background-color: var(--panel);
+    border-width: 3px;
+    border-color: var(--gold);
+    border-radius: 14px;
+}
+
+.help-top-bar {
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.help-lang-button,
+.help-close-button {
+    height: 48px;
+    margin: 0 0 0 12px;
+    padding: 0 18px;
+    font-size: 22px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    letter-spacing: 2px;
+    color: var(--gold);
+    background-color: var(--bg);
+    border-width: 2px;
+    border-color: var(--gold-dim);
+    border-radius: 10px;
+    transition-property: background-color, border-color, scale;
+    transition-duration: 0.15s;
+}
+
+.help-lang-button { min-width: 80px; }
+.help-close-button { width: 48px; padding: 0; }
+
+.help-lang-button:hover,
+.help-close-button:hover { background-color: var(--panel-hover); border-color: var(--gold); scale: 1.05 1.05; }
+
+.help-lang-button:active,
+.help-close-button:active { scale: 0.96 0.96; }
+
+/* ---------- Contenu ---------- */
+.help-title {
+    font-size: 48px;
+    color: var(--gold);
+    -unity-font-style: bold;
+    letter-spacing: 4px;
+    -unity-text-align: middle-center;
+    margin-bottom: 14px;
+}
+
+.help-scroll {
+    flex-shrink: 1;
+    flex-grow: 0;
+    margin-bottom: 20px;
+}
+
+.help-intro {
+    font-size: 22px;
+    color: var(--text);
+    white-space: normal;
+    margin-bottom: 18px;
+}
+
+.help-list-title {
+    font-size: 22px;
+    color: var(--gold);
+    -unity-font-style: bold;
+    margin-bottom: 10px;
+}
+
+.help-item {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 8px 2px;
+    border-bottom-width: 1px;
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.help-item__bullet {
+    width: 10px;
+    height: 10px;
+    flex-shrink: 0;
+    margin: 10px 14px 0 4px;
+    background-color: var(--gold);
+    border-radius: 5px;
+}
+
+.help-item__text {
+    flex-grow: 1;
+    flex-shrink: 1;
+    font-size: 20px;
+    color: var(--text);
+    white-space: normal;
+}
+
+/* ---------- Bouton fermer ---------- */
+.help-ok-button {
+    align-self: center;
+    width: 280px;
+    height: 64px;
+    margin: 0;
+    font-size: 26px;
+    -unity-font-style: bold;
+    letter-spacing: 3px;
+    color: white;
+    background-color: var(--ok);
+    border-width: 3px;
+    border-color: var(--gold);
+    border-radius: 12px;
+    transition-property: background-color, scale;
+    transition-duration: 0.15s;
+}
+
+.help-ok-button:hover { background-color: var(--ok-hover); scale: 1.03 1.03; }
+.help-ok-button:active { background-color: var(--ok); scale: 0.98 0.98; }

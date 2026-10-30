@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="ReturnToTitle.uss" />
+    <ui:VisualElement name="rtt-root" class="rtt-root" picking-mode="Ignore">
+
+        <ui:Button name="rtt-button" text="TITLE SCREEN" class="rtt-button rtt-home" />
+
+        <!-- Popup de confirmation -->
+        <ui:VisualElement name="rtt-modal" class="rtt-modal">
+            <ui:VisualElement class="rtt-panel">
+                <ui:Label class="rtt-title" text="Return to the title screen?" />
+                <ui:Label class="rtt-message" text="Any unsaved data will be lost and cannot be recovered." />
+                <ui:VisualElement class="rtt-actions">
+                    <ui:Button name="rtt-cancel" text="Cancel" class="rtt-button rtt-cancel" />
+                    <ui:Button name="rtt-confirm" text="Leave without saving" class="rtt-button rtt-confirm" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+</ui:UXML>

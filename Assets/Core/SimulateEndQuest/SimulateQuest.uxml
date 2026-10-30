@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="SimulateQuest.uss" />
+    <ui:VisualElement name="simulate-root" class="simulate-root" picking-mode="Ignore">
+
+        <!-- Boutons de test, empilés au-dessus du bouton "End Turn" -->
+        <ui:VisualElement name="simulate-buttons" class="simulate-buttons" picking-mode="Ignore">
+            <ui:Button name="simulate-game-button" text="Simulate end of the game" class="simulate-button" />
+            <ui:Button name="simulate-quest-button" text="Simulate end of the quest" class="simulate-button" />
+        </ui:VisualElement>
+
+        <!-- Popup de félicitations (réutilisée pour la quête et pour la fin du jeu) -->
+        <ui:VisualElement name="simulate-modal" class="simulate-modal">
+            <ui:VisualElement class="simulate-panel">
+                <ui:Label name="simulate-modal-message" class="simulate-message" text="" />
+                <ui:Button name="simulate-modal-confirm" class="simulate-button simulate-confirm" text="Validate" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+</ui:UXML>
