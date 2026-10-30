@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 317ba2b0aa0f67a4da435115b77a4ccd, type: 3}
   m_Name: Quest12
   m_EditorClassIdentifier: Assembly-CSharp::QuestData
+  mapFile: {fileID: 4900000, guid: e23cc1bbbf678ea44b2657a046f94825, type: 3}
   id: base.quest.12
   number: 12
   title: "Barak Tor\u2014Barrow of the Witch Lord"

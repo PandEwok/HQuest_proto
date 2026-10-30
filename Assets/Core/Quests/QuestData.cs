@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+
 [Serializable]
 public class QuestObjective
 {
@@ -207,6 +208,9 @@ public class MapPlacement
 [CreateAssetMenu(menuName = "Quests/Quest")]
 public class QuestData : ScriptableObject
 {
+    [Header("Map")]
+    public TextAsset mapFile;
+
     [Header("Identity")]
     public string id;                // ex: "base.quest.01"
     public int number;

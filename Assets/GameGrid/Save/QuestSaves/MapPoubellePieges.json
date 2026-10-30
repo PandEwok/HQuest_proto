@@ -1,0 +1,78 @@
+{
+    "version": 2,
+    "name": "Map poubelle de test",
+    "savedAtUtcTicks": 639288896849741370,
+    "width": 26,
+    "height": 19,
+    "rooms": [],
+    "doors": [],
+    "walls": [],
+    "props": [
+        {
+            "tile": {
+                "x": 10,
+                "y": 9
+            },
+            "prefab": "SpikeTrap_PF",
+            "localPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "localScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            }
+        },
+        {
+            "tile": {
+                "x": 13,
+                "y": 9
+            },
+            "prefab": "PitTrap_PF",
+            "localPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "localScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            }
+        },
+        {
+            "tile": {
+                "x": 18,
+                "y": 9
+            },
+            "prefab": "FallingBlockTrap_PF",
+            "localPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "localScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            }
+        }
+    ]
+}

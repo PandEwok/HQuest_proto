@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 317ba2b0aa0f67a4da435115b77a4ccd, type: 3}
   m_Name: Quest04
   m_EditorClassIdentifier: Assembly-CSharp::QuestData
+  mapFile: {fileID: 4900000, guid: 52e04bf36784def4c928bb8f00daa05b, type: 3}
   id: base.quest.04
   number: 4
   title: Prince Magnus' Gold
