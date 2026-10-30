@@ -113,8 +113,8 @@ public class GameManager : MonoBehaviour
         Tile spawnTile;
         gridManager._tiles.TryGetValue(gridPosition, out spawnTile);
         Vector3 spawnWorldPos = spawnTile.surface.transform.position;
-
         Character spawnedCharacter = Instantiate(character, spawnWorldPos, Quaternion.identity, transform);
+        spawnedCharacter.gameObject.AddComponent<HeroHighlight>();
         return spawnedCharacter;
     }
 
@@ -255,6 +255,7 @@ public class GameManager : MonoBehaviour
 
     void Turn()
     {
+        UpdateHeroHighlights();
         // if hero's turn
         if (currentTurn < heroTurns)
         {
@@ -336,5 +337,14 @@ public class GameManager : MonoBehaviour
         bonusMoveCallback = null;
         callback?.Invoke();
         if (endTurnFor != null) TriggerEndTurnFor(endTurnFor);
+    }
+
+    void UpdateHeroHighlights()
+    {
+        for (int i = 0; i < heroCharacters.Count; i++)
+        {
+            var h = heroCharacters[i].GetComponent<HeroHighlight>();
+            if (h != null) h.SetHighlighted(i == currentTurn);
+        }
     }
 }
