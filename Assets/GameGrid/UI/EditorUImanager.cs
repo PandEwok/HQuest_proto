@@ -46,6 +46,7 @@ public class EditorUImanager : MonoBehaviour
     private Button ThroneButton;
     private Button TombButton;
     private Button StairsButton;
+    private Button FireplaceButton;
 
     public List<Placeable> placeableList = new List<Placeable>();
 
@@ -147,6 +148,10 @@ public class EditorUImanager : MonoBehaviour
 
         StairsButton.clicked += StairsSelection;
 
+        FireplaceButton = root.Q<Button>("PlaceFireplace");
+
+        FireplaceButton.clicked += FireplaceSelection;
+
 
 
         // enemies
@@ -161,6 +166,8 @@ public class EditorUImanager : MonoBehaviour
 
         orcButton = root.Q<Button>("PlaceOrc");
         orcButton.clicked += OrcSelection;
+
+        
     }
 
     //MODES
@@ -246,6 +253,10 @@ public class EditorUImanager : MonoBehaviour
     private void StairsSelection()
     {
         gridManager.currentSelection = GridManager.Selection.STAIRS;
+    }
+    private void FireplaceSelection()
+    {
+        gridManager.currentSelection = GridManager.Selection.FIRE;
     }
 
 

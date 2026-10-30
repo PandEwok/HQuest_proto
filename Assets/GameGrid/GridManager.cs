@@ -53,7 +53,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private GameObject TombPF;
     [SerializeField] private GameObject ThronePF;
     [SerializeField] private GameObject StairsPF;
-
+    [SerializeField] private GameObject FireplacePF;
 
     public GameObject CorridorTiles;
 
@@ -100,6 +100,7 @@ public class GridManager : MonoBehaviour
         TOMB,
         THRONE,
         STAIRS,
+        FIRE,
         ENEMY
     }
 
@@ -540,6 +541,11 @@ public class GridManager : MonoBehaviour
                         if (currentSelection == Selection.STAIRS)
                         {
                             Instantiate(StairsPF, tile.transform);
+                        }
+
+                        if (currentSelection == Selection.FIRE)
+                        {
+                            Instantiate(FireplacePF, tile.transform);
                         }
 
                         if (currentSelection == Selection.WR)
