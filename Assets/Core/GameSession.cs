@@ -4,6 +4,8 @@ using UnityEngine;
 public static class GameSession
 {
     public const int MaxHeroes = 4;
+    public const string QuestIntroScene = "QuestIntro";
+
 
     // Dans l'ordre de sélection (le 1er cliqué = joueur 1, etc.)
     public static readonly List<HeroCard> SelectedHeroes = new();
@@ -32,6 +34,16 @@ public static class GameSession
         Quest = null;
     }
 
+    public static void ShowQuestIntro()
+    {
+        if (CurrentQuest == null)
+        {
+            Debug.LogWarning("GameSession : aucune quête en cours, impossible d'afficher l'introduction.");
+            return;
+        }
+        UnityEngine.SceneManagement.SceneManager.LoadScene(QuestIntroScene);
+
+    }
     public static void LogSelection()
     {
         if (SelectedHeroes.Count == 0)

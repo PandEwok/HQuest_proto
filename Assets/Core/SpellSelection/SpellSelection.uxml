@@ -1,0 +1,25 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="SpellSelection.uss" />
+    <ui:VisualElement name="root" class="screen">
+
+        <ui:VisualElement class="header">
+            <ui:Label name="title" text="Choose your spells" class="title" />
+            <ui:Label name="banner" text="" class="banner" />
+            <ui:Label name="info" text="" class="subtitle" />
+        </ui:VisualElement>
+
+        <ui:ScrollView name="group-list" mode="Horizontal"
+                       horizontal-scroller-visibility="Auto"
+                       vertical-scroller-visibility="Hidden"
+                       class="group-list" />
+
+        <ui:VisualElement class="footer">
+            <ui:VisualElement name="summary" class="summary" />
+            <ui:VisualElement class="footer-buttons">
+                <ui:Button name="back-button" text="BACK" class="back-button" />
+                <ui:Button name="confirm-button" text="CONFIRM" class="validate-button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+</ui:UXML>

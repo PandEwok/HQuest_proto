@@ -1,0 +1,27 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="QuestIntro.uss" />
+    <ui:VisualElement name="root" class="screen">
+
+        <!-- Tout ce qui est dans "content" est animé (arrivée / sortie) -->
+        <ui:VisualElement name="content" class="content">
+
+            <ui:VisualElement class="header">
+                <ui:Label name="quest-number" text="" class="quest-number" />
+                <ui:Label name="quest-title" text="" class="quest-title" />
+            </ui:VisualElement>
+
+            <ui:VisualElement name="parchment" class="parchment">
+                <ui:Label text="Zargon" class="speaker" />
+                <ui:ScrollView name="text-scroll" class="text-scroll" vertical-scroller-visibility="Auto">
+                    <ui:Label name="parchment-text" text="" class="parchment-text" />
+                </ui:ScrollView>
+            </ui:VisualElement>
+
+            <ui:VisualElement class="footer">
+                <ui:Button name="confirm-button" text="CONFIRM" class="validate-button" />
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,264 @@
+:root {
+    --bg: rgb(20, 17, 26);
+    --panel: rgb(38, 32, 46);
+    --panel-hover: rgb(54, 46, 66);
+    --gold: rgb(224, 184, 64);
+    --gold-dim: rgb(110, 92, 52);
+    --text: rgb(240, 232, 215);
+    --text-muted: rgb(160, 150, 140);
+    --danger: rgb(220, 80, 70);
+    --ok: rgb(48, 130, 60);
+    --ok-hover: rgb(64, 160, 76);
+
+    /* Elements */
+    --fire: rgb(214, 90, 60);
+    --water: rgb(70, 140, 220);
+    --air: rgb(170, 200, 225);
+    --earth: rgb(150, 115, 70);
+
+    /* Lanceurs de sorts */
+    --wizard: rgb(120, 150, 235);
+    --elf: rgb(100, 205, 125);
+}
+
+.screen {
+    flex-grow: 1;
+    background-color: var(--bg);
+    padding: 32px 64px 32px 64px;
+}
+
+/* ---------- En-tete ---------- */
+.header { align-items: center; margin-bottom: 8px; }
+
+.title {
+    font-size: 58px;
+    color: var(--gold);
+    -unity-font-style: bold;
+    letter-spacing: 4px;
+    -unity-text-align: middle-center;
+}
+
+.banner {
+    margin-top: 10px;
+    padding: 6px 28px;
+    font-size: 26px;
+    -unity-font-style: bold;
+    letter-spacing: 3px;
+    color: var(--gold);
+    background-color: var(--panel);
+    border-width: 3px;
+    border-color: var(--gold-dim);
+    border-radius: 12px;
+}
+
+.banner.banner--wizard { color: var(--wizard); border-color: var(--wizard); }
+.banner.banner--elf    { color: var(--elf);    border-color: var(--elf); }
+.banner.banner--done   { color: var(--gold);   border-color: var(--gold); }
+
+.subtitle {
+    max-width: 1100px;
+    margin-top: 10px;
+    font-size: 21px;
+    color: var(--text-muted);
+    white-space: normal;
+    -unity-text-align: middle-center;
+}
+
+/* ---------- Liste des groupes ---------- */
+.group-list { flex-grow: 1; }
+
+#group-list .unity-scroll-view__content-container {
+    flex-grow: 1;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 36px 24px 24px 24px;
+}
+
+#group-list .unity-base-slider__dragger {
+    background-color: var(--gold-dim);
+    border-radius: 6px;
+}
+
+#group-list .unity-base-slider__tracker {
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+}
+
+/* ---------- Carte de groupe ---------- */
+.group-card {
+    width: 320px;
+    min-height: 560px;
+    flex-shrink: 0;
+    margin: 0 14px;
+    padding: 14px;
+    background-color: var(--panel);
+    border-width: 3px;
+    border-color: var(--gold-dim);
+    border-radius: 14px;
+    transition-property: translate, scale, background-color, border-color, opacity;
+    transition-duration: 0.18s;
+    transition-timing-function: ease-out;
+}
+
+.group-card--pickable:hover {
+    background-color: var(--panel-hover);
+    border-color: var(--gold);
+    translate: 0 -6px;
+}
+
+.group-card.group-card--selected {
+    background-color: var(--panel-hover);
+    border-color: var(--gold);
+    border-width: 4px;
+    translate: 0 -10px;
+    scale: 1.04 1.04;
+}
+
+.group-card.group-card--owner-wizard { border-color: var(--wizard); border-width: 4px; }
+.group-card.group-card--owner-elf    { border-color: var(--elf);    border-width: 4px; }
+
+.group-card.group-card--dim { opacity: 0.4; }
+
+.group-card__bar {
+    height: 6px;
+    margin-bottom: 12px;
+    border-radius: 3px;
+    background-color: var(--gold-dim);
+}
+
+.group-card--fire  .group-card__bar { background-color: var(--fire); }
+.group-card--water .group-card__bar { background-color: var(--water); }
+.group-card--air   .group-card__bar { background-color: var(--air); }
+.group-card--earth .group-card__bar { background-color: var(--earth); }
+
+.group-card__name {
+    font-size: 32px;
+    color: var(--gold);
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.group-card__tagline {
+    margin-bottom: 14px;
+    font-size: 15px;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    -unity-text-align: middle-center;
+    white-space: normal;
+}
+
+.spell {
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom-width: 1px;
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+.spell__name {
+    font-size: 21px;
+    color: var(--text);
+    -unity-font-style: bold;
+}
+
+.spell__desc {
+    margin-top: 3px;
+    font-size: 15px;
+    color: var(--text-muted);
+    white-space: normal;
+}
+
+/* Pastille de proprietaire */
+.group-card__badge {
+    display: none;
+    position: absolute;
+    top: -18px;
+    right: 14px;
+    padding: 4px 14px;
+    font-size: 16px;
+    -unity-font-style: bold;
+    color: rgb(30, 24, 10);
+    background-color: var(--gold);
+    border-radius: 12px;
+}
+
+.group-card__badge.badge--visible { display: flex; }
+.group-card__badge.badge--wizard  { background-color: var(--wizard); }
+.group-card__badge.badge--elf     { background-color: var(--elf); }
+.group-card__badge.badge--unused  { background-color: var(--text-muted); }
+
+/* ---------- Pied de page ---------- */
+.footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.summary { min-width: 380px; }
+
+.summary-row {
+    flex-direction: row;
+    margin: 2px 0;
+}
+
+.summary-hero {
+    min-width: 120px;
+    font-size: 24px;
+    -unity-font-style: bold;
+    color: var(--gold);
+}
+
+.summary-hero--wizard { color: var(--wizard); }
+.summary-hero--elf    { color: var(--elf); }
+
+.summary-value {
+    font-size: 24px;
+    color: var(--text);
+}
+
+.summary-empty {
+    font-size: 24px;
+    color: var(--text-muted);
+}
+
+.footer-buttons { flex-direction: row; align-items: center; }
+
+.back-button {
+    width: 200px;
+    height: 76px;
+    margin: 0 16px 0 0;
+    font-size: 26px;
+    -unity-font-style: bold;
+    letter-spacing: 3px;
+    color: var(--text);
+    background-color: var(--panel);
+    border-width: 3px;
+    border-color: var(--gold-dim);
+    border-radius: 12px;
+    transition-property: background-color, border-color, scale;
+    transition-duration: 0.15s;
+}
+
+.back-button:hover { background-color: var(--panel-hover); border-color: var(--gold); scale: 1.03 1.03; }
+.back-button:active { scale: 0.98 0.98; }
+
+.validate-button {
+    width: 360px;
+    height: 76px;
+    margin: 0;
+    font-size: 26px;
+    -unity-font-style: bold;
+    letter-spacing: 3px;
+    color: white;
+    background-color: var(--ok);
+    border-width: 3px;
+    border-color: var(--gold);
+    border-radius: 12px;
+    transition-property: background-color, scale, opacity;
+    transition-duration: 0.15s;
+}
+
+.validate-button:hover { background-color: var(--ok-hover); scale: 1.03 1.03; }
+.validate-button:active { background-color: var(--ok); scale: 0.98 0.98; }
+.validate-button:disabled { opacity: 0.35; }

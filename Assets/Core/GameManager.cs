@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -9,6 +10,14 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public GridManager gridManager;
     [SerializeField] private CharacterSheetController sheetController;
+    [SerializeField] private DiceRoller diceRoller;
+
+
+    // camera zoom
+    public float zoomSpeed = 10;
+    public float minZoom = 5;
+    public float maxZoom = 17;
+    private Vector3 initialCameraPosition;
 
     //[SerializeField] List<TextAsset> QuestMaps;
 
@@ -59,6 +68,10 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("GameManager : Aucune quête active trouvée dans GameSession ou aucun fichier de map assigné sur le QuestData !");
         }
+
+
+        initialCameraPosition = Camera.main.transform.position;
+
 
         heroTurns = GameSession.SelectedHeroes.Count;
         Debug.Log(heroTurns + " Heroes will play.");
@@ -114,8 +127,17 @@ public class GameManager : MonoBehaviour
     public void TriggerEndTurn()
     {
         if (endOfTurn) return; //Anti double call
-        CombatUI.GetComponent<TurnHandoverPopup>().ToggleHandOverPanel(true);
         endOfTurn = true;
+    }
+
+    public void ShowHandoverPanel()
+    {
+        int indexShow = currentTurn + 1;
+        if (indexShow > heroTurns)
+            indexShow = 0;
+        if (indexShow < heroTurns)
+        { CombatUI.GetComponent<TurnHandoverPopup>().Show(GameSession.SelectedHeroes[indexShow].title); }
+        else { CombatUI.GetComponent<TurnHandoverPopup>().Show("Zargon"); }
     }
 
     // Update is called once per frame
@@ -140,6 +162,53 @@ public class GameManager : MonoBehaviour
         // playing turn
         else
         {
+
+            // zoom
+            float scroll = Input.GetAxis("Mouse ScrollWheel");
+
+            if (Mathf.Abs(scroll) > 0.001f && gridManager._cam.orthographic)
+            {
+                Camera cam = gridManager._cam;
+
+                // ZOOM AVANT
+                if (scroll > 0)
+                {
+                    Vector3 mouseWorldBefore = cam.ScreenToWorldPoint(Input.mousePosition);
+                    mouseWorldBefore.y = 0;
+
+                    cam.orthographicSize -= scroll * zoomSpeed;
+                    cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minZoom, maxZoom);
+
+                    Vector3 mouseWorldAfter = cam.ScreenToWorldPoint(Input.mousePosition);
+                    mouseWorldAfter.y = 0;
+
+                    cam.transform.position += mouseWorldBefore - mouseWorldAfter;
+                }
+                // ZOOM ARRIERE
+                else
+                {
+                    cam.orthographicSize -= scroll * zoomSpeed;
+                    cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minZoom, maxZoom);
+
+                    // Plus on dézoome, plus on se rapproche
+                    // de la position initiale
+                    float returnStrength = 8f/ cam.orthographicSize;
+
+                    Vector3 direction = (cam.transform.position - initialCameraPosition);
+                    if (direction.magnitude >= 1) { direction.Normalize(); }
+                    cam.transform.position -=  direction * 2f * returnStrength;
+                }
+
+                foreach (Camera subCam in cam.GetComponentsInChildren<Camera>())
+                {
+                    subCam.orthographicSize = cam.orthographicSize;
+                }
+            }
+
+            // zoom
+
+
+
             if (currentTurn < heroTurns) // if an hero is playing
             {
                 if (heroCharacters.Count > currentTurn)
@@ -194,21 +263,32 @@ public class GameManager : MonoBehaviour
                 playerNameTxt.GetComponent<TMP_Text>().text = hero.title + "'s Turn";
             }
 
-            if (sheetController != null )
+            if (sheetController != null)
             {
                 sheetController.BindCurrentHero();
             }
-            heroCharacters[currentTurn].movementRange = random.Next(1, 6) + random.Next(1, 6);
 
-
-        } // else if Zargon's turn
-        else
+            StartCoroutine(RollMovementRoutine(currentTurn, hero));
+        }
+        else // Zargon's turn: no dice
         {
             if (playerNameTxt.GetComponent<TMP_Text>() != null)
             {
                 playerNameTxt.GetComponent<TMP_Text>().text = "Zargon's Turn";
             }
         }
+    }
+
+    private IEnumerator RollMovementRoutine(int heroIndex, HeroCard hero)
+    {
+        heroCharacters[heroIndex].movementRange = 0;   // no movement until the dice are done
+
+        yield return new WaitForSeconds(1f);           // pause before the roll
+
+        diceRoller.Roll(2, hero.title, total =>
+        {
+            heroCharacters[heroIndex].movementRange = total;
+        });
     }
 
     // utility methods (get characters and cards)
