@@ -134,8 +134,19 @@ public class HeroSelectionScreen : MonoBehaviour
 
     private void OnValidateClicked()
     {
-        GameSession.SetHeroes(selected);
-        Confirmed?.Invoke(selected);
+        HeroParty.Clear();
+        List<HeroCard> runtimeHeroes = new List<HeroCard>();
+
+        foreach (var template in selected)
+        {
+            HeroCard runtimeCopy = HeroCard.CreateRuntimeCopy(template, template.title, "");
+            HeroParty.Register(runtimeCopy);
+            runtimeHeroes.Add(runtimeCopy);
+        }
+
+        // Stocke les instances runtime dans GameSession avant le changement de scène
+        GameSession.SetHeroes(runtimeHeroes);
+        Confirmed?.Invoke(runtimeHeroes);
 
         if (!string.IsNullOrEmpty(nextScene))
             SceneManager.LoadScene(nextScene);

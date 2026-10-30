@@ -10,7 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3031709233584841984, guid: c6118ce09d8dc554f923394a7474819a, type: 3}
       propertyPath: m_Name
-      value: Hero
+      value: Elf
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451590798554153946, guid: c6118ce09d8dc554f923394a7474819a, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 8582283360735260280, guid: c6118ce09d8dc554f923394a7474819a, type: 3}
       propertyPath: m_LocalPosition.x

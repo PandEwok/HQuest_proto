@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 317ba2b0aa0f67a4da435115b77a4ccd, type: 3}
   m_Name: Quest03
   m_EditorClassIdentifier: Assembly-CSharp::QuestData
+  mapFile: {fileID: 4900000, guid: e074c56ae2532a6438bd81a224c6ac32, type: 3}
   id: base.quest.03
   number: 3
   title: Lair of the Orc Warlord

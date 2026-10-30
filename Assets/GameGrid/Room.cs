@@ -19,7 +19,7 @@ public class Room : MonoBehaviour
     [SerializeField] private GameObject wallPropPF2;
     [SerializeField] private GameObject wallPropPF3;
     [SerializeField] private GameObject wallPropPF4;
-    [SerializeField] private GameObject wallPropPF5;
+    [SerializeField] private GameObject wallPropPF5; // already serialized in Room.prefab
     [SerializeField] private GameObject rockFillPF;
     [SerializeField] private GameObject rockEdgePF;
 
@@ -28,6 +28,70 @@ public class Room : MonoBehaviour
 
 
     private GameObject wallPFType;
+
+    // ------------------------------------------------------------------
+    //  SAVE / LOAD support
+    // ------------------------------------------------------------------
+    /// <summary>A wall imposed by a save file (replaces the random choice).</summary>
+    public class ForcedWall
+    {
+        public GameObject prefab;
+        public Tile owner;          // tile the wall is parented to
+        public Vector3 localEuler;
+    }
+
+    /// <summary>When not null (set by GridManager.ApplyMap), UpdateShape builds exactly these walls.</summary>
+    [System.NonSerialized] public Dictionary<(Tile, Tile), ForcedWall> forcedWalls;
+
+    public static (Tile, Tile) PairKey(Tile a, Tile b)
+    {
+        return a.GetInstanceID() <= b.GetInstanceID() ? (a, b) : (b, a);
+    }
+
+    public static string StripClone(string n)
+    {
+        const string suffix = "(Clone)";
+        while (n.EndsWith(suffix)) n = n.Substring(0, n.Length - suffix.Length);
+        return n.Trim();
+    }
+
+    GameObject[] KnownWallPrefabs()
+    {
+        return new[] { wallPF, wallTorchPF, wallPropPF1, wallPropPF2, wallPropPF3, wallPropPF4, wallPropPF5 };
+    }
+
+    /// <summary>Prefab name of a spawned wall (null if it is not one of this room's wall prefabs).</summary>
+    public string GetWallId(GameObject instance)
+    {
+        string n = StripClone(instance.name);
+        foreach (GameObject pf in KnownWallPrefabs())
+        {
+            if (pf != null && pf.name == n) return pf.name;
+        }
+        return null;
+    }
+
+    static bool HasDoorAt(Tile t, Vector3 pos)
+    {
+        foreach (Door d in t.GetComponentsInChildren<Door>())
+        {
+            if ((d.transform.position - pos).sqrMagnitude < 0.0001f) return true;
+        }
+        foreach (SecretDoor d in t.GetComponentsInChildren<SecretDoor>())
+        {
+            if ((d.transform.position - pos).sqrMagnitude < 0.0001f) return true;
+        }
+        return false;
+    }
+
+    public GameObject FindWallPrefab(string id)
+    {
+        foreach (GameObject pf in KnownWallPrefabs())
+        {
+            if (pf != null && pf.name == id) return pf;
+        }
+        return null;
+    }
 
     private int wallType;
     private int PropType;
@@ -48,7 +112,7 @@ public class Room : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public bool IsTileInRoom(Tile tile)
@@ -83,7 +147,8 @@ public class Room : MonoBehaviour
         walls.Clear();
         foreach (GameObject wall in wallsTempList)
         {
-            if (wall != null) {
+            if (wall != null)
+            {
                 foreach (Tile tile in wall.GetComponent<Wall>().parentTiles)
                 {
                     tile.walls.Remove(wall);
@@ -100,7 +165,7 @@ public class Room : MonoBehaviour
         {
             rocksTempList.Add(obj);
         }
-        walls.Clear();
+        rocks.Clear();
         foreach (GameObject rock in rocksTempList)
         {
             Destroy(rock);
@@ -110,7 +175,7 @@ public class Room : MonoBehaviour
     public void UpdateShape()
     {
         // tile color
-        Color newColor = new Color(1.7f,1.68f,1.62f);
+        Color newColor = new Color(1.7f, 1.68f, 1.62f);
 
         foreach (Tile tile in tiles)
         {
@@ -175,69 +240,103 @@ public class Room : MonoBehaviour
                                     }
                                 }
                             }
+                            if (forcedWalls != null)
+                            {
+                                // Loading a save: the saved walls are authoritative. Ignore any rock / wall of the
+                                // neighbouring room that is still in the hierarchy (Destroy() is deferred to the end of the
+                                // frame, so they are still "present" during the load) and only yield to a real door.
+                                wallAlreadyPresent = HasDoorAt(tile, tileWorldPos) || HasDoorAt(nTile, tileWorldPos);
+                            }
                             if (!wallAlreadyPresent)
                             {
-                                if (!needTorch)
+                                ForcedWall forced = null;
+                                bool spawnWall = true;
+
+                                if (forcedWalls != null)
                                 {
-                                    if (wallCount == 3)
+                                    // loading a save: build exactly the saved wall (or none)
+                                    if (forcedWalls.TryGetValue(PairKey(tile, nTile), out forced))
                                     {
-                                        wallType = Random.Range(0, 5);
-                                        if (wallType == 1)
-                                        {
-                                            wallPFType = wallTorchPF;
-                                        }
-                                        wallCount = 0;
+                                        wallPFType = forced.prefab;
+                                        spawnWall = forced.owner == tile;
                                     }
-                                    else
-                                    {
-                                        PropType = Random.Range(0, 10);
-                                        switch (PropType)
-                                        {
-                                            case 1:
-                                                wallPFType = wallPropPF1;
-                                                break;
-                                            case 2:
-                                                wallPFType = wallPropPF2;
-                                                break;
-                                            case 3:
-                                                wallPFType = wallPropPF3;
-                                                break;
-                                            case 4:
-                                                wallPFType = wallPropPF4;
-                                                break;
-                                            case 5:
-                                                wallPFType = wallPropPF5;
-                                                break;
-                                            default:
-                                                wallPFType = wallPF;
-                                                break;
-                                        }
-                                        wallCount++;
-                                    }
+                                    else spawnWall = false;
                                 }
                                 else
                                 {
-                                    if (torchStart == wallCount)
+                                    if (!needTorch)
                                     {
-                                        wallPFType = wallTorchPF;
-                                        needTorch = false;
+                                        if (wallCount == 3)
+                                        {
+                                            wallType = Random.Range(0, 5);
+                                            if (wallType == 1)
+                                            {
+                                                wallPFType = wallTorchPF;
+                                            }
+                                            wallCount = 0;
+                                        }
+                                        else
+                                        {
+                                            PropType = Random.Range(0, 10);
+                                            switch (PropType)
+                                            {
+                                                case 1:
+                                                    wallPFType = wallPropPF1;
+                                                    break;
+                                                case 2:
+                                                    wallPFType = wallPropPF2;
+                                                    break;
+                                                case 3:
+                                                    wallPFType = wallPropPF3;
+                                                    break;
+                                                case 4:
+                                                    wallPFType = wallPropPF4;
+                                                    break;
+                                                default:
+                                                    wallPFType = wallPF;
+                                                    break;
+                                            }
+                                            wallCount++;
+                                        }
                                     }
                                     else
                                     {
-                                        wallPFType = wallPF;
-                                        wallCount++;
+                                        if (torchStart == wallCount)
+                                        {
+                                            wallPFType = wallTorchPF;
+                                            needTorch = false;
+                                        }
+                                        else
+                                        {
+                                            wallPFType = wallPF;
+                                            wallCount++;
+                                        }
                                     }
+
                                 }
 
-                                var spawnedWall = Instantiate(wallPFType, tileWorldPos, Quaternion.identity, tile.transform);
-                                spawnedWall.transform.LookAt(tile.surface.transform);
-                                // adding to relationship lists
-                                walls.Add(spawnedWall);
-                                tile.walls.Add(spawnedWall);
-                                nTile.walls.Add(spawnedWall);
-                                spawnedWall.GetComponent<Wall>().parentTiles.Add(tile);
-                                spawnedWall.GetComponent<Wall>().parentTiles.Add(nTile);
+                                if (spawnWall)
+                                {
+                                    var spawnedWall = Instantiate(wallPFType, tileWorldPos, Quaternion.identity, tile.transform);
+                                    spawnedWall.transform.LookAt(tile.surface.transform);
+                                    if (forced != null) spawnedWall.transform.localEulerAngles = forced.localEuler;
+
+                                    // adding to relationship lists
+                                    walls.Add(spawnedWall);
+                                    tile.walls.Add(spawnedWall);
+                                    nTile.walls.Add(spawnedWall);
+                                    spawnedWall.GetComponent<Wall>().parentTiles.Add(tile);
+                                    spawnedWall.GetComponent<Wall>().parentTiles.Add(nTile);
+                                }
                             }
+                            var spawnedRock = Instantiate(rockEdgePF, tileWorldPos, Quaternion.identity, tile.transform);
+                            spawnedRock.transform.LookAt(tile.surface.transform);
+                            // adding rock to relationship lists
+                            rocks.Add(spawnedRock);
+                            tile.walls.Add(spawnedRock);
+                            nTile.walls.Add(spawnedRock);
+                            spawnedRock.GetComponent<Wall>().parentTiles.Add(tile);
+                            spawnedRock.GetComponent<Wall>().parentTiles.Add(nTile);
                         }
                     }
                     else
@@ -257,24 +356,16 @@ public class Room : MonoBehaviour
             }
             if (doors.Count < 1)
             {
-                foreach (GameObject wall in walls)
-                {
-                    Vector3 rockPos = wall.transform.position;
-                    Transform wallParent = wall.transform.parent;
-                    Tile parentTile = wallParent.GetComponent<Tile>();
-                    var spawnedRock = Instantiate(rockEdgePF, rockPos, Quaternion.identity, wallParent);
-                    spawnedRock.transform.LookAt(parentTile.surface.transform);
-                    rocks.Add(spawnedRock);
-                }
-
-                //ClearWalls();
+                ClearWalls();
             }
             else
             {
                 ClearRocks();
             }
         }
-        Debug.Log(this.name + " number of doors " + doors.Count);
+        //Debug.Log("room number of tile : " + tiles.Count);
+        
+        //Debug.Log(this.name + " number of doors " + doors.Count);
     }
 
     public void GiveId(int id = 0)
@@ -289,7 +380,7 @@ public class Room : MonoBehaviour
         {
             tiles.Add(tile);
         }
-        
+
         tile.transform.parent = transform;
     }
 }

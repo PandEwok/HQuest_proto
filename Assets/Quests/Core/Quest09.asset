@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 317ba2b0aa0f67a4da435115b77a4ccd, type: 3}
   m_Name: Quest09
   m_EditorClassIdentifier: Assembly-CSharp::QuestData
+  mapFile: {fileID: 4900000, guid: 016ab85cc92e1cb48a67de6b00bfade1, type: 3}
   id: base.quest.09
   number: 9
   title: Race Against Time
