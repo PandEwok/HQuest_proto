@@ -348,7 +348,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2186397525883777363, guid: cde141fb16b824443a2e2e4f1e1bfe5d, type: 3}
       propertyPath: gameSceneName
-      value: GameScene (UI)
+      value: QuestIntro
       objectReference: {fileID: 0}
     - target: {fileID: 2683764882917491525, guid: cde141fb16b824443a2e2e4f1e1bfe5d, type: 3}
       propertyPath: m_LocalPosition.x

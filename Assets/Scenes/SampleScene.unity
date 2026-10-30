@@ -58704,26 +58704,38 @@ MonoBehaviour:
   _cam: {fileID: 330585546}
   _roomPrefab: {fileID: -5077946675272694743, guid: b82dd172a1acabd46b4ad9af32c6af63, type: 3}
   _doorPrefab: {fileID: -837681063964779121, guid: 8a7457cbd967b7142b1be9f56c9e831f, type: 3}
+  goblinPF: {fileID: 0}
+  skeletonPF: {fileID: 0}
+  zombiPF: {fileID: 0}
+  orcPF: {fileID: 0}
+  abominationPF: {fileID: 0}
+  mummyPF: {fileID: 0}
+  dreadWarriorPF: {fileID: 0}
+  gargoylePF: {fileID: 0}
+  _SecretDoorPrefab: {fileID: -4000374849566709577, guid: 3d5f0dc1dae7aca49a06c5e098194b7d, type: 3}
   RockPF: {fileID: 8004093930818766245, guid: c8ed108c0113dd249b5fc664408ebf15, type: 3}
   SpikeTrapPF: {fileID: 5345008905422333103, guid: da9aaace707a3ec4c998ed6b52730fb5, type: 3}
   PitTrapPF: {fileID: 5345008905422333103, guid: bb54dfdb2f27a0643aa46ee62edfbccf, type: 3}
   FallingBlockTrapPF: {fileID: 5345008905422333103, guid: 8bdabce58e7560b418b0afb7c21150b2, type: 3}
-  WeaponRack1PF_H: {fileID: 2644583586431922036, guid: a8f195229f80f5b4ab30732a7ebabb55, type: 3}
-  WeaponRack1PF_V: {fileID: 3905069605512339277, guid: 710101c52b9f2044390046d26fd3c056, type: 3}
-  WeaponRack2PF_H: {fileID: 447069366180780000, guid: 5efb0fa942db0b543bcb98c9945991ed, type: 3}
-  WeaponRack2PF_V: {fileID: 1313763718171821047, guid: 52c39e9f825423c4ab2aac361932e22f, type: 3}
-  Cupboard1PF_H: {fileID: 6406065121164062134, guid: 7fa388ecf19108c43a4dede6e08d4430, type: 3}
-  Cupboard1PF_V: {fileID: 6120744522862428876, guid: 8f598aff8d881a748a6a4020845e6b0b, type: 3}
-  Cupboard2PF_H: {fileID: 1596742438418453170, guid: 3a2e23550e79b9a4981b49a1e5d9d9e1, type: 3}
-  Cupboard2PF_V: {fileID: 1949058700736412469, guid: 612ad117a61b4f343b8d89890da0358c, type: 3}
-  Table1PF_H: {fileID: 2895491092060032472, guid: 546adebb4cc54274e8b7ee6a810f67fd, type: 3}
-  Table1PF_V: {fileID: 3395368195395654480, guid: 887c1f7f5d494324bb3630b83844109b, type: 3}
-  Table2PF_H: {fileID: 907202122545053484, guid: e3fc368558c8f32489030cb925075a15, type: 3}
-  Table2PF_V: {fileID: 2572087919656409810, guid: 08cb16eb726062d4bad6f6feb0eb2ca5, type: 3}
+  WeaponRack1PF: {fileID: 2644583586431922036, guid: a8f195229f80f5b4ab30732a7ebabb55, type: 3}
+  WeaponRack2PF: {fileID: 447069366180780000, guid: 5efb0fa942db0b543bcb98c9945991ed, type: 3}
+  Cupboard1PF: {fileID: 6406065121164062134, guid: 7fa388ecf19108c43a4dede6e08d4430, type: 3}
+  Cupboard2PF: {fileID: 1596742438418453170, guid: 3a2e23550e79b9a4981b49a1e5d9d9e1, type: 3}
+  Table1PF: {fileID: 2895491092060032472, guid: 546adebb4cc54274e8b7ee6a810f67fd, type: 3}
+  Table2PF: {fileID: 907202122545053484, guid: e3fc368558c8f32489030cb925075a15, type: 3}
   Chest1PF: {fileID: 8552526197687742854, guid: 2ec3ae8ac0dd2ef45968e668ef1a1c96, type: 3}
   Chest2PF: {fileID: 1434034538843061962, guid: 0faba167085c1f643953d44ecfcd48a5, type: 3}
+  SorcererTable1PF: {fileID: 3775824388350926051, guid: a2beb1acfce615a408e0bc1748efde90, type: 3}
+  SorcererTable2PF: {fileID: 3775824388350926051, guid: de634a4780365ba4a9e5d8f54534654e, type: 3}
+  AlchemistBench1PF: {fileID: 4330594236850401230, guid: 218935917b8ca9d4cacb943e97efe71a, type: 3}
+  AlchemistBench2PF: {fileID: 4330594236850401230, guid: ffb137ffd50b8f545a854884d141fd9a, type: 3}
+  TombPF: {fileID: 4330594236850401230, guid: 392906c2d3d02e8499fb4d5161edf24c, type: 3}
+  ThronePF: {fileID: 4404446581530411105, guid: 53116493264c35a4eb5af56b83fc33aa, type: 3}
+  StairsPF: {fileID: 4330594236850401230, guid: 4067afa8442103543a7e6d7619114c37, type: 3}
+  FireplacePF: {fileID: 1596742438418453170, guid: 7517ba4c49ef8ac48956ce52a21d9a76, type: 3}
   CorridorTiles: {fileID: 1811731107}
   currentMode: 0
+  selectedEnemy: {fileID: 0}
   currentSelection: 1
 --- !u!4 &310863036
 Transform:
@@ -171352,6 +171364,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EditorUImanager
   gridManager: {fileID: 310863035}
+  goblinPF: {fileID: 0}
+  skeletonPF: {fileID: 0}
+  zombiPF: {fileID: 0}
+  orcPF: {fileID: 0}
+  abominationPF: {fileID: 0}
+  mummyPF: {fileID: 0}
+  dreadWarriorPF: {fileID: 0}
+  gargoylePF: {fileID: 0}
   placeableList: []
 --- !u!114 &914781814
 MonoBehaviour:

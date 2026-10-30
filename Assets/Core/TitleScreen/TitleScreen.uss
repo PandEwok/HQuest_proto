@@ -1,0 +1,92 @@
+:root {
+    --bg: rgb(20, 17, 26);
+    --panel: rgb(38, 32, 46);
+    --panel-hover: rgb(54, 46, 66);
+    --gold: rgb(224, 184, 64);
+    --gold-dim: rgb(110, 92, 52);
+    --text: rgb(240, 232, 215);
+    --text-muted: rgb(160, 150, 140);
+    --danger: rgb(220, 80, 70);
+    --ok: rgb(48, 130, 60);
+    --ok-hover: rgb(64, 160, 76);
+}
+
+.screen {
+    flex-grow: 1;
+    background-color: var(--bg);
+    padding: 40px 64px 40px 64px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ---------- Logo ---------- */
+.header {
+    align-items: center;
+    margin-bottom: 64px;
+}
+
+.logo {
+    width: 780px;
+    height: 258px;              /* ratio du logo : ~3.03 / 1 */
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.subtitle {
+    font-size: 22px;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    margin-top: 12px;
+}
+
+/* ---------- Menu ---------- */
+.menu {
+    align-items: center;
+}
+
+.menu-button {
+    width: 360px;
+    height: 76px;
+    margin: 0 0 18px 0;
+    font-size: 28px;
+    -unity-font-style: bold;
+    letter-spacing: 3px;
+    color: var(--text);
+    background-color: var(--panel);
+    border-width: 3px;
+    border-color: var(--gold-dim);
+    border-radius: 12px;
+    transition-property: background-color, border-color, scale, translate;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out;
+}
+
+.menu-button:hover {
+    background-color: var(--panel-hover);
+    border-color: var(--gold);
+    scale: 1.04 1.04;
+}
+
+.menu-button:active {
+    scale: 0.98 0.98;
+}
+
+.menu-button:focus {
+    border-color: var(--gold);
+}
+
+/* Start : meme vert que le bouton CONFIRM */
+.menu-button--primary {
+    color: white;
+    background-color: var(--ok);
+    border-color: var(--gold);
+}
+
+.menu-button--primary:hover {
+    background-color: var(--ok-hover);
+}
+
+/* Close : touche de rouge au survol */
+.menu-button--danger:hover {
+    border-color: var(--danger);
+    color: var(--danger);
+}

@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &733122068853612047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4444278738160871605}
+  - component: {fileID: 4661610721720145151}
+  - component: {fileID: 1823632559082350714}
+  m_Layer: 0
+  m_Name: SpellSelectionUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4444278738160871605
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733122068853612047}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 172.56268, y: 0.00001, z: 743.41455}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4661610721720145151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733122068853612047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
+  m_PanelSettings: {fileID: 11400000, guid: d031e9bf9d8588f4fa927e080e696c5b, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: f7b3da0679cb3df48abc4d6de8c927f7, type: 3}
+  m_SortingOrder: 0
+  m_Position: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
+--- !u!114 &1823632559082350714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733122068853612047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d177b3c39e99d540a2dfd4855b81dee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpellSelectionScreen
+  styleSheet: {fileID: 7433441132597879392, guid: 44dfdfb4eaa954441a1da43bf99f9759, type: 3}
+  allSpells:
+  - {fileID: 11400000, guid: afc74c3a6b6bdfb43921ada40a97fad4, type: 2}
+  - {fileID: 11400000, guid: a78eb2813f9e70148a6aaa146acf1881, type: 2}
+  - {fileID: 11400000, guid: 96cf1be12e837914ca7b399b4b1dde21, type: 2}
+  - {fileID: 11400000, guid: 29eaaf1a2f37aaf439d93485e6d05bed, type: 2}
+  - {fileID: 11400000, guid: 6dabe11a06d6941469374c1c07982bbe, type: 2}
+  - {fileID: 11400000, guid: 06958a4e03803204d9b87b833af4074a, type: 2}
+  - {fileID: 11400000, guid: 112ec58f92ebd0547866669f67ee99c8, type: 2}
+  - {fileID: 11400000, guid: 16e59c8057122c44bb4a59540dc7ab2c, type: 2}
+  - {fileID: 11400000, guid: 62e91e33662e90f45bf1481df270e6ac, type: 2}
+  - {fileID: 11400000, guid: c47a8c613ccd9c04da3f159412ee0808, type: 2}
+  - {fileID: 11400000, guid: 73830f397759d5e4aa8a6e6fafb84402, type: 2}
+  - {fileID: 11400000, guid: 4c1ab1fdafb228049974945126379985, type: 2}
+  wizardTitle: Wizard
+  elfTitle: Elf
+  nextScene: Questbook

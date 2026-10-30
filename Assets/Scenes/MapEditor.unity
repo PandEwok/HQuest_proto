@@ -58704,16 +58704,16 @@ MonoBehaviour:
   _cam: {fileID: 330585546}
   _roomPrefab: {fileID: -5077946675272694743, guid: b82dd172a1acabd46b4ad9af32c6af63, type: 3}
   _doorPrefab: {fileID: -837681063964779121, guid: 8a7457cbd967b7142b1be9f56c9e831f, type: 3}
-  goblinPF: {fileID: 0}
-  skeletonPF: {fileID: 0}
-  zombiPF: {fileID: 0}
-  orcPF: {fileID: 0}
-  abominationPF: {fileID: 0}
-  mummyPF: {fileID: 0}
-  dreadWarriorPF: {fileID: 0}
-  gargoylePF: {fileID: 0}
+  goblinPF: {fileID: 6047744880929175419, guid: 6fa3419ad4ad1284688deb95c01af7f8, type: 3}
+  skeletonPF: {fileID: 4288969435363280844, guid: c482d3d059f277a43b632d78dd471f17, type: 3}
+  zombiPF: {fileID: 1918261265406837780, guid: 016e6bf51e91f594eb75d40d77afdeae, type: 3}
+  orcPF: {fileID: 5348502689305304988, guid: cdc63d0dd4ef27b41a18160a221de02b, type: 3}
+  abominationPF: {fileID: 7587979717977002944, guid: 20b3815c3616c0247bd3b2bd702de4cf, type: 3}
+  mummyPF: {fileID: 6900159145846668124, guid: f615dce021ff3814c8a336d710819d6f, type: 3}
+  dreadWarriorPF: {fileID: 6345298667255483452, guid: 58b1a90aa3e23134d95a7b08eb533bf2, type: 3}
+  gargoylePF: {fileID: 5860551519039111808, guid: a89a52651063b104cacc8d61611fe4e1, type: 3}
   _SecretDoorPrefab: {fileID: -4000374849566709577, guid: 3d5f0dc1dae7aca49a06c5e098194b7d, type: 3}
-  RockPF: {fileID: 6551990066942125379, guid: b19d89c78a710d74bbab0be4c46fba78, type: 3}
+  RockPF: {fileID: 8004093930818766245, guid: a398feb31df5f744c871945e77e31160, type: 3}
   SpikeTrapPF: {fileID: 5345008905422333103, guid: da9aaace707a3ec4c998ed6b52730fb5, type: 3}
   PitTrapPF: {fileID: 5345008905422333103, guid: bb54dfdb2f27a0643aa46ee62edfbccf, type: 3}
   FallingBlockTrapPF: {fileID: 5345008905422333103, guid: 8bdabce58e7560b418b0afb7c21150b2, type: 3}
@@ -58729,9 +58729,10 @@ MonoBehaviour:
   SorcererTable2PF: {fileID: 3775824388350926051, guid: de634a4780365ba4a9e5d8f54534654e, type: 3}
   AlchemistBench1PF: {fileID: 4330594236850401230, guid: 218935917b8ca9d4cacb943e97efe71a, type: 3}
   AlchemistBench2PF: {fileID: 4330594236850401230, guid: ffb137ffd50b8f545a854884d141fd9a, type: 3}
-  TombPF: {fileID: 4330594236850401230, guid: 392906c2d3d02e8499fb4d5161edf24c, type: 3}
+  TombPF: {fileID: 2895491092060032472, guid: 00ddfba8be6447341a44b3657d09f380, type: 3}
   ThronePF: {fileID: 4404446581530411105, guid: 53116493264c35a4eb5af56b83fc33aa, type: 3}
   StairsPF: {fileID: 4330594236850401230, guid: 4067afa8442103543a7e6d7619114c37, type: 3}
+  FireplacePF: {fileID: 1596742438418453170, guid: 7517ba4c49ef8ac48956ce52a21d9a76, type: 3}
   CorridorTiles: {fileID: 1811731107}
   currentMode: 0
   selectedEnemy: {fileID: 0}
