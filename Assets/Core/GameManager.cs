@@ -242,6 +242,8 @@ public class GameManager : MonoBehaviour
                             }
                         }
                     }
+                    //hero actions below
+
                 }
             }
             else // else if Zargon is playing
