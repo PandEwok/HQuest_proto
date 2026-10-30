@@ -1,7 +1,7 @@
 {
-    "version": 2,
+    "version": 3,
     "name": "Map 3",
-    "savedAtUtcTicks": 639289507039525312,
+    "savedAtUtcTicks": 639289554596391845,
     "width": 26,
     "height": 19,
     "rooms": [
@@ -3272,6 +3272,28 @@
         {
             "tile": {
                 "x": 2,
+                "y": 14
+            },
+            "prefab": "Fireplace_PF",
+            "localPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "localScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            }
+        },
+        {
+            "tile": {
+                "x": 2,
                 "y": 18
             },
             "prefab": "Rock_PF",
@@ -6041,5 +6063,6 @@
                 "z": 1.0
             }
         }
-    ]
+    ],
+    "monsters": []
 }
