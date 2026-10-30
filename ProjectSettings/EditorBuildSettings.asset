@@ -26,6 +26,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScene (UI).unity
     guid: 3a5d499eb40c8944186cc5af1f8675be
+  - enabled: 1
+    path: Assets/Scenes/TitleScreen.unity
+    guid: 2dcc29e70271a47468a5e4e91cd393a1
+  - enabled: 1
+    path: Assets/Scenes/SpellSelection.unity
+    guid: 82595f251f317a1438cef96850af4575
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

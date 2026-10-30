@@ -71,5 +71,5 @@ MonoBehaviour:
   roster: {fileID: 11400000, guid: 4210a1ca6f74d7c418298270bfb4b4d0, type: 2}
   heroCardTemplate: {fileID: 9197481963319205126, guid: 5fd817b9b6ce37845b14c9b71e0e2945, type: 3}
   minHeroes: 1
-  nextScene: SampleScene
+  nextScene: SpellSelection
   styleSheet: {fileID: 7433441132597879392, guid: ef94bbba43ed87041913986b29518208, type: 3}

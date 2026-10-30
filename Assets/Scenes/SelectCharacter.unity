@@ -388,7 +388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3004431493725436751, guid: 2f77f40d13dedea4096f01742bbc6bbb, type: 3}
       propertyPath: nextScene
-      value: Questbook
+      value: SpellSelection
       objectReference: {fileID: 0}
     - target: {fileID: 7330676733597684264, guid: 2f77f40d13dedea4096f01742bbc6bbb, type: 3}
       propertyPath: m_Name

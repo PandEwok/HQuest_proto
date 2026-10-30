@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Core/TitleScreen/TitleScreen.uss?fileID=7433441132597879392&amp;guid=561956c13bfeff642869050d51e00aa8&amp;type=3#TitleScreen"/>
+    <ui:VisualElement name="root" class="screen">
+        <ui:VisualElement class="header">
+            <ui:VisualElement name="logo" class="logo"/>
+            <ui:Label text="A Video game adaptation" enabled="true" class="subtitle"/>
+        </ui:VisualElement>
+        <ui:VisualElement class="menu">
+            <ui:Button name="start-button" text="START" class="menu-button menu-button--primary"/>
+            <ui:Button name="editor-button" text="EDITOR" class="menu-button"/>
+            <ui:Button name="close-button" text="CLOSE" class="menu-button menu-button--danger"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
