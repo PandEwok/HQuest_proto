@@ -1,7 +1,7 @@
 {
-    "version": 2,
+    "version": 3,
     "name": "Map 11",
-    "savedAtUtcTicks": 639289522315050917,
+    "savedAtUtcTicks": 639289554025602687,
     "width": 26,
     "height": 19,
     "rooms": [
@@ -1482,6 +1482,22 @@
         {
             "tileA": {
                 "x": 9,
+                "y": 14
+            },
+            "tileB": {
+                "x": 8,
+                "y": 14
+            },
+            "isSecret": false,
+            "localEuler": {
+                "x": 0.0,
+                "y": 270.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tileA": {
+                "x": 9,
                 "y": 13
             },
             "tileB": {
@@ -1497,27 +1513,11 @@
         },
         {
             "tileA": {
-                "x": 8,
-                "y": 14
-            },
-            "tileB": {
-                "x": 9,
-                "y": 14
-            },
-            "isSecret": false,
-            "localEuler": {
-                "x": 0.0,
-                "y": 270.0,
-                "z": 0.0
-            }
-        },
-        {
-            "tileA": {
-                "x": 4,
+                "x": 5,
                 "y": 11
             },
             "tileB": {
-                "x": 5,
+                "x": 4,
                 "y": 11
             },
             "isSecret": false,
@@ -1593,6 +1593,22 @@
         },
         {
             "tileA": {
+                "x": 8,
+                "y": 2
+            },
+            "tileB": {
+                "x": 9,
+                "y": 2
+            },
+            "isSecret": false,
+            "localEuler": {
+                "x": 0.0,
+                "y": 90.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tileA": {
                 "x": 2,
                 "y": 1
             },
@@ -1604,22 +1620,6 @@
             "localEuler": {
                 "x": 0.0,
                 "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "tileA": {
-                "x": 9,
-                "y": 2
-            },
-            "tileB": {
-                "x": 8,
-                "y": 2
-            },
-            "isSecret": false,
-            "localEuler": {
-                "x": 0.0,
-                "y": 90.0,
                 "z": 0.0
             }
         },
@@ -1737,11 +1737,11 @@
         },
         {
             "tileA": {
-                "x": 5,
+                "x": 4,
                 "y": 7
             },
             "tileB": {
-                "x": 4,
+                "x": 5,
                 "y": 7
             },
             "isSecret": true,
@@ -2339,22 +2339,6 @@
                 "y": 6
             },
             "prefab": "WallTorch_PF",
-            "localEuler": {
-                "x": 0.0,
-                "y": 90.0,
-                "z": 0.0
-            }
-        },
-        {
-            "tileA": {
-                "x": 5,
-                "y": 7
-            },
-            "tileB": {
-                "x": 4,
-                "y": 7
-            },
-            "prefab": "Wall_PF",
             "localEuler": {
                 "x": 0.0,
                 "y": 90.0,
@@ -4274,6 +4258,28 @@
         {
             "tile": {
                 "x": 10,
+                "y": 5
+            },
+            "prefab": "Fireplace_PF",
+            "localPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "localScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            }
+        },
+        {
+            "tile": {
+                "x": 10,
                 "y": 18
             },
             "prefab": "Rock_PF",
@@ -5369,6 +5375,200 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
+            }
+        }
+    ],
+    "monsters": [
+        {
+            "tile": {
+                "x": 13,
+                "y": 11
+            },
+            "monster": "Goblin",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 7,
+                "y": 3
+            },
+            "monster": "Goblin",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 10,
+                "y": 3
+            },
+            "monster": "Goblin",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 10,
+                "y": 15
+            },
+            "monster": "Orc",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 20,
+                "y": 2
+            },
+            "monster": "Orc",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 10,
+                "y": 2
+            },
+            "monster": "Goblin",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 6,
+                "y": 3
+            },
+            "monster": "Goblin",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 22,
+                "y": 3
+            },
+            "monster": "Orc",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 11,
+                "y": 2
+            },
+            "monster": "Orc",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 12,
+                "y": 1
+            },
+            "monster": "Goblin",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 14,
+                "y": 7
+            },
+            "monster": "Goblin",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 23,
+                "y": 2
+            },
+            "monster": "Orc",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 14,
+                "y": 8
+            },
+            "monster": "Orc",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 10,
+                "y": 1
+            },
+            "monster": "Goblin",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 13,
+                "y": 1
+            },
+            "monster": "Goblin",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 14,
+                "y": 10
+            },
+            "monster": "Orc",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
             }
         }
     ]

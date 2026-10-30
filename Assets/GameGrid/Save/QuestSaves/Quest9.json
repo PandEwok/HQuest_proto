@@ -1,7 +1,7 @@
 {
-    "version": 2,
+    "version": 3,
     "name": "Map 9",
-    "savedAtUtcTicks": 639289517318112482,
+    "savedAtUtcTicks": 639289551811848801,
     "width": 26,
     "height": 19,
     "rooms": [
@@ -1497,6 +1497,22 @@
         },
         {
             "tileA": {
+                "x": 3,
+                "y": 15
+            },
+            "tileB": {
+                "x": 3,
+                "y": 14
+            },
+            "isSecret": false,
+            "localEuler": {
+                "x": 0.0,
+                "y": 180.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tileA": {
                 "x": 5,
                 "y": 13
             },
@@ -1529,61 +1545,13 @@
         },
         {
             "tileA": {
-                "x": 3,
-                "y": 14
-            },
-            "tileB": {
-                "x": 3,
-                "y": 15
-            },
-            "isSecret": false,
-            "localEuler": {
-                "x": 0.0,
-                "y": 180.0,
-                "z": 0.0
-            }
-        },
-        {
-            "tileA": {
-                "x": 5,
-                "y": 7
-            },
-            "tileB": {
-                "x": 4,
-                "y": 7
-            },
-            "isSecret": false,
-            "localEuler": {
-                "x": 0.0,
-                "y": 90.0,
-                "z": 0.0
-            }
-        },
-        {
-            "tileA": {
-                "x": 5,
-                "y": 3
-            },
-            "tileB": {
-                "x": 4,
-                "y": 3
-            },
-            "isSecret": false,
-            "localEuler": {
-                "x": 0.0,
-                "y": 90.0,
-                "z": 0.0
-            }
-        },
-        {
-            "tileA": {
-                "x": 2,
-                "y": 4
-            },
-            "tileB": {
                 "x": 2,
                 "y": 5
             },
+            "tileB": {
+                "x": 2,
+                "y": 4
+            },
             "isSecret": false,
             "localEuler": {
                 "x": 0.0,
@@ -1593,11 +1561,43 @@
         },
         {
             "tileA": {
-                "x": 9,
+                "x": 4,
+                "y": 7
+            },
+            "tileB": {
+                "x": 5,
+                "y": 7
+            },
+            "isSecret": false,
+            "localEuler": {
+                "x": 0.0,
+                "y": 90.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tileA": {
+                "x": 5,
                 "y": 3
             },
             "tileB": {
+                "x": 4,
+                "y": 3
+            },
+            "isSecret": false,
+            "localEuler": {
+                "x": 0.0,
+                "y": 90.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tileA": {
                 "x": 8,
+                "y": 3
+            },
+            "tileB": {
+                "x": 9,
                 "y": 3
             },
             "isSecret": false,
@@ -1641,11 +1641,27 @@
         },
         {
             "tileA": {
-                "x": 21,
+                "x": 19,
+                "y": 4
+            },
+            "tileB": {
+                "x": 19,
+                "y": 5
+            },
+            "isSecret": false,
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tileA": {
+                "x": 20,
                 "y": 2
             },
             "tileB": {
-                "x": 20,
+                "x": 21,
                 "y": 2
             },
             "isSecret": false,
@@ -1657,27 +1673,11 @@
         },
         {
             "tileA": {
-                "x": 19,
-                "y": 5
-            },
-            "tileB": {
-                "x": 19,
-                "y": 4
-            },
-            "isSecret": false,
-            "localEuler": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "tileA": {
-                "x": 7,
+                "x": 6,
                 "y": 7
             },
             "tileB": {
-                "x": 6,
+                "x": 7,
                 "y": 7
             },
             "isSecret": true,
@@ -2620,22 +2620,6 @@
         {
             "tileA": {
                 "x": 7,
-                "y": 7
-            },
-            "tileB": {
-                "x": 6,
-                "y": 7
-            },
-            "prefab": "Wall_PF",
-            "localEuler": {
-                "x": 0.0,
-                "y": 90.0,
-                "z": 0.0
-            }
-        },
-        {
-            "tileA": {
-                "x": 7,
                 "y": 8
             },
             "tileB": {
@@ -3446,22 +3430,6 @@
             "localEuler": {
                 "x": 0.0,
                 "y": 180.0,
-                "z": 0.0
-            }
-        },
-        {
-            "tileA": {
-                "x": 19,
-                "y": 1
-            },
-            "tileB": {
-                "x": 19,
-                "y": 0
-            },
-            "prefab": "Wall_PF",
-            "localEuler": {
-                "x": 0.0,
-                "y": 0.0,
                 "z": 0.0
             }
         },
@@ -3707,6 +3675,28 @@
         }
     ],
     "props": [
+        {
+            "tile": {
+                "x": 1,
+                "y": 2
+            },
+            "prefab": "Fireplace_PF",
+            "localPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "localEuler": {
+                "x": 0.0,
+                "y": 270.0,
+                "z": 0.0
+            },
+            "localScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            }
+        },
         {
             "tile": {
                 "x": 5,
@@ -5861,6 +5851,260 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
+            }
+        }
+    ],
+    "monsters": [
+        {
+            "tile": {
+                "x": 3,
+                "y": 13
+            },
+            "monster": "Goblin",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 2,
+                "y": 14
+            },
+            "monster": "Goblin",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 17,
+                "y": 1
+            },
+            "monster": "Goblin",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 21,
+                "y": 2
+            },
+            "monster": "Goblin",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 13,
+                "y": 4
+            },
+            "monster": "Orc",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 19,
+                "y": 6
+            },
+            "monster": "Orc",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 10,
+                "y": 4
+            },
+            "monster": "Goblin",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 16,
+                "y": 2
+            },
+            "monster": "Orc",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 2,
+                "y": 12
+            },
+            "monster": "Goblin",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 5,
+                "y": 8
+            },
+            "monster": "Orc",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 21,
+                "y": 1
+            },
+            "monster": "Goblin",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 22,
+                "y": 2
+            },
+            "monster": "Orc",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 5,
+                "y": 6
+            },
+            "monster": "Orc",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 20,
+                "y": 6
+            },
+            "monster": "Orc",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 21,
+                "y": 3
+            },
+            "monster": "Goblin",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 17,
+                "y": 3
+            },
+            "monster": "Goblin",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 1,
+                "y": 18
+            },
+            "monster": "Orc",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 4,
+                "y": 9
+            },
+            "monster": "Orc",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 4,
+                "y": 14
+            },
+            "monster": "Goblin",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 10,
+                "y": 3
+            },
+            "monster": "Goblin",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 18,
+                "y": 6
+            },
+            "monster": "Orc",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
             }
         }
     ]

@@ -58732,7 +58732,7 @@ MonoBehaviour:
   TombPF: {fileID: 2895491092060032472, guid: 00ddfba8be6447341a44b3657d09f380, type: 3}
   ThronePF: {fileID: 4404446581530411105, guid: 53116493264c35a4eb5af56b83fc33aa, type: 3}
   StairsPF: {fileID: 4330594236850401230, guid: 4067afa8442103543a7e6d7619114c37, type: 3}
-  FireplacePF: {fileID: 1596742438418453170, guid: 7517ba4c49ef8ac48956ce52a21d9a76, type: 3}
+  FireplacePF: {fileID: 0}
   CorridorTiles: {fileID: 1811731107}
   currentMode: 0
   selectedEnemy: {fileID: 0}

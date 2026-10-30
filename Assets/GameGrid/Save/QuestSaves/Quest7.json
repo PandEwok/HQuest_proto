@@ -1,7 +1,7 @@
 {
-    "version": 2,
+    "version": 3,
     "name": "Map 7",
-    "savedAtUtcTicks": 639289511484777518,
+    "savedAtUtcTicks": 639289550467807031,
     "width": 26,
     "height": 19,
     "rooms": [
@@ -1513,6 +1513,38 @@
         },
         {
             "tileA": {
+                "x": 2,
+                "y": 5
+            },
+            "tileB": {
+                "x": 2,
+                "y": 4
+            },
+            "isSecret": false,
+            "localEuler": {
+                "x": 0.0,
+                "y": 180.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tileA": {
+                "x": 4,
+                "y": 6
+            },
+            "tileB": {
+                "x": 5,
+                "y": 6
+            },
+            "isSecret": false,
+            "localEuler": {
+                "x": 0.0,
+                "y": 90.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tileA": {
                 "x": 5,
                 "y": 8
             },
@@ -1529,22 +1561,6 @@
         },
         {
             "tileA": {
-                "x": 5,
-                "y": 6
-            },
-            "tileB": {
-                "x": 4,
-                "y": 6
-            },
-            "isSecret": false,
-            "localEuler": {
-                "x": 0.0,
-                "y": 90.0,
-                "z": 0.0
-            }
-        },
-        {
-            "tileA": {
                 "x": 7,
                 "y": 1
             },
@@ -1556,22 +1572,6 @@
             "localEuler": {
                 "x": 0.0,
                 "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "tileA": {
-                "x": 2,
-                "y": 4
-            },
-            "tileB": {
-                "x": 2,
-                "y": 5
-            },
-            "isSecret": false,
-            "localEuler": {
-                "x": 0.0,
-                "y": 180.0,
                 "z": 0.0
             }
         },
@@ -1625,11 +1625,11 @@
         },
         {
             "tileA": {
-                "x": 21,
+                "x": 20,
                 "y": 3
             },
             "tileB": {
-                "x": 20,
+                "x": 21,
                 "y": 3
             },
             "isSecret": false,
@@ -3537,6 +3537,28 @@
             "localEuler": {
                 "x": 0.0,
                 "y": 0.0,
+                "z": 0.0
+            },
+            "localScale": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+            }
+        },
+        {
+            "tile": {
+                "x": 1,
+                "y": 12
+            },
+            "prefab": "Fireplace_PF",
+            "localPosition": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            },
+            "localEuler": {
+                "x": 0.0,
+                "y": 270.0,
                 "z": 0.0
             },
             "localScale": {
@@ -5567,6 +5589,140 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
+            }
+        }
+    ],
+    "monsters": [
+        {
+            "tile": {
+                "x": 2,
+                "y": 1
+            },
+            "monster": "Zombi",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 16,
+                "y": 4
+            },
+            "monster": "Zombi",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 1,
+                "y": 2
+            },
+            "monster": "Zombi",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 1,
+                "y": 7
+            },
+            "monster": "Zombi",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 22,
+                "y": 4
+            },
+            "monster": "Zombi",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 3,
+                "y": 12
+            },
+            "monster": "Skeleton",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 2,
+                "y": 6
+            },
+            "monster": "Zombi",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 3,
+                "y": 5
+            },
+            "monster": "Zombi",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 4,
+                "y": 11
+            },
+            "monster": "Skeleton",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 22,
+                "y": 2
+            },
+            "monster": "Zombi",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 18,
+                "y": 5
+            },
+            "monster": "Zombi",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
             }
         }
     ]

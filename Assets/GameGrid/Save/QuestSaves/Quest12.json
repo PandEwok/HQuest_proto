@@ -1,7 +1,7 @@
 {
-    "version": 2,
+    "version": 3,
     "name": "Map 12",
-    "savedAtUtcTicks": 639289524993965788,
+    "savedAtUtcTicks": 639289552795210507,
     "width": 26,
     "height": 19,
     "rooms": [
@@ -1513,11 +1513,11 @@
         },
         {
             "tileA": {
-                "x": 9,
+                "x": 8,
                 "y": 15
             },
             "tileB": {
-                "x": 8,
+                "x": 9,
                 "y": 15
             },
             "isSecret": false,
@@ -1561,6 +1561,22 @@
         },
         {
             "tileA": {
+                "x": 4,
+                "y": 5
+            },
+            "tileB": {
+                "x": 5,
+                "y": 5
+            },
+            "isSecret": false,
+            "localEuler": {
+                "x": 0.0,
+                "y": 90.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tileA": {
                 "x": 6,
                 "y": 8
             },
@@ -1577,28 +1593,12 @@
         },
         {
             "tileA": {
-                "x": 7,
-                "y": 6
-            },
-            "tileB": {
                 "x": 6,
                 "y": 6
             },
-            "isSecret": false,
-            "localEuler": {
-                "x": 0.0,
-                "y": 90.0,
-                "z": 0.0
-            }
-        },
-        {
-            "tileA": {
-                "x": 5,
-                "y": 5
-            },
             "tileB": {
-                "x": 4,
-                "y": 5
+                "x": 7,
+                "y": 6
             },
             "isSecret": false,
             "localEuler": {
@@ -2204,22 +2204,6 @@
         {
             "tileA": {
                 "x": 5,
-                "y": 2
-            },
-            "tileB": {
-                "x": 4,
-                "y": 2
-            },
-            "prefab": "WallTorch_PF",
-            "localEuler": {
-                "x": 0.0,
-                "y": 90.0,
-                "z": 0.0
-            }
-        },
-        {
-            "tileA": {
-                "x": 5,
                 "y": 3
             },
             "tileB": {
@@ -2508,22 +2492,6 @@
         {
             "tileA": {
                 "x": 8,
-                "y": 2
-            },
-            "tileB": {
-                "x": 9,
-                "y": 2
-            },
-            "prefab": "Wall_PF",
-            "localEuler": {
-                "x": 0.0,
-                "y": 270.0,
-                "z": 0.0
-            }
-        },
-        {
-            "tileA": {
-                "x": 8,
                 "y": 3
             },
             "tileB": {
@@ -3084,22 +3052,6 @@
         {
             "tileA": {
                 "x": 11,
-                "y": 14
-            },
-            "tileB": {
-                "x": 12,
-                "y": 14
-            },
-            "prefab": "Wall_PF",
-            "localEuler": {
-                "x": 0.0,
-                "y": 270.0,
-                "z": 0.0
-            }
-        },
-        {
-            "tileA": {
-                "x": 11,
                 "y": 15
             },
             "tileB": {
@@ -3302,22 +3254,6 @@
             "localEuler": {
                 "x": 0.0,
                 "y": 270.0,
-                "z": 0.0
-            }
-        },
-        {
-            "tileA": {
-                "x": 15,
-                "y": 11
-            },
-            "tileB": {
-                "x": 15,
-                "y": 12
-            },
-            "prefab": "Wall_PF",
-            "localEuler": {
-                "x": 0.0,
-                "y": 180.0,
                 "z": 0.0
             }
         },
@@ -4019,6 +3955,116 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
+            }
+        }
+    ],
+    "monsters": [
+        {
+            "tile": {
+                "x": 3,
+                "y": 5
+            },
+            "monster": "Zombi",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 3,
+                "y": 8
+            },
+            "monster": "Zombi",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 7,
+                "y": 16
+            },
+            "monster": "Zombi",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 8,
+                "y": 16
+            },
+            "monster": "Skeleton",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 8,
+                "y": 7
+            },
+            "monster": "Skeleton",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 8,
+                "y": 8
+            },
+            "monster": "Skeleton",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 5,
+                "y": 6
+            },
+            "monster": "Skeleton",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 7,
+                "y": 15
+            },
+            "monster": "Skeleton",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 5,
+                "y": 16
+            },
+            "monster": "Zombi",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
             }
         }
     ]

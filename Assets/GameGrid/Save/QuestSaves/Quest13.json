@@ -1,7 +1,7 @@
 {
-    "version": 2,
+    "version": 3,
     "name": "Map 13",
-    "savedAtUtcTicks": 639289526758444249,
+    "savedAtUtcTicks": 639289553212862454,
     "width": 26,
     "height": 19,
     "rooms": [
@@ -1497,11 +1497,27 @@
         },
         {
             "tileA": {
-                "x": 5,
+                "x": 2,
+                "y": 5
+            },
+            "tileB": {
+                "x": 2,
+                "y": 4
+            },
+            "isSecret": false,
+            "localEuler": {
+                "x": 0.0,
+                "y": 180.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tileA": {
+                "x": 4,
                 "y": 7
             },
             "tileB": {
-                "x": 4,
+                "x": 5,
                 "y": 7
             },
             "isSecret": false,
@@ -1556,22 +1572,6 @@
             "localEuler": {
                 "x": 0.0,
                 "y": 0.0,
-                "z": 0.0
-            }
-        },
-        {
-            "tileA": {
-                "x": 2,
-                "y": 4
-            },
-            "tileB": {
-                "x": 2,
-                "y": 5
-            },
-            "isSecret": false,
-            "localEuler": {
-                "x": 0.0,
-                "y": 180.0,
                 "z": 0.0
             }
         },
@@ -4879,6 +4879,176 @@
                 "x": 1.0,
                 "y": 1.0,
                 "z": 1.0
+            }
+        }
+    ],
+    "monsters": [
+        {
+            "tile": {
+                "x": 2,
+                "y": 3
+            },
+            "monster": "Orc",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 1,
+                "y": 3
+            },
+            "monster": "Orc",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 21,
+                "y": 3
+            },
+            "monster": "Skeleton",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 22,
+                "y": 2
+            },
+            "monster": "Skeleton",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 23,
+                "y": 2
+            },
+            "monster": "Skeleton",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 7,
+                "y": 1
+            },
+            "monster": "Goblin",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 16,
+                "y": 6
+            },
+            "monster": "Orc",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 12,
+                "y": 5
+            },
+            "monster": "Orc",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 6,
+                "y": 3
+            },
+            "monster": "Goblin",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 6,
+                "y": 2
+            },
+            "monster": "Goblin",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 7,
+                "y": 2
+            },
+            "monster": "Orc",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 24,
+                "y": 3
+            },
+            "monster": "Skeleton",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 13,
+                "y": 5
+            },
+            "monster": "Orc",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
+            }
+        },
+        {
+            "tile": {
+                "x": 2,
+                "y": 7
+            },
+            "monster": "Orc",
+            "localEuler": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 0.0
             }
         }
     ]
