@@ -59111,7 +59111,7 @@ MonoBehaviour:
   _width: 26
   _height: 19
   _tilePrefab: {fileID: 2761703250562826548, guid: 6576c0309b75cc54795b380ee9637ce0, type: 3}
-  _cam: {fileID: 330585546}
+  _cam: {fileID: 330585545}
   _roomPrefab: {fileID: -5077946675272694743, guid: b82dd172a1acabd46b4ad9af32c6af63, type: 3}
   _doorPrefab: {fileID: -837681063964779121, guid: 8a7457cbd967b7142b1be9f56c9e831f, type: 3}
   goblinPF: {fileID: 6047744880929175419, guid: 6fa3419ad4ad1284688deb95c01af7f8, type: 3}
@@ -111343,8 +111343,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4b66678b8b9a34993f93fff22cb106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  panelManager: {fileID: 0}
   gridManager: {fileID: 310863035}
   sheetController: {fileID: 792013645}
+  zoomSpeed: 10
+  minZoom: 5
+  maxZoom: 17
   playerNameTxt: {fileID: 1684354303}
   moved: 0
   actionPerformed: 0
@@ -149525,7 +149529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3562954905636720811, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 428.40173
+      value: 428.4016
       objectReference: {fileID: 0}
     - target: {fileID: 3604311546152199060, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
       propertyPath: m_IsActive
