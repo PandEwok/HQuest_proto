@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private PanelManager panelManager;
+
     [SerializeField] public GridManager gridManager;
     [SerializeField] private CharacterSheetController sheetController;
 
