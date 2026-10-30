@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    bool isMoving;
+    bool interruptRequested;
+    System.Action onInterruptedMoveEnd;
+
     GridManager gridManager;
 
     [HideInInspector] public Vector2 positionInGrid = new Vector2(0,0);
@@ -33,8 +37,11 @@ public class Character : MonoBehaviour
         positionInGrid = newPos;
         transform.position = worldPos;
     }*/
-    public IEnumerator MoveAlongPath(List<Tile> path)
+    public IEnumerator MoveAlongPath(List<Tile> path, System.Action onComplete = null)
     {
+        isMoving = true;
+        interruptRequested = false;
+
         foreach (Tile tile in path)
         {
             Vector3 targetPos = tile.surface.transform.position;
@@ -54,7 +61,23 @@ public class Character : MonoBehaviour
 
             positionInGrid = gridManager.GetTileCoords(tile);
 
+            if (interruptRequested) break;
+
             yield return new WaitForSeconds(0.05f);
+        }
+
+        isMoving = false;
+
+        if(interruptRequested)
+        {
+            interruptRequested = false;
+            var callback = onInterruptedMoveEnd;
+            onInterruptedMoveEnd = null;
+            callback?.Invoke();
+        }
+        else
+        {
+            onComplete?.Invoke();   // seulement si le déplacement n'a pas été interrompu
         }
     }
 
@@ -140,7 +163,11 @@ public class Character : MonoBehaviour
     public void ShowMovementRange(int movement)
     {
         ClearMovementRange();
-
+        if(gridManager.GetTileAtPosition(positionInGrid) == null)
+        {
+            Debug.LogWarning($"Character.ShowMovementRange: No tile found at position {positionInGrid}");
+            return;
+        }
         Tile currentTile =
             gridManager.GetTileAtPosition(positionInGrid);
 
@@ -164,5 +191,16 @@ public class Character : MonoBehaviour
         }
 
         highlightedTiles.Clear();
+    }
+
+    public void InterruptMovement(System.Action onStopped = null)
+    {
+        if (!isMoving)
+        {
+            onStopped?.Invoke();
+            return;
+        }
+        interruptRequested = true;
+        onInterruptedMoveEnd = onStopped;
     }
 }

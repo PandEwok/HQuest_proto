@@ -1,11 +1,6 @@
-using NUnit.Framework;
 using System.Collections.Generic;
-using System.IO;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.ShaderGraph.Serialization;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 public class GameManager : MonoBehaviour
@@ -13,7 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GridManager gridManager;
     [SerializeField] private CharacterSheetController sheetController;
 
-    [SerializeField] List<TextAsset> QuestMaps;
+    //[SerializeField] List<TextAsset> QuestMaps;
 
     int heroTurns = 0;
     int currentTurn = 0;
@@ -36,16 +31,31 @@ public class GameManager : MonoBehaviour
 
     System.Random random;
 
+    bool bonusMoveActive;
+    System.Action bonusMoveCallback;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (QuestMaps.Count > 0)
+        //if (QuestMaps.Count > 0)
+        //{
+        //    MapSaveData mapData = JsonUtility.FromJson<MapSaveData>(QuestMaps[0].text);
+        //    //gridManager.ApplyMap(mapData);
+        //    Debug.Log($"[Quest] v{mapData.version} walls:{mapData.walls.Count} props:{mapData.props.Count}");
+        //    bool ok = gridManager.ApplyMap(mapData);
+        //    Debug.Log($"[Quest] ApplyMap = {ok}");
+        //}
+
+        QuestData activeQuest = GameSession.CurrentQuest;
+        if (activeQuest != null && activeQuest.mapFile != null)
         {
-            MapSaveData mapData = JsonUtility.FromJson<MapSaveData>(QuestMaps[0].text);
-            //gridManager.ApplyMap(mapData);
-            Debug.Log($"[Quest] v{mapData.version} walls:{mapData.walls.Count} props:{mapData.props.Count}");
+            MapSaveData mapData = JsonUtility.FromJson<MapSaveData>(activeQuest.mapFile.text);
             bool ok = gridManager.ApplyMap(mapData);
-            Debug.Log($"[Quest] ApplyMap = {ok}");
+            Debug.Log($"[Quest] Chargement de la map pour '{activeQuest.title}' (v{mapData.version}) - ApplyMap = {ok}");
+        }
+        else
+        {
+            Debug.LogError("GameManager : Aucune quête active trouvée dans GameSession ou aucun fichier de map assigné sur le QuestData !");
         }
 
         heroTurns = GameSession.SelectedHeroes.Count;
@@ -93,8 +103,15 @@ public class GameManager : MonoBehaviour
         return spawnedCharacter;
     }
 
+    //To be sure that the end turn is triggered by the right player (not used for the button, only for the pit)
+    public void TriggerEndTurnFor(Character requester)
+    {
+        if (currentTurn >= heroCharacters.Count || heroCharacters[currentTurn] != requester) return;
+        TriggerEndTurn();
+    }
     public void TriggerEndTurn()
     {
+        if (endOfTurn) return; //Anti double call
         CombatUI.GetComponent<TurnHandoverPopup>().ToggleHandOverPanel(true);
         endOfTurn = true;
     }
@@ -106,7 +123,10 @@ public class GameManager : MonoBehaviour
         //Debug.Log(currentTurn);
         if (endOfTurn)
         {
+            if (currentTurn < heroTurns)
+                GameSession.SelectedHeroes[currentTurn].OnTurnEnded();
             moved = false; actionPerformed = false;
+            FinishBonusMove(null);
             currentTurn += 1;
             if (currentTurn > heroTurns)
             {
@@ -143,7 +163,8 @@ public class GameManager : MonoBehaviour
                                 List<Tile> path = hero.FindPath(tile, targetTile);
                                 if (path != null)
                                 {
-                                    StartCoroutine(hero.MoveAlongPath(path));
+                                    System.Action onDone = bonusMoveActive ? () => FinishBonusMove(hero) : null;
+                                    StartCoroutine(hero.MoveAlongPath(path, onDone));
                                     moved = true;
                                     hero.ClearMovementRange();
                                 }
@@ -165,6 +186,7 @@ public class GameManager : MonoBehaviour
         if (currentTurn < heroTurns)
         {
             HeroCard hero = GameSession.SelectedHeroes[currentTurn];
+            hero.OnTurnStarted();
             if (playerNameTxt.GetComponent<TMP_Text>() != null)
             {
                 playerNameTxt.GetComponent<TMP_Text>().text = hero.title + "'s Turn";
@@ -207,5 +229,28 @@ public class GameManager : MonoBehaviour
     public HeroCard GetCurrentHeroCard()
     {
         return GameSession.SelectedHeroes[currentTurn];
+    }
+
+    public void GrantBonusMove(Character hero, int range, System.Action onFinished)
+    {
+        if (currentTurn >= heroCharacters.Count || heroCharacters[currentTurn] != hero)
+        {
+            onFinished?.Invoke();
+            return;
+        }
+        hero.movementRange = range;
+        moved = false;
+        bonusMoveActive = true;
+        bonusMoveCallback = onFinished;
+    }
+
+    void FinishBonusMove(Character endTurnFor)
+    {
+        if (!bonusMoveActive) return;
+        bonusMoveActive = false;
+        var callback = bonusMoveCallback;
+        bonusMoveCallback = null;
+        callback?.Invoke();
+        if (endTurnFor != null) TriggerEndTurnFor(endTurnFor);
     }
 }

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 317ba2b0aa0f67a4da435115b77a4ccd, type: 3}
   m_Name: Quest05
   m_EditorClassIdentifier: Assembly-CSharp::QuestData
+  mapFile: {fileID: 4900000, guid: 1ab52e473e8db304da0a64f0e5e18fc1, type: 3}
   id: base.quest.05
   number: 5
   title: Melar's Maze

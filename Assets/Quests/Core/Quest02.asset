@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 317ba2b0aa0f67a4da435115b77a4ccd, type: 3}
   m_Name: Quest02
   m_EditorClassIdentifier: Assembly-CSharp::QuestData
+  mapFile: {fileID: 4900000, guid: 2167df9f64296a44294e37e715678205, type: 3}
   id: base.quest.02
   number: 2
   title: The Rescue of Sir Ragnar
