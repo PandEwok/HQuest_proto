@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public interface ITrap
 {
     string TrapName { get; }
