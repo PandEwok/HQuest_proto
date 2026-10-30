@@ -59114,28 +59114,38 @@ MonoBehaviour:
   _cam: {fileID: 330585546}
   _roomPrefab: {fileID: -5077946675272694743, guid: b82dd172a1acabd46b4ad9af32c6af63, type: 3}
   _doorPrefab: {fileID: -837681063964779121, guid: 8a7457cbd967b7142b1be9f56c9e831f, type: 3}
+  goblinPF: {fileID: 6047744880929175419, guid: 6fa3419ad4ad1284688deb95c01af7f8, type: 3}
+  skeletonPF: {fileID: 4288969435363280844, guid: c482d3d059f277a43b632d78dd471f17, type: 3}
+  zombiPF: {fileID: 1918261265406837780, guid: 016e6bf51e91f594eb75d40d77afdeae, type: 3}
+  orcPF: {fileID: 5348502689305304988, guid: cdc63d0dd4ef27b41a18160a221de02b, type: 3}
+  abominationPF: {fileID: 7587979717977002944, guid: 20b3815c3616c0247bd3b2bd702de4cf, type: 3}
+  mummyPF: {fileID: 6900159145846668124, guid: f615dce021ff3814c8a336d710819d6f, type: 3}
+  dreadWarriorPF: {fileID: 6345298667255483452, guid: 58b1a90aa3e23134d95a7b08eb533bf2, type: 3}
+  gargoylePF: {fileID: 5860551519039111808, guid: a89a52651063b104cacc8d61611fe4e1, type: 3}
   _SecretDoorPrefab: {fileID: 0}
-  RockPF: {fileID: 0}
+  RockPF: {fileID: 8004093930818766245, guid: c8ed108c0113dd249b5fc664408ebf15, type: 3}
   SpikeTrapPF: {fileID: 5345008905422333103, guid: da9aaace707a3ec4c998ed6b52730fb5, type: 3}
   PitTrapPF: {fileID: 5345008905422333103, guid: bb54dfdb2f27a0643aa46ee62edfbccf, type: 3}
   FallingBlockTrapPF: {fileID: 5345008905422333103, guid: 8bdabce58e7560b418b0afb7c21150b2, type: 3}
-  WeaponRack1PF: {fileID: 0}
-  WeaponRack2PF: {fileID: 0}
-  Cupboard1PF: {fileID: 0}
-  Cupboard2PF: {fileID: 0}
-  Table1PF: {fileID: 0}
-  Table2PF: {fileID: 0}
-  Chest1PF: {fileID: 0}
-  Chest2PF: {fileID: 0}
-  SorcererTable1PF: {fileID: 0}
-  SorcererTable2PF: {fileID: 0}
-  AlchemistBench1PF: {fileID: 0}
-  AlchemistBench2PF: {fileID: 0}
-  TombPF: {fileID: 0}
-  ThronePF: {fileID: 0}
-  StairsPF: {fileID: 0}
+  WeaponRack1PF: {fileID: 2644583586431922036, guid: a8f195229f80f5b4ab30732a7ebabb55, type: 3}
+  WeaponRack2PF: {fileID: 447069366180780000, guid: 5efb0fa942db0b543bcb98c9945991ed, type: 3}
+  Cupboard1PF: {fileID: 6406065121164062134, guid: 7fa388ecf19108c43a4dede6e08d4430, type: 3}
+  Cupboard2PF: {fileID: 1596742438418453170, guid: 3a2e23550e79b9a4981b49a1e5d9d9e1, type: 3}
+  Table1PF: {fileID: 2895491092060032472, guid: 546adebb4cc54274e8b7ee6a810f67fd, type: 3}
+  Table2PF: {fileID: 907202122545053484, guid: e3fc368558c8f32489030cb925075a15, type: 3}
+  Chest1PF: {fileID: 8552526197687742854, guid: 2ec3ae8ac0dd2ef45968e668ef1a1c96, type: 3}
+  Chest2PF: {fileID: 1434034538843061962, guid: 0faba167085c1f643953d44ecfcd48a5, type: 3}
+  SorcererTable1PF: {fileID: 3775824388350926051, guid: a2beb1acfce615a408e0bc1748efde90, type: 3}
+  SorcererTable2PF: {fileID: 3775824388350926051, guid: de634a4780365ba4a9e5d8f54534654e, type: 3}
+  AlchemistBench1PF: {fileID: 4330594236850401230, guid: 218935917b8ca9d4cacb943e97efe71a, type: 3}
+  AlchemistBench2PF: {fileID: 4330594236850401230, guid: ffb137ffd50b8f545a854884d141fd9a, type: 3}
+  TombPF: {fileID: 4330594236850401230, guid: 392906c2d3d02e8499fb4d5161edf24c, type: 3}
+  ThronePF: {fileID: 4404446581530411105, guid: 53116493264c35a4eb5af56b83fc33aa, type: 3}
+  StairsPF: {fileID: 4330594236850401230, guid: 4067afa8442103543a7e6d7619114c37, type: 3}
+  FireplacePF: {fileID: 1596742438418453170, guid: 7517ba4c49ef8ac48956ce52a21d9a76, type: 3}
   CorridorTiles: {fileID: 1811731107}
   currentMode: 0
+  selectedEnemy: {fileID: 0}
   currentSelection: 1
 --- !u!4 &310863036
 Transform:
@@ -111335,11 +111345,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   gridManager: {fileID: 310863035}
   sheetController: {fileID: 792013645}
-  QuestMaps:
-  - {fileID: 4900000, guid: dc95a2fd38325d14397e1f581b207d3f, type: 3}
-  - {fileID: 4900000, guid: e074c56ae2532a6438bd81a224c6ac32, type: 3}
-  - {fileID: 4900000, guid: aaef640ccd50e1f42a1c57b8f324e62b, type: 3}
-  - {fileID: 4900000, guid: 2167df9f64296a44294e37e715678205, type: 3}
   playerNameTxt: {fileID: 1684354303}
   moved: 0
   actionPerformed: 0
@@ -149520,7 +149525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3562954905636720811, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 428.40155
+      value: 428.40173
       objectReference: {fileID: 0}
     - target: {fileID: 3604311546152199060, guid: b974548952763d84e8b582d2d2b9f37b, type: 3}
       propertyPath: m_IsActive
